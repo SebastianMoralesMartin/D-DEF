@@ -24,6 +24,7 @@ public class Text {
     }
 
     public void setMessage(String message){
+        font.setColor(Color.RED);
         this.message = new String(message);
         this.glyph.setText(this.font, this.message);
         this.width = glyph.width;
@@ -31,7 +32,7 @@ public class Text {
     }
 
     public void draw(SpriteBatch batch, float x, float y){
-        font.setColor(Color.MAGENTA);
+        //font.setColor(Color.TAN);
         font.draw(batch, this.glyph, x, y);
     }
 }

@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 //Raul
+//Sebastian
 class PantallaDemo implements Screen {
     //Variables iniciales
     private final Juego juego;

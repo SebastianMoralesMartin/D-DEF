@@ -28,7 +28,7 @@ public class Button extends Actor {
     }
 
     public Button(Juego game, ToScreen toScreenReference, String unpressedPath, String pressedPath){
-        new Button(game, toScreenReference, unpressedPath, unpressedPath, (float) 0.0, (float) 0.0);
+        new Button(game, toScreenReference, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
     }
 
     public Button(Juego game, ToScreen toScreenReference, String unpressedPath, String pressedPath, float x, float y){

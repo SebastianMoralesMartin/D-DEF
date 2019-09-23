@@ -1,6 +1,7 @@
 package mx.itesm.seb;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -30,6 +31,7 @@ public class Text {
     }
 
     public void draw(SpriteBatch batch, float x, float y){
-        font.draw(batch, this.glyph, x - this.width/2, y);
+        font.setColor(Color.MAGENTA);
+        font.draw(batch, this.glyph, x, y);
     }
 }

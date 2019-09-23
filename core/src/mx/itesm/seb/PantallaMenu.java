@@ -26,6 +26,15 @@ class PantallaMenu implements Screen {
     private Texture texturaFondo;
     private Texture texturaTitulo;
 
+    //Referencias de texto
+    private Text titleHead;
+    private Text subtitleHead;
+
+    //Referencias de botones
+    private Button btnNewGame;
+    private Button btnSettings;
+    private Button btnAbout;
+
     //Escena: Menú
     private Stage escenaMenu;
 
@@ -37,40 +46,36 @@ class PantallaMenu implements Screen {
     public void show() {
         configurarVista();
         cargarTexturas();
+        crearTexto();
         crearMenu();
     }
 
     private void crearMenu() {
         escenaMenu = new Stage(view);
-        ImageButton btnSDeploy = configurarBotonDeploy();
-        agregarBotones(btnSDeploy);
+        this.configurarBotones();
+        this.agregarBotones();
         Gdx.input.setInputProcessor(escenaMenu);
     }
 
-    private void agregarBotones(ImageButton btnSDeploy) {
-        escenaMenu.addActor(btnSDeploy);
+    private void agregarBotones() {
+        escenaMenu.addActor(btnNewGame.getButton());
+        escenaMenu.addActor(btnSettings.getButton());
+        escenaMenu.addActor(btnAbout.getButton());
     }
 
-    private ImageButton configurarBotonDeploy() {
-        //Botón Deploy
-        TextureRegionDrawable trdDeploy = new TextureRegionDrawable(new TextureRegion(new Texture("D-DEF/btnDeploy.png")));
-        TextureRegionDrawable trdDeployPressed = new TextureRegionDrawable(new TextureRegion(new Texture("D-DEF/btnDeployPressed.png")));
-        ImageButton btnSDeploy = new ImageButton(trdDeploy, trdDeployPressed);
-        btnSDeploy.setPosition(Juego.ANCHO/2 - btnSDeploy.getWidth()/2, Juego.ALTO/6);
-        //Evento de Botón Deploy
-        btnSDeploy.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                juego.setScreen(new PantallaDemo(juego));
-            }
-        });
-        return btnSDeploy;
+    private void configurarBotones(){
+        this.btnNewGame = new Button(juego, Button.ToScreen.GAME, "D-DEF/buttonNewGame.png", "D-DEF/buttonNewGamePressed.png", 5*Juego.ANCHO/6, Juego.ALTO/10);
+        this.btnSettings = new Button(juego, Button.ToScreen.SETTINGS, "D-DEF/buttonSettings.png", "D-DEF/buttonSettings.png", 3*Juego.ANCHO/6, Juego.ALTO/10);
+        this.btnAbout = new Button(juego, Button.ToScreen.ABOUT, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1*Juego.ANCHO/6, Juego.ALTO/10);
+    }
+
+    private void agregarBoton(ImageButton button) {
+        escenaMenu.addActor(button);
     }
 
     private void cargarTexturas() {
-        texturaFondo = new Texture("D-DEF/fondoMarino.png");
-        texturaTitulo = new Texture("D-DEF/TitleHead.png");
+        texturaFondo = new Texture("D-DEF/oceanBackgroundVertical.png");
+        texturaTitulo = new Texture("D-DEF/TitleHeadVertical.png");
     }
 
     private void configurarVista(){
@@ -79,6 +84,11 @@ class PantallaMenu implements Screen {
         camera.update();
         view = new StretchViewport(Juego.ANCHO, Juego.ALTO, camera);
         batch = new SpriteBatch();
+    }
+
+    private void crearTexto(){
+        titleHead = new Text("Dunkirk-Defense");
+        subtitleHead = new Text("¡SALVA HÉROES!");
     }
 
     @Override
@@ -94,7 +104,9 @@ class PantallaMenu implements Screen {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(texturaFondo, 0, 0);
-        batch.draw(texturaTitulo, Juego.ANCHO/2 - texturaTitulo.getWidth()/2, Juego.ALTO - texturaTitulo.getHeight()- texturaTitulo.getHeight()/4);
+        batch.draw(texturaTitulo, Juego.ANCHO/2 - texturaTitulo.getWidth()/2, Juego.ALTO - texturaTitulo.getHeight()- texturaTitulo.getHeight()/9);
+        titleHead.draw(batch,juego.ANCHO/2, juego.ALTO/2 + juego.ALTO/4);
+        subtitleHead.draw(batch, juego.ANCHO/2, juego.ALTO/2 + juego.ALTO/4 - 50);
         batch.end();
 
         escenaMenu.draw();

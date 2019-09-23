@@ -1,12 +1,14 @@
 package mx.itesm.seb;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -38,6 +40,11 @@ class PantallaDemo implements Screen {
     //Escena: HUD
     private Stage escenaHUD;
 
+    //Marcador de ENERGIA en pantalla
+
+    private int energy = 999999;
+    private Text text;
+
     public PantallaDemo(Juego juego) {
         this.juego = juego;
     }
@@ -49,6 +56,12 @@ class PantallaDemo implements Screen {
         crearHUD();
         crearBote();
         crearEnemigos();
+
+        //PROTOTYPE: Sets listener and input processor
+        //Gdx.input.setInputProcessor(new ProcesadorEntrada());
+
+        //PROTOTYPE: Creates an object that draws text outputs onto a screen
+        text = new Text();
     }
 
     private void crearBote() {
@@ -170,9 +183,11 @@ class PantallaDemo implements Screen {
         switch(estadoBote){
             case DERECHA:
                 bote.mover(3, 0);
+                energy -=1;
                 break;
             case IZQUIERDA:
                 bote.mover(-3, 0);
+                energy-=1;
                 break;
         }
     }
@@ -212,6 +227,7 @@ class PantallaDemo implements Screen {
         dibujarFondo();
         dibujarEnemigos();
         dibujarBote();
+        text.mostrarMensaje(batch,"Energy: " + Integer.toString(energy), Juego.ANCHO - 150, Juego.ALTO -60);
         batch.end();
     }
 
@@ -260,5 +276,51 @@ class PantallaDemo implements Screen {
         QUIETO,
         DERECHA,
         IZQUIERDA
+    }
+
+    class ProcesadorEntrada implements InputProcessor {
+
+        @Override
+        public boolean keyDown(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyUp(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyTyped(char character) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            Vector3 v = new Vector3(screenX, screenY, 0);
+            camera.unproject(v);
+            bote.getSprite().setX(v.x);
+            return true;
+        }
+
+        @Override
+        public boolean mouseMoved(int screenX, int screenY) {
+            return false;
+        }
+
+        @Override
+        public boolean scrolled(int amount) {
+            return false;
+        }
     }
 }

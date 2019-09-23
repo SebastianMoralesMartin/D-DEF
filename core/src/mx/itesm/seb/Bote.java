@@ -12,6 +12,9 @@ public class Bote {
         sprite = new Sprite(textura);
         sprite.setPosition(x, y);
     }
+    public Sprite getSprite(){
+        return sprite;
+    }
 
     public void mover(float dx, float dy){
         sprite.setX(sprite.getX() + dx);

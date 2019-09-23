@@ -61,12 +61,12 @@ class PantallaDemo implements Screen {
         //Gdx.input.setInputProcessor(new ProcesadorEntrada());
 
         //PROTOTYPE: Creates an object that draws text outputs onto a screen
-        text = new Text();
+        text = new Text("Energy");
     }
 
     private void crearBote() {
         Texture texturaNave = new Texture("D-DEF/AAPlayer.png");
-        bote = new Bote(texturaNave, Juego.ANCHO/2, 40);
+        bote = new Bote(texturaNave, Juego.ANCHO/2, 3*Juego.ALTO/7);
     }
 
     private void crearEnemigos() {
@@ -75,7 +75,7 @@ class PantallaDemo implements Screen {
         enemigos = new Array<>(11 * 5);
         for(int renglon = 0; renglon < 3; renglon++){
             for(int columna=0; columna <4; columna++){
-                Enemigo enemigo = new Enemigo(texturaEnemigoArriba, texturaEnemigoAbajo, 40 + columna * 250, 360 + renglon * 120);
+                Enemigo enemigo = new Enemigo(texturaEnemigoArriba, texturaEnemigoAbajo, 40 + columna * 250, 5*Juego.ALTO/7 + renglon * 120);
                 enemigos.add(enemigo);
             }
         }
@@ -154,7 +154,7 @@ class PantallaDemo implements Screen {
     }
 
     private void cargarTexturas() {
-        texturaFondo = new Texture("D-DEF/fondoMarino.png");
+        texturaFondo = new Texture("D-DEF/oceanBackgroundPlayVertical.png");
     }
 
     private void configurarVista(){
@@ -227,7 +227,8 @@ class PantallaDemo implements Screen {
         dibujarFondo();
         dibujarEnemigos();
         dibujarBote();
-        text.mostrarMensaje(batch,"Energy: " + Integer.toString(energy), Juego.ANCHO - 150, Juego.ALTO -60);
+        text.setMessage("Energy: " + Integer.toString(energy));
+        text.draw(batch, Juego.ANCHO/2, Juego.ALTO - 60);
         batch.end();
     }
 

@@ -7,16 +7,29 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Text {
     private BitmapFont font;
+    private String message;
+    private float width;
+    private float height;
+    private GlyphLayout glyph;
 
     public Text(){
-        font = new BitmapFont(Gdx.files.internal("D-DEF/pixelNormal.fnt"));
-
+        new Text("DEFAULT");
     }
-    public void mostrarMensaje(SpriteBatch batch, String mensaje, float x, float y){
-        GlyphLayout glyph = new GlyphLayout();
-        glyph.setText(font, mensaje);
-        float anchoTexto = glyph.width;
-        font.draw(batch, glyph, x- anchoTexto/2, y);
-        float altoTexto = glyph.height;
+
+    public Text(String message){
+        this.font = new BitmapFont(Gdx.files.internal("D-DEF/pixelNormal.fnt"));
+        this.glyph = new GlyphLayout();
+        setMessage(message);
+    }
+
+    public void setMessage(String message){
+        this.message = new String(message);
+        this.glyph.setText(this.font, this.message);
+        this.width = glyph.width;
+        this.height = glyph.height;
+    }
+
+    public void draw(SpriteBatch batch, float x, float y){
+        font.draw(batch, this.glyph, x - this.width/2, y);
     }
 }

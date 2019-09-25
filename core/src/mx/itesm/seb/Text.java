@@ -40,7 +40,6 @@ public class Text {
 
     public void draw(SpriteBatch batch, float x, float y){
         //font.setColor(Color.TAN);
-        float anchoTexto = glyph.width;
         font.draw(batch, this.glyph, x, y);
     }
 }

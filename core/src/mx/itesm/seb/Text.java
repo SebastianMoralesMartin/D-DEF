@@ -31,8 +31,16 @@ public class Text {
         this.height = glyph.height;
     }
 
+    public float getWidth() {
+        return glyph.width;
+    }
+    public float getHeight(){
+        return glyph.height;
+    }
+
     public void draw(SpriteBatch batch, float x, float y){
         //font.setColor(Color.TAN);
+        float anchoTexto = glyph.width;
         font.draw(batch, this.glyph, x, y);
     }
 }

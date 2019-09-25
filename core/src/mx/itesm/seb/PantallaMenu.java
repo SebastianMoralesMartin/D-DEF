@@ -105,8 +105,8 @@ class PantallaMenu implements Screen {
         batch.begin();
         batch.draw(texturaFondo, 0, 0);
         batch.draw(texturaTitulo, Juego.ANCHO/2 - texturaTitulo.getWidth()/2, Juego.ALTO - texturaTitulo.getHeight()- texturaTitulo.getHeight()/9);
-        titleHead.draw(batch,juego.ANCHO/2, juego.ALTO/2 + juego.ALTO/4);
-        subtitleHead.draw(batch, juego.ANCHO/2, juego.ALTO/2 + juego.ALTO/4 - 50);
+        titleHead.draw(batch,juego.ANCHO/2 - titleHead.getWidth()/2, juego.ALTO/2 + juego.ALTO/4);
+        subtitleHead.draw(batch, juego.ANCHO/2 - subtitleHead.getWidth()/2, juego.ALTO/2 + juego.ALTO/4 - 50);
         batch.end();
 
         escenaMenu.draw();

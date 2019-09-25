@@ -17,8 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-//Raul
-//Sebastian
+
 class PantallaDemo implements Screen {
     //Variables iniciales
     private final Juego juego;
@@ -43,7 +42,7 @@ class PantallaDemo implements Screen {
 
     //Marcador de ENERGIA en pantalla
 
-    private int energy = 999999;
+    private float energy = 999;
     private Text text;
 
     public PantallaDemo(Juego juego) {
@@ -184,11 +183,11 @@ class PantallaDemo implements Screen {
         switch(estadoBote){
             case DERECHA:
                 bote.mover(3, 0);
-                energy -=1;
+                energy -=.25;
                 break;
             case IZQUIERDA:
                 bote.mover(-3, 0);
-                energy-=1;
+                energy-=.25;
                 break;
         }
     }
@@ -228,8 +227,8 @@ class PantallaDemo implements Screen {
         dibujarFondo();
         dibujarEnemigos();
         dibujarBote();
-        text.setMessage("Energy: " + Integer.toString(energy));
-        text.draw(batch, Juego.ANCHO/2, Juego.ALTO - 60);
+        text.setMessage("Energy: " + Float.toString(energy));
+        text.draw(batch, (60 * Juego.ANCHO)/100, Juego.ALTO - text.getHeight());
         batch.end();
     }
 
@@ -279,7 +278,7 @@ class PantallaDemo implements Screen {
         DERECHA,
         IZQUIERDA
     }
-
+    //Procesador de entrada de la pantalla tactil (toma control total y los botones dejan de funcionar)
     class ProcesadorEntrada implements InputProcessor {
 
         @Override

@@ -115,9 +115,9 @@ class PantallaAbout implements Screen {
 
         batch.draw(texturaFondo,1,1);
 
-        titleHead.draw(batch,juego.ANCHO/2, juego.ALTO-80);
-        subtitleHead.draw(batch,juego.ANCHO/2,juego.ALTO-120);
-        escrito.draw(batch,juego.ANCHO-170,juego.ALTO-220);
+        titleHead.draw(batch,juego.ANCHO/2 - titleHead.getWidth(), juego.ALTO-80);
+        subtitleHead.draw(batch,juego.ANCHO/2 - subtitleHead.getWidth()/2,juego.ALTO-120);
+        escrito.draw(batch,juego.ANCHO-170 - escrito .getWidth()/2,juego.ALTO-220);
         batch.end();
 
         escenaHUD.draw();

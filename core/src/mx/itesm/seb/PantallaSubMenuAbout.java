@@ -21,7 +21,7 @@ public class PantallaSubMenuAbout implements Screen {
     //Referencias de texturas
     private Texture texturaFondo;
     private Texture texturaTitulo;
-    private Texture testTexture;
+    //private Texture testTexture;
 
     //Referencias de texto
     private Text titleHead;
@@ -31,6 +31,7 @@ public class PantallaSubMenuAbout implements Screen {
     private Button btnNewGame;
     private Button btnSettings;
     private Button btnAbout;
+    private Button btnSubMenuAbout;
 
     //Escena: Menú
     private Stage escenaMenu;
@@ -58,12 +59,14 @@ public class PantallaSubMenuAbout implements Screen {
         escenaMenu.addActor(btnNewGame.getButton());
         escenaMenu.addActor(btnSettings.getButton());
         escenaMenu.addActor(btnAbout.getButton());
+        escenaMenu.addActor(btnSubMenuAbout.getButton());
     }
 
     private void configurarBotones(){
         this.btnNewGame = new Button(juego, Button.ToScreen.GAME, "D-DEF/buttonNewGame.png", "D-DEF/buttonNewGamePressed.png", 5*Juego.ANCHO/6, Juego.ALTO/10);
         this.btnSettings = new Button(juego, Button.ToScreen.SETTINGS, "D-DEF/buttonSettings.png", "D-DEF/buttonSettings.png", 3*Juego.ANCHO/6, Juego.ALTO/10);
         this.btnAbout = new Button(juego, Button.ToScreen.ABOUT, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1*Juego.ANCHO/6, Juego.ALTO/10);
+        this.btnSubMenuAbout = new Button(juego, Button.ToScreen.MENU, "D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png", Juego.ANCHO/2, Juego.ALTO/2);
     }
 
     private void agregarBoton(ImageButton button) {
@@ -73,7 +76,7 @@ public class PantallaSubMenuAbout implements Screen {
     private void cargarTexturas() {
         texturaFondo = new Texture("D-DEF/oceanBackgroundVertical.png");
         texturaTitulo = new Texture("D-DEF/TitleHeadVertical.png");
-        testTexture = new Texture("D-DEF/buttonNewGamePressed.png");
+        //testTexture = new Texture("D-DEF/buttonNewGamePressed.png");
     }
 
     private void configurarVista(){
@@ -106,7 +109,7 @@ public class PantallaSubMenuAbout implements Screen {
         titleHead.draw(batch,juego.ANCHO/2 - titleHead.getWidth()/2, juego.ALTO/2 + juego.ALTO/4);
         subtitleHead.draw(batch, juego.ANCHO/2 - subtitleHead.getWidth()/2, juego.ALTO/2 + juego.ALTO/4 - 50);
 
-        batch.draw(testTexture, Juego.ANCHO/2 - testTexture.getWidth()/2, Juego.ALTO/2 - testTexture.getHeight()/2);
+        //batch.draw(testTexture, Juego.ANCHO/2 - testTexture.getWidth()/2, Juego.ALTO/2 - testTexture.getHeight()/2);
         batch.end();
 
         escenaMenu.draw();

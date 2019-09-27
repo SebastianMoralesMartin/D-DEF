@@ -113,7 +113,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new PantallaSubMenuAbout(game));         //AQUÍ INTRODUCE new PantallaAbout
+                        game.setScreen(new PantallaAbout(game));         //AQUÍ INTRODUCE new PantallaAbout
                     }
                 });
                 break;
@@ -126,6 +126,15 @@ public class Button extends Actor {
                     }
                 });
                 break;
+            case SUBMENU:
+                button.addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        game.setScreen(new PantallaSubMenuAbout(game));         //AQUÍ INTRODUCE new PantallaAbout
+                    }
+                });
+                break;
 
         }
     }
@@ -135,6 +144,7 @@ public class Button extends Actor {
         MENU,
         GAME,
         SETTINGS,
-        ABOUT;
+        ABOUT,
+        SUBMENU;
     }
 }

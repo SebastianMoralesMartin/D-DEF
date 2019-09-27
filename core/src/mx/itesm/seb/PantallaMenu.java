@@ -66,7 +66,7 @@ class PantallaMenu implements Screen {
     private void configurarBotones(){
         this.btnNewGame = new Button(juego, Button.ToScreen.GAME, "D-DEF/buttonNewGame.png", "D-DEF/buttonNewGamePressed.png", 5*Juego.ANCHO/6, Juego.ALTO/10);
         this.btnSettings = new Button(juego, Button.ToScreen.SETTINGS, "D-DEF/buttonSettings.png", "D-DEF/buttonSettings.png", 3*Juego.ANCHO/6, Juego.ALTO/10);
-        this.btnAbout = new Button(juego, Button.ToScreen.ABOUT, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1*Juego.ANCHO/6, Juego.ALTO/10);
+        this.btnAbout = new Button(juego, Button.ToScreen.SUBMENU, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1*Juego.ANCHO/6, Juego.ALTO/10);
     }
 
     private void agregarBoton(ImageButton button) {

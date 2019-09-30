@@ -4,19 +4,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Bote {
-    //Variables iniciales
+public class PlayerSubmarine {
     private Sprite sprite;
 
-    public Bote(Texture textura, float x, float y){
-        sprite = new Sprite(textura);
+    public PlayerSubmarine(Texture texture, float x, float y){
+        sprite = new Sprite(texture);
         sprite.setPosition(x, y);
     }
     public Sprite getSprite(){
         return sprite;
     }
 
-    public void mover(float dx, float dy){
+    public void move(float dx, float dy){
         sprite.setX(sprite.getX() + dx);
     }
 

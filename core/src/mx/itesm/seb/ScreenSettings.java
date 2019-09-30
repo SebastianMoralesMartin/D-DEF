@@ -16,47 +16,39 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 //y
-class PantallaSettings implements Screen {
-    //Variables iniciales
-    private final Juego juego;
+class ScreenSettings implements Screen {
+    private final Videogame videogame;
     private OrthographicCamera camera;
     private Viewport view;
     private SpriteBatch batch;
-
-    //Referencias de texturas
-    private Texture texturaFondo;
-
+    private Texture textureBackground;
     private Text titleHead;
     private Text subtitleHead;
-    private Text escrito;
-
-    //Escena: HUD
-    private Stage escenaHUD;
+    private Text content;
+    private Stage HUD;
 
 
-    public PantallaSettings(Juego juego) {
-        this.juego = juego;
+    public ScreenSettings(Videogame videogame) {
+        this.videogame = videogame;
     }
 
     @Override
     public void show() {
-        configurarVista();
-        cargarTexturas();
+        setView();
+        setTextures();
+        createHUD();
 
-        crearHUD();
+    }
 
-    }//commentario
-
-    //haha
-    private void crearHUD() {
-        escenaHUD = new Stage(view);
+    private void createHUD() {
+        HUD = new Stage(view);
         ImageButton btnBack = configurarBotonBack();
         agregarBotones(btnBack);
-        Gdx.input.setInputProcessor(escenaHUD);
+        Gdx.input.setInputProcessor(HUD);
     }
 
     private void agregarBotones(ImageButton btnBack) {
-        escenaHUD.addActor(btnBack);
+        HUD.addActor(btnBack);
     }
 
     private ImageButton configurarBotonBack() {
@@ -65,68 +57,63 @@ class PantallaSettings implements Screen {
         TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("back.png")));
         TextureRegionDrawable trdBackPressed = new TextureRegionDrawable(new TextureRegion(new Texture("backPressed.png")));
         ImageButton btnBack = new ImageButton(trdBack, trdBackPressed);
-        btnBack.setPosition(0, Juego.ALTO - btnBack.getHeight());
+        btnBack.setPosition(0, Videogame.HEIGHT - btnBack.getHeight());
         //Evento de Botón Back
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                juego.setScreen(new PantallaMenu(juego));
+                videogame.setScreen(new ScreenMenu(videogame));
             }
         });
         return btnBack;
     }
 
-    private void cargarTexturas() {
-        texturaFondo = new Texture("D-DEF/oceanBackgroundPlayVertical.png");
+    private void setTextures() {
+        textureBackground = new Texture("D-DEF/oceanBackgroundPlayVertical.png");
     }
 
-    private void configurarVista(){
-        configurarCamara();
-        view = new StretchViewport(Juego.ANCHO, Juego.ALTO, camera);
+    private void setView(){
+        setCamera();
+        view = new StretchViewport(Videogame.WIDTH, Videogame.HEIGHT, camera);
         batch = new SpriteBatch();
     }
 
-    private void configurarCamara() {
+    private void setCamera() {
         camera = new OrthographicCamera();
-        camera.position.set(Juego.ANCHO/2, Juego.ALTO/2, 0);
+        camera.position.set(Videogame.WIDTH /2, Videogame.HEIGHT /2, 0);
         camera.update();
     }
 
     @Override
     public void render(float delta) {
-
-
-        //Borrar pantalla
-        borrarPantalla();
+        eraseScreen();
         batch.begin();
 
-        batch.draw(texturaFondo,1,1);
+        batch.draw(textureBackground,1,1);
         batch.end();
 
-        escenaHUD.draw();
+        HUD.draw();
     }
 
 
-
-    private void borrarPantalla() {
+    private void eraseScreen() {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        dibujarElementos();
-        escenaHUD.draw();
+        drawElements();
+        HUD.draw();
     }
 
-    private void dibujarElementos() {
+    private void drawElements() {
         //Batch escalado a la vista y la camara
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        dibujarFondo();
+        drawBackground();
         batch.end();
     }
 
-    private void dibujarFondo() {
-        //Dibujo de Fondo
-        batch.draw(texturaFondo, 0, 0);
+    private void drawBackground() {
+        batch.draw(textureBackground, 0, 0);
     }
 
     @Override
@@ -151,7 +138,7 @@ class PantallaSettings implements Screen {
 
     @Override
     public void dispose() {
-        texturaFondo.dispose();
+        textureBackground.dispose();
     }
 
 

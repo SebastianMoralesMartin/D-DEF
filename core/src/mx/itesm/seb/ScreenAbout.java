@@ -15,60 +15,52 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-//y
-class PantallaAbout implements Screen {
-    //Variables iniciales
-    private final Juego juego;
+
+class ScreenAbout implements Screen {
+    private final Videogame videogame;
     private OrthographicCamera camera;
     private Viewport view;
     private SpriteBatch batch;
-
-    //Referencias de texturas
-    private Texture texturaFondo;
-
+    private Texture textureBackground;
     private Text titleHead;
     private Text subtitleHead;
-    private Text escrito;
-
-    //Escena: HUD
-    private Stage escenaHUD;
+    private Text content;
+    private Stage HUD;
 
 
-    public PantallaAbout(Juego juego) {
-        this.juego = juego;
+    public ScreenAbout(Videogame videogame) {
+        this.videogame = videogame;
     }
 
     @Override
     public void show() {
-        configurarVista();
-        cargarTexturas();
-        crearTexto();
-        crearHUD();
+        setView();
+        setTextures();
+        setTexts();
+        createHUD();
 
     }//commentario
 
-    private void crearTexto() {
+    private void setTexts() {
         titleHead = new Text("About");
         subtitleHead = new Text("Bienvenido a D-DEF"+"\n Salva Heroes");
-
-        escrito=new Text("Hoy Te encuentras en 1943 en la bahia de "+"\nDunquerque."+"\nTu misión es salvar a tus compañeros que"
+        content =new Text("Hoy Te encuentras en 1943 en la bahia de "+"\nDunquerque."+"\nTu misión es salvar a tus compañeros que"
                 +"\nquieren regresar a casa sanos y salvos.Estas"+"\nen un submarino que fue dañado en la batalla"+"\ny no se puede sumergir"
                 +"\nte van a atacar desde el aire y necesitas defenderte"+"\ncuentas con energia ilimitada para salvar a tus compañeros"+
                 "\nasí que aprende a moverte de una manera tactica y ofensiva"+"\ncuentas con diferentes tipos de "+"\ndisparo para poder defenderte"
                 +"\nSi derribas el Zeppelín recibiras "+"\nuna recompensa."+"\nMucha Suerte!!!!!!");
 
-
     }
-    //haha
-    private void crearHUD() {
-        escenaHUD = new Stage(view);
+
+    private void createHUD() {
+        HUD = new Stage(view);
         ImageButton btnBack = configurarBotonBack();
-        agregarBotones(btnBack);
-        Gdx.input.setInputProcessor(escenaHUD);
+        addButtons(btnBack);
+        Gdx.input.setInputProcessor(HUD);
     }
 
-    private void agregarBotones(ImageButton btnBack) {
-        escenaHUD.addActor(btnBack);
+    private void addButtons(ImageButton btnBack) {
+        HUD.addActor(btnBack);
     }
 
     private ImageButton configurarBotonBack() {
@@ -77,31 +69,31 @@ class PantallaAbout implements Screen {
         TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("back.png")));
         TextureRegionDrawable trdBackPressed = new TextureRegionDrawable(new TextureRegion(new Texture("backPressed.png")));
         ImageButton btnBack = new ImageButton(trdBack, trdBackPressed);
-        btnBack.setPosition(0, Juego.ALTO - btnBack.getHeight());
+        btnBack.setPosition(0, Videogame.HEIGHT - btnBack.getHeight());
         //Evento de Botón Back
         btnBack.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                juego.setScreen(new PantallaMenu(juego));
+                videogame.setScreen(new ScreenMenu(videogame));
             }
         });
         return btnBack;
     }
 
-    private void cargarTexturas() {
-        texturaFondo = new Texture("D-DEF/oceanBackgroundPlayVertical.png");
+    private void setTextures() {
+        textureBackground = new Texture("D-DEF/oceanBackgroundPlayVertical.png");
     }
 
-    private void configurarVista(){
-        configurarCamara();
-        view = new StretchViewport(Juego.ANCHO, Juego.ALTO, camera);
+    private void setView(){
+        setCamera();
+        view = new StretchViewport(Videogame.WIDTH, Videogame.HEIGHT, camera);
         batch = new SpriteBatch();
     }
 
-    private void configurarCamara() {
+    private void setCamera() {
         camera = new OrthographicCamera();
-        camera.position.set(Juego.ANCHO/2, Juego.ALTO/2, 0);
+        camera.position.set(Videogame.WIDTH /2, Videogame.HEIGHT /2, 0);
         camera.update();
     }
 
@@ -110,39 +102,39 @@ class PantallaAbout implements Screen {
 
 
         //Borrar pantalla
-        borrarPantalla();
+        eraseScreen();
         batch.begin();
 
-        batch.draw(texturaFondo,1,1);
+        batch.draw(textureBackground,1,1);
 
-        titleHead.draw(batch,juego.ANCHO/2 - titleHead.getWidth(), juego.ALTO-80);
-        subtitleHead.draw(batch,juego.ANCHO/2 - subtitleHead.getWidth()/2,juego.ALTO-120);
-        escrito.draw(batch,juego.ANCHO-170 - escrito .getWidth()/2,juego.ALTO-220);
+        titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth(), videogame.HEIGHT -80);
+        subtitleHead.draw(batch, videogame.WIDTH /2 - subtitleHead.getWidth()/2, videogame.HEIGHT -120);
+        content.draw(batch, videogame.WIDTH -170 - content.getWidth()/2, videogame.HEIGHT -220);
         batch.end();
 
-        escenaHUD.draw();
+        HUD.draw();
     }
 
 
 
-    private void borrarPantalla() {
+    private void eraseScreen() {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        dibujarElementos();
-        escenaHUD.draw();
+        drawElements();
+        HUD.draw();
     }
 
-    private void dibujarElementos() {
+    private void drawElements() {
         //Batch escalado a la vista y la camara
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        dibujarFondo();
+        drawBackground();
         batch.end();
     }
 
-    private void dibujarFondo() {
+    private void drawBackground() {
         //Dibujo de Fondo
-        batch.draw(texturaFondo, 0, 0);
+        batch.draw(textureBackground, 0, 0);
     }
 
     @Override
@@ -167,7 +159,7 @@ class PantallaAbout implements Screen {
 
     @Override
     public void dispose() {
-        texturaFondo.dispose();
+        textureBackground.dispose();
     }
 
 

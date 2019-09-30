@@ -3,7 +3,7 @@ package mx.itesm.seb;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;
 
-public class ProcesadorInput implements InputProcessor{
+public class SwapDetector implements InputProcessor{
     @Override
     public boolean keyDown(int keycode) {
         return false;

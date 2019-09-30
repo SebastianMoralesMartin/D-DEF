@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class Button extends Actor {
-    private Juego game;
+    private Videogame game;
     private ImageButton button;
     private TextureRegionDrawable unpressed;
     private TextureRegionDrawable pressed;
@@ -19,19 +19,19 @@ public class Button extends Actor {
     private float x = 0;
     private float y = 0;
 
-    public Button(Juego game, ToScreen toScreenReference){
+    public Button(Videogame game, ToScreen toScreenReference){
         new Button(game, ToScreen.DEFAULT,"D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png");
     }
 
-    public Button(Juego game, ToScreen toScreenReference, String unpressedPath){
+    public Button(Videogame game, ToScreen toScreenReference, String unpressedPath){
         new Button(game, toScreenReference, unpressedPath, unpressedPath);
     }
 
-    public Button(Juego game, ToScreen toScreenReference, String unpressedPath, String pressedPath){
+    public Button(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath){
         new Button(game, toScreenReference, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
     }
 
-    public Button(Juego game, ToScreen toScreenReference, String unpressedPath, String pressedPath, float x, float y){
+    public Button(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath, float x, float y){
         this.game = game;
         this.setUnpressed(unpressedPath);
         this.setPressed(pressedPath);
@@ -86,7 +86,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new PantallaMenu(game));
+                        game.setScreen(new ScreenMenu(game));
                     }
                 });
                 break;
@@ -95,7 +95,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new PantallaDemo(game));
+                        game.setScreen(new ScreenSurvive(game));
                     }
                 });
                 break;
@@ -104,7 +104,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new PantallaSettings(game));         //AQUÍ INTRODUCE new PantallaSettings
+                        game.setScreen(new ScreenSettings(game));         //AQUÍ INTRODUCE new ScreenSettings
                     }
                 });
                 break;
@@ -113,7 +113,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new PantallaAbout(game));         //AQUÍ INTRODUCE new PantallaAbout
+                        game.setScreen(new ScreenAbout(game));         //AQUÍ INTRODUCE new ScreenAbout
                     }
                 });
                 break;
@@ -131,7 +131,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new PantallaSubMenuAbout(game));         //AQUÍ INTRODUCE new PantallaAbout
+                        game.setScreen(new ScreenSubMenuAbout(game));         //AQUÍ INTRODUCE new ScreenAbout
                     }
                 });
                 break;

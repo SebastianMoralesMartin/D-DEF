@@ -1,4 +1,4 @@
-package mx.itesm.seb;
+package mx.itesm.seb.Inputs.Buttons;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -6,6 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+import mx.itesm.seb.Outputs.Screens.ScreenAbout;
+import mx.itesm.seb.Outputs.Screens.ScreenMenu;
+import mx.itesm.seb.Outputs.Screens.ScreenSettings;
+import mx.itesm.seb.Outputs.Screens.ScreenSubMenuAbout;
+import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
+import mx.itesm.seb.Videogame;
 
 public class ButtonToScreens extends Button {
     private Videogame game;
@@ -81,6 +88,10 @@ public class ButtonToScreens extends Button {
         return button;
     }
 
+    public ToScreen getToScreen(){
+        return this.toScreen;
+    }
+
     public void setToScreen(ToScreen toScreenReference){
         this.toScreen = toScreenReference;
         switch(this.toScreen){
@@ -142,7 +153,7 @@ public class ButtonToScreens extends Button {
         }
     }
 
-    enum ToScreen{
+    public enum ToScreen{
         DEFAULT,
         MENU,
         GAME,

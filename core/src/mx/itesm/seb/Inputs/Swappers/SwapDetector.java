@@ -1,4 +1,4 @@
-package mx.itesm.seb;
+package mx.itesm.seb.Inputs.Swappers;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector3;

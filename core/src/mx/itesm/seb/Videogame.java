@@ -2,6 +2,8 @@ package mx.itesm.seb;
 
 import com.badlogic.gdx.Game;
 
+import mx.itesm.seb.Outputs.Screens.ScreenMenu;
+
 public class Videogame extends Game {
 
 	//Dimensiones del mundo

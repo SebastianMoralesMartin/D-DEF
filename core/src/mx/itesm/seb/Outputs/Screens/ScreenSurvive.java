@@ -1,4 +1,4 @@
-package mx.itesm.seb;
+package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -18,7 +18,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-class ScreenSurvive implements Screen {
+import mx.itesm.seb.Entities.EnemyPlane;
+import mx.itesm.seb.Entities.PlayerSubmarine;
+import mx.itesm.seb.Outputs.Texts.Text;
+import mx.itesm.seb.Videogame;
+
+public class ScreenSurvive implements Screen {
     private final Videogame videogame;
     private OrthographicCamera camera;
     private Viewport view;

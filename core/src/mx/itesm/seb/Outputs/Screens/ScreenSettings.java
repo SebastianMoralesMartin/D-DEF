@@ -1,4 +1,4 @@
-package mx.itesm.seb;
+package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -16,7 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-class ScreenAbout implements Screen {
+import mx.itesm.seb.Outputs.Texts.Text;
+import mx.itesm.seb.Videogame;
+
+//y
+public class ScreenSettings implements Screen {
     private final Videogame videogame;
     private OrthographicCamera camera;
     private Viewport view;
@@ -25,10 +29,10 @@ class ScreenAbout implements Screen {
     private Text titleHead;
     private Text subtitleHead;
     private Text content;
-    private Stage about;
+    private Stage settings;
 
 
-    public ScreenAbout(Videogame videogame) {
+    public ScreenSettings(Videogame videogame) {
         this.videogame = videogame;
     }
 
@@ -36,31 +40,18 @@ class ScreenAbout implements Screen {
     public void show() {
         setView();
         setTextures();
-        setTexts();
         setStage();
-
-    }//commentario
-
-    private void setTexts() {
-        titleHead = new Text("About");
-        subtitleHead = new Text("Bienvenido a D-DEF"+"\n Salva Heroes");
-        content =new Text("Hoy Te encuentras en 1943 en la bahia de "+"\nDunquerque."+"\nTu misión es salvar a tus compañeros que"
-                +"\nquieren regresar a casa sanos y salvos.Estas"+"\nen un submarino que fue dañado en la batalla"+"\ny no se puede sumergir"
-                +"\nte van a atacar desde el aire y necesitas defenderte"+"\ncuentas con energia ilimitada para salvar a tus compañeros"+
-                "\nasí que aprende a moverte de una manera tactica y ofensiva"+"\ncuentas con diferentes tipos de "+"\ndisparo para poder defenderte"
-                +"\nSi derribas el Zeppelín recibiras "+"\nuna recompensa."+"\nMucha Suerte!!!!!!");
-
     }
 
     private void setStage() {
-        about = new Stage(view);
+        settings = new Stage(view);
         ImageButton btnBack = configurarBotonBack();
         addButtons(btnBack);
-        Gdx.input.setInputProcessor(about);
+        Gdx.input.setInputProcessor(settings);
     }
 
     private void addButtons(ImageButton btnBack) {
-        about.addActor(btnBack);
+        settings.addActor(btnBack);
     }
 
     private ImageButton configurarBotonBack() {
@@ -99,33 +90,27 @@ class ScreenAbout implements Screen {
 
     @Override
     public void render(float delta) {
-        this.eraseScreen();
-        this.drawElements();
+        eraseScreen();
+        drawElements();
     }
 
 
     private void eraseScreen() {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        this.drawElements();
-        about.draw();
     }
 
     private void drawElements() {
         //Batch escalado a la vista y la camara
         batch.setProjectionMatrix(camera.combined);
-
         batch.begin();
 
-        batch.draw(textureBackground, 0, 0);
         batch.draw(textureBackground,1,1);
-        titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth(), videogame.HEIGHT -80);
-        subtitleHead.draw(batch, videogame.WIDTH /2 - subtitleHead.getWidth()/2, videogame.HEIGHT -120);
-        content.draw(batch, videogame.WIDTH -170 - content.getWidth()/2, videogame.HEIGHT -220);
+        batch.draw(textureBackground, 0, 0);
 
         batch.end();
 
-        about.draw();
+        settings.draw();
     }
 
     @Override

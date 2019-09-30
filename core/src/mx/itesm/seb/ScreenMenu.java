@@ -34,10 +34,10 @@ class ScreenMenu implements Screen {
         setView();
         setTextures();
         setTexts();
-        createMenu();
+        setStage();
     }
 
-    private void createMenu() {
+    private void setStage() {
         menu = new Stage(view);
         this.setButtons();
         this.addButtons();
@@ -81,19 +81,24 @@ class ScreenMenu implements Screen {
     @Override
     public void render(float delta) {
         eraseScreen();
+        this.drawElements();
     }
 
     private void eraseScreen() {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
 
-        //Batch escalado a la vista y la camara
+    private void drawElements(){
         batch.setProjectionMatrix(camera.combined);
+
         batch.begin();
+
         batch.draw(textureBackground, 0, 0);
         batch.draw(textureTitle, Videogame.WIDTH /2 - textureTitle.getWidth()/2, Videogame.HEIGHT - textureTitle.getHeight()- textureTitle.getHeight()/9);
         titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth()/2, videogame.HEIGHT /2 + videogame.HEIGHT /4);
         subtitleHead.draw(batch, videogame.WIDTH /2 - subtitleHead.getWidth()/2, videogame.HEIGHT /2 + videogame.HEIGHT /4 - 50);
+
         batch.end();
 
         menu.draw();

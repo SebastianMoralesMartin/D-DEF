@@ -25,7 +25,7 @@ class ScreenAbout implements Screen {
     private Text titleHead;
     private Text subtitleHead;
     private Text content;
-    private Stage HUD;
+    private Stage about;
 
 
     public ScreenAbout(Videogame videogame) {
@@ -37,7 +37,7 @@ class ScreenAbout implements Screen {
         setView();
         setTextures();
         setTexts();
-        createHUD();
+        setStage();
 
     }//commentario
 
@@ -52,15 +52,15 @@ class ScreenAbout implements Screen {
 
     }
 
-    private void createHUD() {
-        HUD = new Stage(view);
+    private void setStage() {
+        about = new Stage(view);
         ImageButton btnBack = configurarBotonBack();
         addButtons(btnBack);
-        Gdx.input.setInputProcessor(HUD);
+        Gdx.input.setInputProcessor(about);
     }
 
     private void addButtons(ImageButton btnBack) {
-        HUD.addActor(btnBack);
+        about.addActor(btnBack);
     }
 
     private ImageButton configurarBotonBack() {
@@ -99,42 +99,33 @@ class ScreenAbout implements Screen {
 
     @Override
     public void render(float delta) {
-
-
-        //Borrar pantalla
-        eraseScreen();
-        batch.begin();
-
-        batch.draw(textureBackground,1,1);
-
-        titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth(), videogame.HEIGHT -80);
-        subtitleHead.draw(batch, videogame.WIDTH /2 - subtitleHead.getWidth()/2, videogame.HEIGHT -120);
-        content.draw(batch, videogame.WIDTH -170 - content.getWidth()/2, videogame.HEIGHT -220);
-        batch.end();
-
-        HUD.draw();
+        this.eraseScreen();
+        this.drawElements();
     }
-
 
 
     private void eraseScreen() {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        drawElements();
-        HUD.draw();
+        this.drawElements();
+        about.draw();
     }
 
     private void drawElements() {
         //Batch escalado a la vista y la camara
         batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        drawBackground();
-        batch.end();
-    }
 
-    private void drawBackground() {
-        //Dibujo de Fondo
+        batch.begin();
+
         batch.draw(textureBackground, 0, 0);
+        batch.draw(textureBackground,1,1);
+        titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth(), videogame.HEIGHT -80);
+        subtitleHead.draw(batch, videogame.WIDTH /2 - subtitleHead.getWidth()/2, videogame.HEIGHT -120);
+        content.draw(batch, videogame.WIDTH -170 - content.getWidth()/2, videogame.HEIGHT -220);
+
+        batch.end();
+
+        about.draw();
     }
 
     @Override

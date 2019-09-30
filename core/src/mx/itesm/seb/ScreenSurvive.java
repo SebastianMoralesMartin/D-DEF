@@ -31,7 +31,7 @@ class ScreenSurvive implements Screen {
     private PlayerSubmarine playerSubmarine;
     private Movement stateSubmarine = Movement.STATIC;
     private Texture textureBackground;
-    private Stage HUD;
+    private Stage survive;
     private float energy = 999;
     private Text text;
 
@@ -43,7 +43,7 @@ class ScreenSurvive implements Screen {
     public void show() {
         setView();
         setTextures();
-        createHUD();
+        setStage();
         createSubmarine();
         createEnemies();
 
@@ -71,19 +71,19 @@ class ScreenSurvive implements Screen {
         }
     }
 
-    private void createHUD() {
-        HUD = new Stage(view);
+    private void setStage() {
+        survive = new Stage(view);
         ImageButton btnBack = configurarBotonBack();
         ImageButton btnDer = configurarBotonDerecha();
         ImageButton btnIzq = configurarBotonIzquierda();
         addButtons(btnBack, btnDer, btnIzq);
-        Gdx.input.setInputProcessor(HUD);
+        Gdx.input.setInputProcessor(survive);
     }
 
     private void addButtons(ImageButton btnBack, ImageButton btnRight, ImageButton btnLeft) {
-        HUD.addActor(btnBack);
-        HUD.addActor(btnRight);
-        HUD.addActor(btnLeft);
+        survive.addActor(btnBack);
+        survive.addActor(btnRight);
+        survive.addActor(btnLeft);
     }
 
     private ImageButton configurarBotonIzquierda() {
@@ -207,7 +207,7 @@ class ScreenSurvive implements Screen {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         drawElements();
-        HUD.draw();
+        survive.draw();
     }
 
     private void drawElements() {

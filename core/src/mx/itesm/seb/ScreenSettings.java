@@ -25,7 +25,7 @@ class ScreenSettings implements Screen {
     private Text titleHead;
     private Text subtitleHead;
     private Text content;
-    private Stage HUD;
+    private Stage settings;
 
 
     public ScreenSettings(Videogame videogame) {
@@ -36,19 +36,18 @@ class ScreenSettings implements Screen {
     public void show() {
         setView();
         setTextures();
-        createHUD();
-
+        setStage();
     }
 
-    private void createHUD() {
-        HUD = new Stage(view);
+    private void setStage() {
+        settings = new Stage(view);
         ImageButton btnBack = configurarBotonBack();
-        agregarBotones(btnBack);
-        Gdx.input.setInputProcessor(HUD);
+        addButtons(btnBack);
+        Gdx.input.setInputProcessor(settings);
     }
 
-    private void agregarBotones(ImageButton btnBack) {
-        HUD.addActor(btnBack);
+    private void addButtons(ImageButton btnBack) {
+        settings.addActor(btnBack);
     }
 
     private ImageButton configurarBotonBack() {
@@ -88,32 +87,26 @@ class ScreenSettings implements Screen {
     @Override
     public void render(float delta) {
         eraseScreen();
-        batch.begin();
-
-        batch.draw(textureBackground,1,1);
-        batch.end();
-
-        HUD.draw();
+        drawElements();
     }
 
 
     private void eraseScreen() {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        drawElements();
-        HUD.draw();
     }
 
     private void drawElements() {
         //Batch escalado a la vista y la camara
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        drawBackground();
-        batch.end();
-    }
 
-    private void drawBackground() {
+        batch.draw(textureBackground,1,1);
         batch.draw(textureBackground, 0, 0);
+
+        batch.end();
+
+        settings.draw();
     }
 
     @Override

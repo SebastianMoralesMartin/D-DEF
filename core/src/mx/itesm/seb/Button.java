@@ -104,7 +104,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new ScreenSettings(game));         //AQUÍ INTRODUCE new ScreenSettings
+                        game.setScreen(new ScreenSettings(game));
                     }
                 });
                 break;
@@ -113,7 +113,7 @@ public class Button extends Actor {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new ScreenAbout(game));         //AQUÍ INTRODUCE new ScreenAbout
+                        game.setScreen(new ScreenAbout(game));
                     }
                 });
                 break;

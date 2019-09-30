@@ -25,7 +25,7 @@ public class ScreenSubMenuAbout implements Screen {
     private Button btnSettings;
     private Button btnAbout;
     private Button btnSubMenuAbout;
-    private Stage Menu;
+    private Stage submenu;
 
     public ScreenSubMenuAbout(Videogame videogame) {
         this.videogame = videogame;
@@ -36,21 +36,21 @@ public class ScreenSubMenuAbout implements Screen {
         setView();
         setTextures();
         setTexts();
-        createMenu();
+        setStage();
     }
 
-    private void createMenu() {
-        Menu = new Stage(view);
+    private void setStage() {
+        submenu = new Stage(view);
         this.setButtons();
         this.addButtons();
-        Gdx.input.setInputProcessor(Menu);
+        Gdx.input.setInputProcessor(submenu);
     }
 
     private void addButtons() {
-        Menu.addActor(btnNewGame.getButton());
-        Menu.addActor(btnSettings.getButton());
-        Menu.addActor(btnAbout.getButton());
-        Menu.addActor(btnSubMenuAbout.getButton());
+        submenu.addActor(btnNewGame.getButton());
+        submenu.addActor(btnSettings.getButton());
+        submenu.addActor(btnAbout.getButton());
+        submenu.addActor(btnSubMenuAbout.getButton());
     }
 
     private void setButtons(){
@@ -61,7 +61,7 @@ public class ScreenSubMenuAbout implements Screen {
     }
 
     private void addButton(ImageButton button) {
-        Menu.addActor(button);
+        submenu.addActor(button);
     }
 
     private void setTextures() {
@@ -85,16 +85,21 @@ public class ScreenSubMenuAbout implements Screen {
 
     @Override
     public void render(float delta) {
-        eraseScreen();
+        this.eraseScreen();
+        this.drawElements();
     }
 
     private void eraseScreen() {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
 
+    private void drawElements(){
         //Batch escalado a la vista y la camara
         batch.setProjectionMatrix(camera.combined);
+
         batch.begin();
+
         batch.draw(textureBackground, 0, 0);
         batch.draw(textureTitle, Videogame.WIDTH /2 - textureTitle.getWidth()/2, Videogame.HEIGHT - textureTitle.getHeight()- textureTitle.getHeight()/9);
         titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth()/2, videogame.HEIGHT /2 + videogame.HEIGHT /4);
@@ -103,7 +108,7 @@ public class ScreenSubMenuAbout implements Screen {
         //batch.draw(testTexture, Videogame.WIDTH/2 - testTexture.getWidth()/2, Videogame.HEIGHT/2 - testTexture.getHeight()/2);
         batch.end();
 
-        Menu.draw();
+        submenu.draw();
     }
 
     @Override

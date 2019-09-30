@@ -21,10 +21,10 @@ public class ScreenSubMenuAbout implements Screen {
     //private Texture testTexture;
     private Text titleHead;
     private Text subtitleHead;
-    private Button btnNewGame;
-    private Button btnSettings;
-    private Button btnAbout;
-    private Button btnSubMenuAbout;
+    private ButtonScreens btnNewGame;
+    private ButtonScreens btnSettings;
+    private ButtonScreens btnAbout;
+    private ButtonScreens btnSubMenuAbout;
     private Stage submenu;
 
     public ScreenSubMenuAbout(Videogame videogame) {
@@ -54,10 +54,10 @@ public class ScreenSubMenuAbout implements Screen {
     }
 
     private void setButtons(){
-        this.btnNewGame = new Button(videogame, Button.ToScreen.GAME, "D-DEF/buttonNewGame.png", "D-DEF/buttonNewGamePressed.png", 5* Videogame.WIDTH /6, Videogame.HEIGHT /10);
-        this.btnSettings = new Button(videogame, Button.ToScreen.SETTINGS, "D-DEF/buttonSettings.png", "D-DEF/buttonSettings.png", 3* Videogame.WIDTH /6, Videogame.HEIGHT /10);
-        this.btnAbout = new Button(videogame, Button.ToScreen.SUBMENU, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1* Videogame.WIDTH /6, Videogame.HEIGHT /10);
-        this.btnSubMenuAbout = new Button(videogame, Button.ToScreen.ABOUT, "D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png", Videogame.WIDTH /2, Videogame.HEIGHT /2);
+        this.btnNewGame = new ButtonScreens(videogame, ButtonScreens.ToScreen.GAME, "D-DEF/buttonNewGame.png", "D-DEF/buttonNewGamePressed.png", 5* Videogame.WIDTH /6, Videogame.HEIGHT /10);
+        this.btnSettings = new ButtonScreens(videogame, ButtonScreens.ToScreen.SETTINGS, "D-DEF/buttonSettings.png", "D-DEF/buttonSettings.png", 3* Videogame.WIDTH /6, Videogame.HEIGHT /10);
+        this.btnAbout = new ButtonScreens(videogame, ButtonScreens.ToScreen.SUBMENU, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1* Videogame.WIDTH /6, Videogame.HEIGHT /10);
+        this.btnSubMenuAbout = new ButtonScreens(videogame, ButtonScreens.ToScreen.ABOUT, "D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png", Videogame.WIDTH /2, Videogame.HEIGHT /2);
     }
 
     private void addButton(ImageButton button) {

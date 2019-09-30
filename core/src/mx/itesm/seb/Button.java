@@ -13,25 +13,27 @@ public class Button extends Actor {
     private ImageButton button;
     private TextureRegionDrawable unpressed;
     private TextureRegionDrawable pressed;
-    private ToScreen toScreen = ToScreen.DEFAULT;
     private float width;
     private float height;
     private float x = 0;
     private float y = 0;
 
-    public Button(Videogame game, ToScreen toScreenReference){
-        new Button(game, ToScreen.DEFAULT,"D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png");
+    public Button(){
     }
 
-    public Button(Videogame game, ToScreen toScreenReference, String unpressedPath){
-        new Button(game, toScreenReference, unpressedPath, unpressedPath);
+    public Button(Videogame game){
+        new Button(game, "D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png");
     }
 
-    public Button(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath){
-        new Button(game, toScreenReference, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
+    public Button(Videogame game, String unpressedPath){
+        new Button(game, unpressedPath, unpressedPath);
     }
 
-    public Button(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath, float x, float y){
+    public Button(Videogame game, String unpressedPath, String pressedPath){
+        new Button(game, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
+    }
+
+    public Button(Videogame game, String unpressedPath, String pressedPath, float x, float y){
         this.game = game;
         this.setUnpressed(unpressedPath);
         this.setPressed(pressedPath);
@@ -40,7 +42,6 @@ public class Button extends Actor {
         this.height = this.button.getHeight();
         this.setX(x);
         this.setY(y);
-        this.setToScreen(toScreenReference);
     }
 
     public void setUnpressed(String unpressedPath) {
@@ -76,75 +77,5 @@ public class Button extends Actor {
 
     public ImageButton getButton(){
         return button;
-    }
-
-    public void setToScreen(ToScreen toScreenReference){
-        this.toScreen = toScreenReference;
-        switch(this.toScreen){
-            case MENU:
-                button.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreen(new ScreenMenu(game));
-                    }
-                });
-                break;
-            case GAME:
-                button.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreen(new ScreenSurvive(game));
-                    }
-                });
-                break;
-            case SETTINGS:
-                button.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreen(new ScreenSettings(game));
-                    }
-                });
-                break;
-            case ABOUT:
-                button.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreen(new ScreenAbout(game));
-                    }
-                });
-                break;
-            case DEFAULT:
-                button.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        System.exit(0);
-                    }
-                });
-                break;
-            case SUBMENU:
-                button.addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreen(new ScreenSubMenuAbout(game));         //AQUÍ INTRODUCE new ScreenAbout
-                    }
-                });
-                break;
-
-        }
-    }
-
-    enum ToScreen{
-        DEFAULT,
-        MENU,
-        GAME,
-        SETTINGS,
-        ABOUT,
-        SUBMENU;
     }
 }

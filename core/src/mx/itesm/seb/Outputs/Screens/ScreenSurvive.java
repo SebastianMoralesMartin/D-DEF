@@ -60,13 +60,13 @@ public class ScreenSurvive implements Screen {
     }
 
     private void createSubmarine() {
-        Texture textureSubmarine = new Texture("D-DEF/AAPlayer.png");
+        Texture textureSubmarine = new Texture("Entities/Player/AAPlayer.png");
         playerSubmarine = new PlayerSubmarine(textureSubmarine, Videogame.WIDTH /2, 3* Videogame.HEIGHT /7);
     }
 
     private void createEnemies() {
-        Texture textureStable = new Texture("D-DEF/enemLuftRight.png");
-        Texture textureTilted = new Texture("D-DEF/enemLuft.png");
+        Texture textureStable = new Texture("Entities/Enemies/Planes/enemLuftRight.png");
+        Texture textureTilted = new Texture("Entities/Enemies/Planes/enemLuft.png");
         enemies = new Array<>(11 * 5);
         for(int renglon = 0; renglon < 3; renglon++){
             for(int columna=0; columna <4; columna++){
@@ -93,7 +93,7 @@ public class ScreenSurvive implements Screen {
 
     private ImageButton configurarBotonIzquierda() {
         //Botón Izquierda
-        TextureRegionDrawable trdIzq = new TextureRegionDrawable(new TextureRegion(new Texture("space/flechaIzquierda.png")));
+        TextureRegionDrawable trdIzq = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/flechaIzquierda.png")));
         ImageButton btnIzq = new ImageButton(trdIzq);
         btnIzq.setPosition(0, 0);
         //Evento de Botón Izquierda
@@ -113,7 +113,7 @@ public class ScreenSurvive implements Screen {
 
     private ImageButton configurarBotonDerecha() {
         //Botón Derecha
-        TextureRegionDrawable trdDer = new TextureRegionDrawable(new TextureRegion(new Texture("space/flechaDerecha.png")));
+        TextureRegionDrawable trdDer = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/flechaDerecha.png")));
         ImageButton btnDer = new ImageButton(trdDer);
         btnDer.setPosition(btnDer.getWidth() + 10, 0);
         //Evento de Botón Derecha
@@ -133,8 +133,8 @@ public class ScreenSurvive implements Screen {
 
     private ImageButton configurarBotonBack() {
         //Botón Back
-        TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("back.png")));
-        TextureRegionDrawable trdBackPressed = new TextureRegionDrawable(new TextureRegion(new Texture("backPressed.png")));
+        TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/back.png")));
+        TextureRegionDrawable trdBackPressed = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/backPressed.png")));
         ImageButton btnBack = new ImageButton(trdBack, trdBackPressed);
         btnBack.setPosition(0, Videogame.HEIGHT - btnBack.getHeight());
         //Evento de Botón Back
@@ -149,7 +149,7 @@ public class ScreenSurvive implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("D-DEF/oceanBackgroundPlayVertical.png");
+        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
     }
 
     private void setView(){

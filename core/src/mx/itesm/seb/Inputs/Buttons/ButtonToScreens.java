@@ -27,7 +27,7 @@ public class ButtonToScreens extends Button {
 
     public ButtonToScreens(Videogame game, ToScreen toScreenReference){
         super();
-        new ButtonToScreens(game, ToScreen.DEFAULT,"D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png");
+        new ButtonToScreens(game, ToScreen.DEFAULT,"Buttons/buttonBase.png", "Buttons/buttonBasePressed.png");
     }
 
     public ButtonToScreens(Videogame game, ToScreen toScreenReference, String unpressedPath){

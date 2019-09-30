@@ -57,8 +57,8 @@ public class ScreenSettings implements Screen {
     private ImageButton configurarBotonBack() {
 
         //Botón Back
-        TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("back.png")));
-        TextureRegionDrawable trdBackPressed = new TextureRegionDrawable(new TextureRegion(new Texture("backPressed.png")));
+        TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/back.png")));
+        TextureRegionDrawable trdBackPressed = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/backPressed.png")));
         ImageButton btnBack = new ImageButton(trdBack, trdBackPressed);
         btnBack.setPosition(0, Videogame.HEIGHT - btnBack.getHeight());
         //Evento de Botón Back
@@ -73,7 +73,7 @@ public class ScreenSettings implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("D-DEF/oceanBackgroundPlayVertical.png");
+        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
     }
 
     private void setView(){

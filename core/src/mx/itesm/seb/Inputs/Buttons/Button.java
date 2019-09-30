@@ -22,7 +22,7 @@ public class Button extends Actor {
     }
 
     public Button(Videogame game){
-        new Button(game, "D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png");
+        new Button(game, "Buttons/buttonBase.png", "Buttons/buttonBasePressed.png");
     }
 
     public Button(Videogame game, String unpressedPath){

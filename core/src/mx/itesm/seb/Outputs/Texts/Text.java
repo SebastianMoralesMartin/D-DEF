@@ -18,7 +18,7 @@ public class Text {
     }
 
     public Text(String message){
-        this.font = new BitmapFont(Gdx.files.internal("D-DEF/pixelNormal.fnt"));
+        this.font = new BitmapFont(Gdx.files.internal("Fonts/pixelNormal.fnt"));
         this.glyph = new GlyphLayout();
         setMessage(message);
     }

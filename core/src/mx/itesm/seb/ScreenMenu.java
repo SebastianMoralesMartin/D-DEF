@@ -20,9 +20,9 @@ class ScreenMenu implements Screen {
     private Texture textureTitle;
     private Text titleHead;
     private Text subtitleHead;
-    private ButtonScreens btnNewGame;
-    private ButtonScreens btnSettings;
-    private ButtonScreens btnAbout;
+    private ButtonToScreens btnNewGame;
+    private ButtonToScreens btnSettings;
+    private ButtonToScreens btnAbout;
     private Stage menu;
 
     public ScreenMenu(Videogame videogame) {
@@ -51,9 +51,9 @@ class ScreenMenu implements Screen {
     }
 
     private void setButtons(){
-        this.btnNewGame = new ButtonScreens(videogame, ButtonScreens.ToScreen.GAME, "D-DEF/buttonNewGame.png", "D-DEF/buttonNewGamePressed.png", 5* Videogame.WIDTH /6, Videogame.HEIGHT /10);
-        this.btnSettings = new ButtonScreens(videogame, ButtonScreens.ToScreen.SETTINGS, "D-DEF/buttonSettings.png", "D-DEF/buttonSettings.png", 3* Videogame.WIDTH /6, Videogame.HEIGHT /10);
-        this.btnAbout = new ButtonScreens(videogame, ButtonScreens.ToScreen.SUBMENU, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1* Videogame.WIDTH /6, Videogame.HEIGHT /10);
+        this.btnNewGame = new ButtonToScreens(videogame, ButtonToScreens.ToScreen.GAME, "D-DEF/buttonNewGame.png", "D-DEF/buttonNewGamePressed.png", 5* Videogame.WIDTH /6, Videogame.HEIGHT /10);
+        this.btnSettings = new ButtonToScreens(videogame, ButtonToScreens.ToScreen.SETTINGS, "D-DEF/buttonSettings.png", "D-DEF/buttonSettings.png", 3* Videogame.WIDTH /6, Videogame.HEIGHT /10);
+        this.btnAbout = new ButtonToScreens(videogame, ButtonToScreens.ToScreen.SUBMENU, "D-DEF/buttonAbout.png", "D-DEF/buttonAboutPressed.png", 1* Videogame.WIDTH /6, Videogame.HEIGHT /10);
     }
 
     private void addButton(ImageButton button) {

@@ -2,13 +2,12 @@ package mx.itesm.seb;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-public class ButtonScreens extends Button {
+public class ButtonToScreens extends Button {
     private Videogame game;
     private ImageButton button;
     private TextureRegionDrawable unpressed;
@@ -19,22 +18,22 @@ public class ButtonScreens extends Button {
     private float x = 0;
     private float y = 0;
 
-    public ButtonScreens(Videogame game, ToScreen toScreenReference){
+    public ButtonToScreens(Videogame game, ToScreen toScreenReference){
         super();
-        new ButtonScreens(game, ToScreen.DEFAULT,"D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png");
+        new ButtonToScreens(game, ToScreen.DEFAULT,"D-DEF/buttonBase.png", "D-DEF/buttonBasePressed.png");
     }
 
-    public ButtonScreens(Videogame game, ToScreen toScreenReference, String unpressedPath){
+    public ButtonToScreens(Videogame game, ToScreen toScreenReference, String unpressedPath){
         super();
-        new ButtonScreens(game, toScreenReference, unpressedPath, unpressedPath);
+        new ButtonToScreens(game, toScreenReference, unpressedPath, unpressedPath);
     }
 
-    public ButtonScreens(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath){
+    public ButtonToScreens(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath){
         super();
-        new ButtonScreens(game, toScreenReference, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
+        new ButtonToScreens(game, toScreenReference, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
     }
 
-    public ButtonScreens(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath, float x, float y){
+    public ButtonToScreens(Videogame game, ToScreen toScreenReference, String unpressedPath, String pressedPath, float x, float y){
         super();
         this.game = game;
         this.setUnpressed(unpressedPath);

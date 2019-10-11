@@ -31,6 +31,10 @@ public class Text {
         this.height = glyph.height;
     }
 
+    public String getMessage(){
+        return this.message;
+    }
+
     public float getWidth() {
         return glyph.width;
     }

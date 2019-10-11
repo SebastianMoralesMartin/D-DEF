@@ -15,15 +15,7 @@ import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
 import mx.itesm.seb.Videogame;
 
 public class ButtonToScreens extends Button {
-    private Videogame game;
-    private ImageButton button;
-    private TextureRegionDrawable unpressed;
-    private TextureRegionDrawable pressed;
-    private ToScreen toScreen = ToScreen.DEFAULT;
-    private float width;
-    private float height;
-    private float x = 0;
-    private float y = 0;
+    protected ToScreen toScreen = ToScreen.DEFAULT;
 
     public ButtonToScreens(Videogame game, ToScreen toScreenReference){
         super();

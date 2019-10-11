@@ -9,14 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import mx.itesm.seb.Videogame;
 
 public class Button extends Actor {
-    private Videogame game;
-    private ImageButton button;
-    private TextureRegionDrawable unpressed;
-    private TextureRegionDrawable pressed;
-    private float width;
-    private float height;
-    private float x = 0;
-    private float y = 0;
+    protected Videogame game;
+    protected ImageButton button;
+    protected TextureRegionDrawable unpressed;
+    protected TextureRegionDrawable pressed;
+    protected float width;
+    protected float height;
+    protected float x = 0;
+    protected float y = 0;
 
     public Button(){
     }

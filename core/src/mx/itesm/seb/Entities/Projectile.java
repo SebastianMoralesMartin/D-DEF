@@ -4,10 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+//Autor: Sebastian Morales Martin
+
 public class Projectile {
     private Sprite sprite;
     private float speed;
-    private Power power;
+    private float power;
+    private ProjectileType type;
 
     public Projectile(Texture texture, float x, float y){
         sprite = new Sprite(texture);
@@ -23,21 +26,26 @@ public class Projectile {
         sprite.draw(batch);
     }
     public void setSpeed(Projectile Power){
-        switch(power){
+        switch(type){
             case LOW:
+                //sprite.setTexture();
                 speed = 750;
+                power = 100;
                 break;
             case MID:
+                //sprite.setTexture();
                 speed = 500;
+                power = 200;
                 break;
             case HIGH:
+                //sprite.setTexture();
                 speed = 300;
+                power = 300;
                 break;
-
         }
     }
 
-    private enum Power{
+    private enum ProjectileType {
         LOW,
         MID,
         HIGH;

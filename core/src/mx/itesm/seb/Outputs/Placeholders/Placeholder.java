@@ -6,7 +6,7 @@ import mx.itesm.seb.Outputs.Texts.Text;
 
 public abstract class Placeholder {
     protected Texture texture;
-    protected Sprite sprite;
+    protected Sprite sprtei;
     protected Text text;
     protected int height;
     protected int width;

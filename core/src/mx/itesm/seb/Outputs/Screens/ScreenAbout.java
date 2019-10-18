@@ -85,7 +85,7 @@ public class ScreenAbout implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
+        textureBackground = new Texture("Screens/Backgrounds/Background.jpeg");
     }
 
     private void setView(){

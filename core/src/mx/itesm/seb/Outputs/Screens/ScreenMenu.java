@@ -1,5 +1,6 @@
 package mx.itesm.seb.Outputs.Screens;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;

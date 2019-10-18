@@ -19,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
-//y
+//Raul Ortiz Mateos
 public class ScreenSettings implements Screen {
     private final Videogame videogame;
     private OrthographicCamera camera;

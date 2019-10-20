@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.seb.Videogame;
-
+//wwq
 public class Button extends Actor {
     protected Videogame game;
     protected ImageButton button;

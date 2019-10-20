@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import mx.itesm.seb.Entities.EnemyPlane;
 import mx.itesm.seb.Entities.PlayerSubmarine;
+import mx.itesm.seb.Entities.Projectile;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
@@ -39,6 +40,13 @@ public class ScreenSurvive implements Screen {
     private Stage survive;
     private float energy = 999;
     private Text text;
+    private Texture LOW_PROJECTILE_TEXTURE;
+    private Texture MID_PROJECTILE_TEXTURE;
+    private Texture MAX_PROJECTILE_TEXTURE;
+    private Projectile projectile;
+    private static final float LOW_POWER_SHOT = 30f;
+    private static final float MID_POWER_SHOT = 60f;
+    private static final float MAX_POWER_SHOT = 90f;
 
     public ScreenSurvive(Videogame videogame) {
         this.videogame = videogame;
@@ -81,14 +89,37 @@ public class ScreenSurvive implements Screen {
         ImageButton btnBack = configurarBotonBack();
         ImageButton btnDer = configurarBotonDerecha();
         ImageButton btnIzq = configurarBotonIzquierda();
-        addButtons(btnBack, btnDer, btnIzq);
+        ImageButton btnFire = configureFireButton();
+        addButtons(btnBack, btnDer, btnIzq, btnFire);
         Gdx.input.setInputProcessor(survive);
     }
 
-    private void addButtons(ImageButton btnBack, ImageButton btnRight, ImageButton btnLeft) {
+    private void addButtons(ImageButton btnBack, ImageButton btnRight, ImageButton btnLeft, ImageButton btnFire) {
         survive.addActor(btnBack);
         survive.addActor(btnRight);
         survive.addActor(btnLeft);
+        survive.addActor(btnFire);
+    }
+    private ImageButton configureFireButton(){
+        TextureRegionDrawable trdDisparo = new TextureRegionDrawable(
+                new TextureRegion(new Texture("Buttons/buttonBase.png")));
+        ImageButton btnFire = new ImageButton(trdDisparo);
+        btnFire.setPosition(Videogame.WIDTH - btnFire.getWidth() - 50, 50);
+        btnFire.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                //Fire interaction
+                if(projectile == null){
+                    projectile = new Projectile (LOW_PROJECTILE_TEXTURE, MID_PROJECTILE_TEXTURE, MAX_PROJECTILE_TEXTURE,
+                            playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getWidth()/2,
+                            playerSubmarine.getSprite().getHeight() + playerSubmarine.getSprite().getHeight());
+
+                }
+                energy -= 50f;
+                return true;
+            }
+        });
+        return btnFire;
     }
 
     private ImageButton configurarBotonIzquierda() {
@@ -150,6 +181,9 @@ public class ScreenSurvive implements Screen {
 
     private void setTextures() {
         textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
+        LOW_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/bala.png");
+        MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/bala.png");
+        MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/bala.png");
     }
 
     private void setView(){
@@ -170,8 +204,19 @@ public class ScreenSurvive implements Screen {
         updateEnemies(delta);
         //Dibujar playerSubmarine
         updateSubmarine();
+        //Update bullet path
+        updateProjectile(delta);
         //Borrar pantalla
         eraseScreen();
+    }
+
+    private void updateProjectile(float delta) {
+        if (projectile != null){
+            projectile.MoveBullet(delta);
+            if (projectile.getSprite().getY()>Videogame.HEIGHT){
+                projectile = null;
+            }
+        }
     }
 
     private void updateSubmarine() {
@@ -222,6 +267,7 @@ public class ScreenSurvive implements Screen {
         drawBackground();
         drawEnemies();
         drawSubmarine();
+        if(projectile != null){projectile.render(batch);}
         text.setMessage("Energy: " + Float.toString(energy));
         text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - text.getHeight());
         batch.end();
@@ -268,7 +314,7 @@ public class ScreenSurvive implements Screen {
         textureBackground.dispose();
     }
 
-    private enum Movement {
+    public enum Movement {
         STATIC,
         RIGHT,
         LEFT

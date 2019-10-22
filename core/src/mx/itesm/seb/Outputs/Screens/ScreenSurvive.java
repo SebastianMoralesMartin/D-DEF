@@ -18,9 +18,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.LinkedList;
+
 import mx.itesm.seb.Entities.EnemyPlane;
+import mx.itesm.seb.Entities.PlayerProjectile;
 import mx.itesm.seb.Entities.PlayerSubmarine;
-import mx.itesm.seb.Entities.Projectile;
+import mx.itesm.seb.Entities.TestProjectile;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
@@ -43,7 +46,7 @@ public class ScreenSurvive implements Screen {
     private Texture LOW_PROJECTILE_TEXTURE;
     private Texture MID_PROJECTILE_TEXTURE;
     private Texture MAX_PROJECTILE_TEXTURE;
-    private Projectile projectile;
+    private PlayerProjectile playerProjectile;
     private static final float LOW_POWER_SHOT = 30f;
     private static final float MID_POWER_SHOT = 60f;
     private static final float MAX_POWER_SHOT = 90f;
@@ -69,16 +72,21 @@ public class ScreenSurvive implements Screen {
 
     private void createSubmarine() {
         Texture textureSubmarine = new Texture("Entities/Player/AAPlayer.png");
-        playerSubmarine = new PlayerSubmarine(textureSubmarine, Videogame.WIDTH /2, 3* Videogame.HEIGHT /7);
+        LinkedList<Texture> textures = new LinkedList<Texture>();
+        textures.add(textureSubmarine);
+        playerSubmarine = new PlayerSubmarine(textures, Videogame.WIDTH /2, 3* Videogame.HEIGHT /7);
     }
 
     private void createEnemies() {
         Texture textureStable = new Texture("Entities/Enemies/Planes/enemLuftRight.png");
         Texture textureTilted = new Texture("Entities/Enemies/Planes/enemLuft.png");
+        LinkedList<Texture> textures = new LinkedList<Texture>();
+        textures.add(textureStable);
+        textures.add(textureTilted);
         enemies = new Array<>(11 * 5);
         for(int renglon = 0; renglon < 3; renglon++){
             for(int columna=0; columna <4; columna++){
-                EnemyPlane enemyPlane = new EnemyPlane(textureStable, textureTilted, 40 + columna * 250, 5* Videogame.HEIGHT /7 + renglon * 120);
+                EnemyPlane enemyPlane = new EnemyPlane(textures, 40 + columna * 250, 5* Videogame.HEIGHT /7 + renglon * 120);
                 enemies.add(enemyPlane);
             }
         }
@@ -109,11 +117,12 @@ public class ScreenSurvive implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 //Fire interaction
-                if(projectile == null){
-                    projectile = new Projectile (LOW_PROJECTILE_TEXTURE, MID_PROJECTILE_TEXTURE, MAX_PROJECTILE_TEXTURE,
-                            playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getWidth()/2,
-                            playerSubmarine.getSprite().getHeight() + playerSubmarine.getSprite().getHeight());
-
+                if(playerProjectile == null){
+                    LinkedList<Texture> textures = new LinkedList<Texture>();
+                    textures.add(LOW_PROJECTILE_TEXTURE);
+                    textures.add(MID_PROJECTILE_TEXTURE);
+                    textures.add(MAX_PROJECTILE_TEXTURE);
+                    playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                 }
                 energy -= 50f;
                 return true;
@@ -211,10 +220,10 @@ public class ScreenSurvive implements Screen {
     }
 
     private void updateProjectile(float delta) {
-        if (projectile != null){
-            projectile.MoveBullet(delta);
-            if (projectile.getSprite().getY()>Videogame.HEIGHT){
-                projectile = null;
+        if (playerProjectile != null){
+            playerProjectile.moveY(delta);
+            if (playerProjectile.getSprite().getY()>Videogame.HEIGHT){
+                playerProjectile = null;
             }
         }
     }
@@ -267,7 +276,8 @@ public class ScreenSurvive implements Screen {
         drawBackground();
         drawEnemies();
         drawSubmarine();
-        if(projectile != null){projectile.render(batch);}
+        if(playerProjectile != null){
+            playerProjectile.render(batch);}
         text.setMessage("Energy: " + Float.toString(energy));
         text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - text.getHeight());
         batch.end();

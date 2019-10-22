@@ -4,23 +4,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class PlayerSubmarine {
-    private Sprite sprite;
+import java.util.LinkedList;
 
-    public PlayerSubmarine(Texture texture, float x, float y){
-        sprite = new Sprite(texture);
-        sprite.setPosition(x, y);
-    }
-    public Sprite getSprite(){
-        return sprite;
-    }
+public class PlayerSubmarine extends AdvancedEntity {
 
-    public void move(float dx, float dy){
-        sprite.setX(sprite.getX() + dx);
-    }
-
-    public void render(SpriteBatch batch){
-        sprite.draw(batch);
+    public PlayerSubmarine(LinkedList<Texture> textures, float x, float y){
+        super(textures, x, y);
+        this.health = 1000;
+        this.maxHealth = 1000;
+        this.fadeAwayRate = 0.1f;
+        this.baseMovementExhaust = 0.2f;
+        this.movementExhaust = this.baseMovementExhaust;
+        this.baseUnderwaterExhaust = 0.4f;
+        this.underwaterExhaust = this.baseUnderwaterExhaust;
+        this.baseExistanceExhaust = 0.1f;
+        this.existanceExhaust = this.baseExistanceExhaust;
+        this.fieldDepth = FieldDepth.MIDDLE;
+        this.heightLevel = HeightLevel.SURFACE;
     }
 
 }

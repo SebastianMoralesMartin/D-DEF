@@ -3,10 +3,11 @@ package mx.itesm.seb.Outputs.Placeholders;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import mx.itesm.seb.Outputs.Texts.Text;
+import mx.itesm.seb.Videogame;
 
 public abstract class Placeholder {
-    protected Texture texture;
-    protected Sprite sprtei;
+    protected Videogame videogame;
+    protected Sprite sprite;
     protected Text text;
     protected int height;
     protected int width;

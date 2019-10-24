@@ -19,3 +19,6 @@ redMedium: { background: Dialog600x400RedDark, titleFont: default-font, titleFon
 greenBig: { background: Dialog600x600Dark, titleFont: default-font, titleFontColor: black},
 redBig: { background: Dialog600x600RedDark, titleFont: default-font, titleFontColor: black}
 }
+com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle: {
+content: { font: default-font, fontColor: white}
+}

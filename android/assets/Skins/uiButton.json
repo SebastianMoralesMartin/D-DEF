@@ -1,0 +1,35 @@
+com.badlogic.gdx.graphics.g2d.BitmapFont: { default-font: { file: Fonts/pixelNormal.fnt } },
+com.badlogic.gdx.graphics.Color: {
+green: { a: 1, b: 0, g: 1, r: 0 },
+white: { a: 1, b: 1, g: 1, r: 1 },
+red: { a: 1, b: 0, g: 0, r: 1 },
+black: { a: 1, b: 0, g: 0, r: 0 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+default: { down: buttonPressed, up: button },
+red: { down: redButtonPressed, up: redButton},
+green: { down: greenButtonPressed, up: greenButton},
+blue: { down: blueButtonPressed, up: blueButton},
+orange: { down: orangeButtonPressed, up: orangeButton},
+switch: { down: redSwitch, checked: greenSwitch, up: greenSwitch },
+information: { down: buttonInformationPressed, up: buttonInformation},
+settings: { down: buttonSettingsPressed, up: buttonSettings},
+pause: { down: buttonPausePressed, up: buttonPause},
+play: { down: buttonPlayPressed, up: buttonPlay},
+res: { down: buttonResPressed, up: buttonRes},
+sum: { down: buttonSumPressed, up: buttonSum},
+settings: { down: buttonSettingsPressed, up: buttonSettings},
+return: { down: buttonReturnPressed, up: buttonReturn},
+yes: { down: buttonYesPressed, up: buttonYes},
+no: { down: buttonNoPressed, up: buttonNo},
+ok: { down: buttonOKPressed, up: buttonOK},
+right: { down: rightButtonPressed, up: rightButton},
+left: { down: leftButtonPressed, up: leftButton}
+},
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+default: { down: buttonPressed, up: button, font: default-font, fontColor: black},
+red: { down: redButtonPressed, up: redButton, font: default-font, fontColor: black },
+green: { down: greenButtonPressed, up: greenButton, font: default-font, fontColor: black },
+orange: { down: orangeButtonPressed, up: orangeButton, font: default-font, fontColor: black },
+blue: { down: blueButtonPressed, up: blueButton, font: default-font, fontColor: black },
+}

@@ -1,50 +1,43 @@
 package mx.itesm.seb.Outputs.Placeholders;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import mx.itesm.seb.Outputs.Texts.Text;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import mx.itesm.seb.Videogame;
 
-public abstract class Placeholder {
+public class Placeholder {
     protected Videogame videogame;
+    protected Skin skin;
+    protected Table table;
     protected Sprite sprite;
-    protected Text text;
-    protected int height;
-    protected int width;
-    protected float x;
-    protected float y;
 
-
-    public void setTextMessage(String text){
-        this.text.setMessage(text);
+    public Placeholder(Videogame videogame, Skin skin, Sprite sprite){
+        this.videogame = videogame;
+        this.skin = skin;
+        this.sprite = sprite;
     }
 
-    public String getTextMessage(){
-        return text.getMessage();
+    public Skin getSkin() {
+        return skin;
     }
 
-    public void setText(Text text){
-        this.text = text;
+    public void setSkin(Skin skin) {
+        this.skin = skin;
     }
 
-    public Text getText(){
-        return this.text;
+    public Table getTable() {
+        return table;
     }
 
-    public int getHeight(){
-        return this.height;
+    public void setTable(Table table) {
+        this.table = table;
     }
 
-    public int getWidth(){
-        return this.width;
+    public Sprite getSprite() {
+        return sprite;
     }
 
-    public float getX(){
-        return this.x;
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
     }
-
-    public float getY(){
-        return this.y;
-    }
-
 }

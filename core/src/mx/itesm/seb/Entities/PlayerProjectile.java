@@ -31,13 +31,11 @@ public class PlayerProjectile extends Projectile {
                 this.setExistanceExhaust(20);
                 break;
             case MID:
-                switchTexture();
                 this.setSpeed(300);
                 power = 200;
                 this.setExistanceExhaust(50);
                 break;
             case HIGH:
-                switchTexture();
                 this.setSpeed(150);
                 power = 300;
                 this.setExistanceExhaust(100);

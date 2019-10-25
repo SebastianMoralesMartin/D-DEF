@@ -158,19 +158,21 @@ public class ScreenSurvive implements Screen {
                 textures.add(MID_PROJECTILE_TEXTURE);
                 textures.add(MAX_PROJECTILE_TEXTURE);
                 if(playerProjectile == null) {
-                    if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(200)) {
+                    if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(500)) {
                         speed = 300;
                         power = 25f;
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
+
                         energy-= 25;
                             //startTime = 0;
-                    } else if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(500)) {
+                    } else if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(1000)) {
                         //Fire interaction
                         speed = 200;
                         power = 75f;
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.MID);
+                        playerProjectile.switchTexture();
                         energy -= 75f;
                         //startTime = 0;
                     } else{
@@ -179,6 +181,8 @@ public class ScreenSurvive implements Screen {
                         //Fire interaction
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
+                        playerProjectile.switchTexture();
+                        playerProjectile.switchTexture();
                         energy -= 100f;
                         startTime = 0;
                     }
@@ -328,7 +332,6 @@ public class ScreenSurvive implements Screen {
                 steps = 0;
                 DX = -DX;
                 for(EnemyPlane enemyPlane : enemies){
-                    enemyPlane.move(0, -40);
                     enemyPlane.switchTexture();
                 }
             }

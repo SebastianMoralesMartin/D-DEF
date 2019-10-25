@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -249,9 +250,9 @@ public class ScreenSurvive implements Screen {
 
     private void setTextures() {
         textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
-        LOW_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/bala.png");
-        MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/bala.png");
-        MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/bala.png");
+        LOW_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball.png");
+        MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball2.png");
+        MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball3.png");
     }
 
     private void setView(){
@@ -276,6 +277,20 @@ public class ScreenSurvive implements Screen {
         updateProjectile(delta);
         //Borrar pantalla
         eraseScreen();
+        colisionVerifier();
+    }
+
+    private void colisionVerifier() {
+        if(playerProjectile==null){return;}
+        for(int i = enemies.size -1; i>=0; i--){
+            Rectangle rectanguloBala = playerProjectile.getSprite().getBoundingRectangle();
+            Rectangle rectanguloEnemigo = enemies.get(i).getSprite().getBoundingRectangle();
+            if(rectanguloBala.overlaps(rectanguloEnemigo)){
+                playerProjectile = null;
+                enemies.removeIndex(i);
+                break;
+            }
+        }
     }
 
     private void updateProjectile(float delta) {

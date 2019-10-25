@@ -42,6 +42,7 @@ public class PlayerProjectile extends Projectile {
             case HIGH:
                 //sprite.setTexture(highPowerTexture);
                 switchTexture();
+                switchTexture();
                 this.setSpeed(150);
                 power = 300;
                 this.setExistanceExhaust(100);

@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -23,6 +25,7 @@ import java.util.LinkedList;
 import mx.itesm.seb.Entities.EnemyPlane;
 import mx.itesm.seb.Entities.PlayerProjectile;
 import mx.itesm.seb.Entities.PlayerSubmarine;
+import mx.itesm.seb.Entities.Projectile;
 import mx.itesm.seb.Entities.TestProjectile;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
@@ -47,9 +50,8 @@ public class ScreenSurvive implements Screen {
     private Texture MID_PROJECTILE_TEXTURE;
     private Texture MAX_PROJECTILE_TEXTURE;
     private PlayerProjectile playerProjectile;
-    private static final float LOW_POWER_SHOT = 30f;
-    private static final float MID_POWER_SHOT = 60f;
-    private static final float MAX_POWER_SHOT = 90f;
+    private float speed;
+    private long startTime = (long)Gdx.graphics.getDeltaTime();
 
     public ScreenSurvive(Videogame videogame) {
         this.videogame = videogame;
@@ -62,12 +64,17 @@ public class ScreenSurvive implements Screen {
         setStage();
         createSubmarine();
         createEnemies();
+        setTimer();
 
         //PROTOTYPE: Sets listener and input processor
         //Gdx.input.setInputProcessor(new ProcesadorEntrada());
 
         //PROTOTYPE: Creates an object that draws text outputs onto a screen
         text = new Text("Energy");
+    }
+
+    private void setTimer() {
+        startTime = TimeUtils.nanoTime();
     }
 
     private void createSubmarine() {
@@ -116,16 +123,47 @@ public class ScreenSurvive implements Screen {
         btnFire.addListener(new ClickListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                //Fire interaction
-                if(playerProjectile == null){
-                    LinkedList<Texture> textures = new LinkedList<Texture>();
-                    textures.add(LOW_PROJECTILE_TEXTURE);
-                    textures.add(MID_PROJECTILE_TEXTURE);
-                    textures.add(MAX_PROJECTILE_TEXTURE);
-                    playerProjectile = new PlayerProjectile(textures, playerSubmarine);
-                }
-                energy -= 50f;
+                startTime = TimeUtils.nanoTime();
+
                 return true;
+            }
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                //Fire interaction
+                if(playerProjectile == null) {
+                    if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(200)) {
+                        speed = 300;
+                            LinkedList<Texture> textures = new LinkedList<Texture>();
+                            textures.add(LOW_PROJECTILE_TEXTURE);
+                            textures.add(MID_PROJECTILE_TEXTURE);
+                            textures.add(MAX_PROJECTILE_TEXTURE);
+                            playerProjectile = new PlayerProjectile(textures, playerSubmarine);
+                            energy-= 25;
+                            //startTime = 0;
+                    } else if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(500)) {
+                        //Fire interaction
+                        speed = 200;
+                            LinkedList<Texture> textures = new LinkedList<Texture>();
+                            textures.add(LOW_PROJECTILE_TEXTURE);
+                            textures.add(MID_PROJECTILE_TEXTURE);
+                            textures.add(MAX_PROJECTILE_TEXTURE);
+                            playerProjectile = new PlayerProjectile(textures, playerSubmarine);
+                            energy -= 75f;
+                            //startTime = 0;
+                    } else{
+                        speed = 150;
+                        //Fire interaction
+                            LinkedList<Texture> textures = new LinkedList<Texture>();
+                            textures.add(LOW_PROJECTILE_TEXTURE);
+                            textures.add(MID_PROJECTILE_TEXTURE);
+                            textures.add(MAX_PROJECTILE_TEXTURE);
+                            playerProjectile = new PlayerProjectile(textures, playerSubmarine);
+                            energy -= 100f;
+                            startTime = 0;
+                    }
+
+                }
+                System.out.println(TimeUtils.nanosToMillis(TimeUtils.timeSinceNanos(startTime)));
             }
         });
         return btnFire;
@@ -221,7 +259,7 @@ public class ScreenSurvive implements Screen {
 
     private void updateProjectile(float delta) {
         if (playerProjectile != null){
-            playerProjectile.moveY(delta);
+            playerProjectile.moveProjectile(delta, speed);
             if (playerProjectile.getSprite().getY()>Videogame.HEIGHT){
                 playerProjectile = null;
             }

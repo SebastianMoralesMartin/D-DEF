@@ -12,7 +12,7 @@ public class Projectile extends AdvancedEntity{
         super(textures, x, y);
     }
 
-    protected enum ProjectileType {
+    public enum ProjectileType {
         LOW,
         MID,
         HIGH;

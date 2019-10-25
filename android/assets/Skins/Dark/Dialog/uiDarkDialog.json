@@ -1,0 +1,61 @@
+{
+  com.badlogic.gdx.graphics.g2d.BitmapFont: {
+    default-font: {
+      file: Fonts/pixelNormal.fnt
+    }
+  },
+  com.badlogic.gdx.graphics.Color: {
+    green: { a: 1, b: 0, g: 1, r: 0 },
+    white: { a: 1, b: 1, g: 1, r: 1 },
+    red: { a: 1, b: 0, g: 0, r: 1 },
+    black: { a: 1, b: 0, g: 0, r: 0 }
+  },
+  com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+    greenSmall: {
+      background: Dialog600x200Dark,
+      titleFont: default-font,
+      titleFontColor: black
+    },
+    redSmall: {
+      background: Dialog600x200RedDark,
+      titleFont: default-font,
+      titleFontColor: black
+    },
+    greenMedium: {
+      background: Dialog600x400Dark,
+      titleFont: default-font,
+      titleFontColor: black
+    },
+    redMedium: {
+      background: Dialog600x400RedDark,
+      titleFont: default-font,
+      titleFontColor: black
+    },
+    greenBig: {
+      background: Dialog600x600Dark,
+      titleFont: default-font,
+      titleFontColor: black
+    },
+    redBig: {
+      background: Dialog600x600RedDark,
+      titleFont: default-font,
+      titleFontColor: black
+    }
+  },
+  com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+    greenTitle: {
+      background: Dialog600x200Dark
+      font: default-font,
+      fontColor: black
+    },
+    redTitle: {
+      background: Dialog600x200RedDark
+      font: default-font,
+      fontColor: black
+    },
+    content: {
+      font: default-font,
+      fontColor: black
+    }
+  }
+}

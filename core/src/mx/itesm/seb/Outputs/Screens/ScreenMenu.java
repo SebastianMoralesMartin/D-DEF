@@ -9,29 +9,39 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToScreens;
-import mx.itesm.seb.Outputs.Texts.Text;
+import mx.itesm.seb.Inputs.Buttons.ButtonToAbout;
+import mx.itesm.seb.Inputs.Buttons.ButtonToGame;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
 import mx.itesm.seb.Videogame;
 
 public class ScreenMenu implements Screen {
     private final Videogame videogame;
+    private Skin buttonSkins;
+    private Skin uiModeSkinSubscreens;
+    private Skin uiModeSkinDialog;
     private OrthographicCamera camera;
     private Viewport view;
     private SpriteBatch batch;
-    private Texture textureBackground;
-    private Texture textureTitle;
-    private Text titleHead;
-    private Text subtitleHead;
-    private ButtonToScreens btnNewGame;
-    private ButtonToScreens btnSettings;
-    private ButtonToScreens btnAbout;
+    private Image imageBackground;
+    private Image imageTitle;
+    private Label titleHead;
+    private Label subtitleHead;
+    private ButtonToGame btnNewGame;
+    private ButtonToSettings btnSettings;
+    private ButtonToAbout btnAbout;
     private Stage menu;
+    private Table mainLayout;
+    private Table secondaryLayout;
 
     public ScreenMenu(Videogame videogame) {
         this.videogame = videogame;
@@ -39,38 +49,92 @@ public class ScreenMenu implements Screen {
 
     @Override
     public void show() {
-        setView();
-        setTextures();
-        setTexts();
-        setStage();
+        this.setSkins();
+        this.setView();
+        this.setLabels();
+        this.setButtons();
+        this.setImages();
+        this.setStage();
+    }
+
+    private void setSkins() {
+        this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
+        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
+        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
     }
 
     private void setStage() {
         menu = new Stage(view);
-        this.setButtons();
-        this.addButtons();
         Gdx.input.setInputProcessor(menu);
+        this.setMainLayout();
+        this.setSecondaryLayout();
+        menu.addActor(this.mainLayout);
     }
 
-    private void addButtons() {
-        menu.addActor(btnNewGame.getButton());
-        menu.addActor(btnSettings.getButton());
-        menu.addActor(btnAbout.getButton());
+    private void setSecondaryLayout() {
+        this.secondaryLayout = new Table();
+        this.secondaryLayout.setFillParent(true);
+        this.secondaryLayout.top();
+        this.secondaryLayout.pad(20);
+        this.addElementsToSecondaryLayout();
+    }
+
+    private void addElementsToSecondaryLayout() {
+        this.addButtonsToSecondaryLayout();
+    }
+
+    private void addButtonsToSecondaryLayout() {
+        this.secondaryLayout.add();
+    }
+
+    private void addElementsToMainLayout() {
+        this.addImagesToMainLayout();
+        this.addLabelsToMainLayout();
+        this.addButtonsMainLayout();
+    }
+
+    private void addLabelsToMainLayout() {
+        this.mainLayout.add(this.titleHead).colspan(3).pad(10).fillX();
+        this.mainLayout.row();
+        this.mainLayout.add(this.subtitleHead).colspan(3).pad(5).fillX();
+        this.mainLayout.row();
+    }
+
+    private void addImagesToMainLayout() {
+        mainLayout.add(this.imageTitle).colspan(3).pad(20).uniformX().maxHeight(279f).maxWidth(710f);
+        mainLayout.row();
+    }
+
+    private void setMainLayout() {
+        this.mainLayout = new Table();
+        this.mainLayout.setFillParent(true);
+        this.mainLayout.top();
+        this.mainLayout.pad(20);
+        this.addElementsToMainLayout();
+    }
+
+    private void addButtonsMainLayout() {
+        mainLayout.add(this.btnAbout).pad(20);
+        mainLayout.add(this.btnSettings).pad(20);
+        mainLayout.add(this.btnNewGame).pad(20);
     }
 
     private void setButtons(){
-        this.btnNewGame = new ButtonToScreens(videogame, ButtonToScreens.ToScreen.GAME, "Buttons/buttonNewGame.png", "Buttons/buttonNewGamePressed.png", 5* Videogame.WIDTH /6, Videogame.HEIGHT /10);
-        this.btnSettings = new ButtonToScreens(videogame, ButtonToScreens.ToScreen.SETTINGS, "Buttons/buttonSettings.png", "Buttons/buttonSettings.png", 3* Videogame.WIDTH /6, Videogame.HEIGHT /10);
-        this.btnAbout = new ButtonToScreens(videogame, ButtonToScreens.ToScreen.SUBMENU, "Buttons/buttonAbout.png", "Buttons/buttonAboutPressed.png", 1* Videogame.WIDTH /6, Videogame.HEIGHT /10);
+        this.btnNewGame = new ButtonToGame(videogame, buttonSkins);
+        this.btnSettings = new ButtonToSettings(videogame, buttonSkins);
+        this.btnAbout = new ButtonToAbout(videogame, buttonSkins);
     }
 
     private void addButton(ImageButton button) {
         menu.addActor(button);
     }
 
-    private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundVertical.png");
-        textureTitle = new Texture("Screens/Titles/TitleHeadVertical.png");
+    private void setImages() {
+        this.imageBackground = new Image(new Texture(Gdx.files.internal("Screens/Backgrounds/oceanBackgroundVertical.png")));
+        this.imageTitle = new Image(new Texture(Gdx.files.internal("Screens/Titles/TitleHead.png")));
     }
 
     private void setView(){
@@ -81,9 +145,13 @@ public class ScreenMenu implements Screen {
         batch = new SpriteBatch();
     }
 
-    private void setTexts(){
-        titleHead = new Text("Dunkirk-Defense");
-        subtitleHead = new Text("¡SALVA HÉROES!");
+    private void setLabels(){
+        titleHead = new Label("Dunkirk-Defense", uiModeSkinSubscreens, "title");
+        titleHead.setAlignment(Align.center);
+        titleHead.setFontScale(2);
+        subtitleHead = new Label("SALVA HEROES", uiModeSkinSubscreens, "title");
+        subtitleHead.setAlignment(Align.center);
+        subtitleHead.setFontScale(1.5f);
     }
 
     @Override
@@ -99,18 +167,9 @@ public class ScreenMenu implements Screen {
 
     private void drawElements(){
         batch.setProjectionMatrix(camera.combined);
-
         batch.begin();
-
-        batch.draw(textureBackground, 0, 0);
-        batch.draw(textureTitle, Videogame.WIDTH /2 - textureTitle.getWidth()/2, Videogame.HEIGHT - textureTitle.getHeight()- textureTitle.getHeight()/9);
-        titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth()/2, videogame.HEIGHT /2 + videogame.HEIGHT /4);
-        subtitleHead.draw(batch, videogame.WIDTH /2 - subtitleHead.getWidth()/2, videogame.HEIGHT /2 + videogame.HEIGHT /4 - 50);
-        ImageButton testButton = new ImageButton(new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"), new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas"))), "settings");
-        testButton.draw(batch, 1f);
-        testButton.setPosition(200,200);
+        imageBackground.draw(batch, 1);
         batch.end();
-
         menu.draw();
     }
 
@@ -136,6 +195,6 @@ public class ScreenMenu implements Screen {
 
     @Override
     public void dispose() {
-        textureBackground.dispose();
+        ((SpriteDrawable) imageBackground.getDrawable()).getSprite().getTexture().dispose();
     }
 }

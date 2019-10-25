@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -56,6 +57,7 @@ public class ScreenSurvive implements Screen {
     private float speed;
     private float power;
     private long startTime = (long)Gdx.graphics.getDeltaTime();
+    private long timeCounterAttack = 0;
 
     //Music
     private Music backgroundMusic;
@@ -98,6 +100,7 @@ public class ScreenSurvive implements Screen {
 
     private void setTimer() {
         startTime = TimeUtils.nanoTime();
+        timeCounterAttack = TimeUtils.nanoTime();
     }
 
     private void createSubmarine() {
@@ -141,7 +144,7 @@ public class ScreenSurvive implements Screen {
     private ImageButton configureFireButton(){
         TextureRegionDrawable trdDisparo = new TextureRegionDrawable(
                 new TextureRegion(new Texture("Buttons/buttonBase.png")));
-        ImageButton btnFire = new ImageButton(trdDisparo);
+        final ImageButton btnFire = new ImageButton(trdDisparo);
         btnFire.setPosition(Videogame.WIDTH - btnFire.getWidth() - 50, 50);
         btnFire.addListener(new ClickListener(){
             @Override
@@ -159,23 +162,37 @@ public class ScreenSurvive implements Screen {
                 textures.add(MAX_PROJECTILE_TEXTURE);
                 if(playerProjectile == null) {
                     if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(500)) {
+                        btnFire.setColor(Color.RED);
                         speed = 300;
                         power = 25f;
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
-
+                        AssetManager manager = videogame.callAssetManager();
+                        manager.load("Music/explosion.mp3", Music.class);
+                        manager.finishLoading();
+                        Music effect = manager.get("Music/explosion.mp3");
+                        effect.setVolume(25);
+                        effect.play();
                         energy-= 25;
                             //startTime = 0;
                     } else if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(1000)) {
                         //Fire interaction
+                        btnFire.setColor(Color.BLUE);
                         speed = 200;
                         power = 75f;
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.MID);
                         playerProjectile.switchTexture();
+                        AssetManager manager = videogame.callAssetManager();
+                        manager.load("Music/explosion.mp3", Music.class);
+                        manager.finishLoading();
+                        Music effect = manager.get("Music/explosion.mp3");
+                        effect.setVolume(50);
+                        effect.play();
                         energy -= 75f;
                         //startTime = 0;
                     } else{
+                        btnFire.setColor(Color.PURPLE);
                         speed = 150;
                         power = 100f;
                         //Fire interaction
@@ -183,6 +200,12 @@ public class ScreenSurvive implements Screen {
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
                         playerProjectile.switchTexture();
                         playerProjectile.switchTexture();
+                        AssetManager manager = videogame.callAssetManager();
+                        manager.load("Music/explosion.mp3", Music.class);
+                        manager.finishLoading();
+                        Music effect = manager.get("Music/explosion.mp3");
+                        effect.setVolume(100);
+                        effect.play();
                         energy -= 100f;
                         startTime = 0;
                     }

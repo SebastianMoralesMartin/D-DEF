@@ -14,13 +14,25 @@ public class Videogame extends Game {
 	public static final float WIDTH = 720;
 	public static final float HEIGHT = 1280;
 	private Music backgroundMusic;
+	private AssetManager assetManager;
 
 
 	public AssetManager callAssetManager(){
-		AssetManager assetManager = new AssetManager();
+		assetManager = new AssetManager();
 		return assetManager;
 	}
 
+	public Music getBackgroundMusic(){
+		AssetManager assetManager = this.callAssetManager();
+		assetManager.load("Music/Phantoms Castle.mp3", Music.class);
+		assetManager.finishLoading();
+		backgroundMusic = assetManager.get("Music/Phantoms Castle.mp3");
+		return backgroundMusic;
+	}
+
+	public void StopMusic(){
+		if (backgroundMusic.isPlaying()){backgroundMusic.stop();}
+	}
 	public Stack<Object> screenStack = new Stack<>();
 
 

@@ -74,10 +74,7 @@ public class ScreenMenu implements Screen {
     }
 
     private void setMusic(){
-        AssetManager assetManager = videogame.callAssetManager();
-        assetManager.load("Music/Phantoms Castle.mp3", Music.class);
-        assetManager.finishLoading();
-        backgroundMusic = assetManager.get("Music/Phantoms Castle.mp3");
+        backgroundMusic = videogame.getBackgroundMusic();
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();

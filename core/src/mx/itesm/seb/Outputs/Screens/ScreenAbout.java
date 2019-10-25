@@ -3,6 +3,8 @@ package mx.itesm.seb.Outputs.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,6 +38,7 @@ public class ScreenAbout implements Screen {
     private Stage about;
     private Skin buttonSkins;
     private Skin uiModeSkinSubscreens;
+    private Music backgroundMusic;
 
 
     public ScreenAbout(Videogame videogame) {
@@ -49,6 +52,18 @@ public class ScreenAbout implements Screen {
         this.setLabels();
         this.setTextures();
         this.setStage();
+        this.setMusic();
+    }
+
+    private void setMusic(){
+        AssetManager manager = videogame.callAssetManager();
+        manager.load("Music/Double The Bits.mp3", Music.class);
+        manager.finishLoading();
+        backgroundMusic = manager.get("Music/Double The Bits.mp3");
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(50);
+        backgroundMusic.play();
+
     }
 
     private void setLabels() {
@@ -116,6 +131,7 @@ public class ScreenAbout implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                videogame.StopMusic();
                 videogame.setScreen(new ScreenMenu(videogame));
             }
         });

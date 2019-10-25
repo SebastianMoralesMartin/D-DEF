@@ -3,6 +3,8 @@ package mx.itesm.seb.Outputs.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -53,6 +55,9 @@ public class ScreenSurvive implements Screen {
     private float speed;
     private long startTime = (long)Gdx.graphics.getDeltaTime();
 
+    //Music
+    private Music backgroundMusic;
+
     public ScreenSurvive(Videogame videogame) {
         this.videogame = videogame;
     }
@@ -65,12 +70,24 @@ public class ScreenSurvive implements Screen {
         createSubmarine();
         createEnemies();
         setTimer();
+        setMusic();
 
         //PROTOTYPE: Sets listener and input processor
         //Gdx.input.setInputProcessor(new ProcesadorEntrada());
 
         //PROTOTYPE: Creates an object that draws text outputs onto a screen
         text = new Text("Energy");
+    }
+
+    private void setMusic(){
+        AssetManager manager = videogame.callAssetManager();
+
+        manager.load("Music/Battle.mp3", Music.class);
+        manager.finishLoading();
+        backgroundMusic = manager.get("Music/Battle.mp3");
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(50);
+        backgroundMusic.play();
     }
 
     private void setTimer() {
@@ -219,6 +236,7 @@ public class ScreenSurvive implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                videogame.StopMusic();
                 videogame.setScreen(new ScreenMenu(videogame));
             }
         });

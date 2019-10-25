@@ -1,5 +1,6 @@
 package mx.itesm.seb.Inputs.Buttons;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -28,6 +29,7 @@ public class ButtonToGame extends EnhancedImageButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                videogame.StopMusic();
                 videogame.setScreen(new ScreenSurvive(videogame));
             }
         });

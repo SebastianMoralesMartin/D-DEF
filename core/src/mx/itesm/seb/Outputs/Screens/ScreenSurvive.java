@@ -50,6 +50,7 @@ public class ScreenSurvive implements Screen {
     private static final float LOW_POWER_SHOT = 30f;
     private static final float MID_POWER_SHOT = 60f;
     private static final float MAX_POWER_SHOT = 90f;
+    private int counter = 0;
 
     public ScreenSurvive(Videogame videogame) {
         this.videogame = videogame;
@@ -117,16 +118,27 @@ public class ScreenSurvive implements Screen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 //Fire interaction
-                if(playerProjectile == null){
+                if (playerProjectile == null) {
                     LinkedList<Texture> textures = new LinkedList<Texture>();
                     textures.add(LOW_PROJECTILE_TEXTURE);
                     textures.add(MID_PROJECTILE_TEXTURE);
                     textures.add(MAX_PROJECTILE_TEXTURE);
                     playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                 }
-                energy -= 50f;
                 return true;
             }
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+                while(counter > 1){
+                    energy-= 50f;
+                    counter++;
+                }
+                if(playerProjectile == null){
+                    counter =0;
+                }
+            }
+
         });
         return btnFire;
     }
@@ -221,7 +233,7 @@ public class ScreenSurvive implements Screen {
 
     private void updateProjectile(float delta) {
         if (playerProjectile != null){
-            playerProjectile.moveY(delta);
+            playerProjectile.moveProjectile(delta, 300);
             if (playerProjectile.getSprite().getY()>Videogame.HEIGHT){
                 playerProjectile = null;
             }
@@ -231,11 +243,11 @@ public class ScreenSurvive implements Screen {
     private void updateSubmarine() {
         switch(stateSubmarine){
             case RIGHT:
-                playerSubmarine.move(3, 0);
+                playerSubmarine.moveX(3);
                 energy -=.25;
                 break;
             case LEFT:
-                playerSubmarine.move(-3, 0);
+                playerSubmarine.moveX(-3);
                 energy-=.25;
                 break;
         }

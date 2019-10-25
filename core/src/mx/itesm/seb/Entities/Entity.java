@@ -49,6 +49,11 @@ public class Entity {
         sprite.setY(sprite.getY() + dy);
         this.reduceHealthBy(dy * this.movementExhaust);
     }
+    //TEST SECTION FOR A MOVE METHOD
+    public void moveProjectile(float delta, float speed){
+        float distance = delta * speed;
+        sprite.setY(sprite.getY() + distance);
+    }
 
     public void moveFront(){
         switch (this.fieldDepth){

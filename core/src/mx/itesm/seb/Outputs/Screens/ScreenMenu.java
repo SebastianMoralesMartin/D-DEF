@@ -60,7 +60,7 @@ public class ScreenMenu implements Screen {
     private void setSkins() {
         this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                 new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
-        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
+        this.uiModeSkinDialog = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
                 new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
         this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
                 new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));

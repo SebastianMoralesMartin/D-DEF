@@ -57,8 +57,18 @@
       background: Submenu200,
       font: default-font,
       fontColor: black
-    }
-    content: {
+    },
+    content-medium: {
+      background: Submenu600,
+      font: default-font,
+      fontColor: black
+    },
+    content-big: {
+      background: Submenu1000,
+      font: default-font,
+      fontColor: black
+    },
+    content-naked: {
       font: default-font,
       fontColor: black
     }

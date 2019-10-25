@@ -39,6 +39,11 @@
       fontColor: black
     }
     content: {
+      background: Submenu1000Dark,
+      font: default-font,
+      fontColor: black
+    }
+    content-naked: {
       font: default-font,
       fontColor: black
     }

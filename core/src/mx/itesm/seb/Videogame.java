@@ -15,12 +15,10 @@ public class Videogame extends Game {
 	public static final float HEIGHT = 1280;
 	private Music backgroundMusic;
 
-	public Music sendMusic(){
-		AssetManager manager = new AssetManager();
-		manager.load("Music/Phantoms Castle.mp3", Music.class);
-		manager.finishLoading();
-		backgroundMusic = manager.get("Music/Phantoms Castle.mp3");
-		return backgroundMusic;
+
+	public AssetManager callAssetManager(){
+		AssetManager assetManager = new AssetManager();
+		return assetManager;
 	}
 
 	public Stack<Object> screenStack = new Stack<>();

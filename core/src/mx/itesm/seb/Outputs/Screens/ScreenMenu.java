@@ -3,6 +3,7 @@ package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -73,7 +74,10 @@ public class ScreenMenu implements Screen {
     }
 
     private void setMusic(){
-        backgroundMusic = videogame.sendMusic();
+        AssetManager assetManager = videogame.callAssetManager();
+        assetManager.load("Music/Phantoms Castle.mp3", Music.class);
+        assetManager.finishLoading();
+        backgroundMusic = assetManager.get("Music/Phantoms Castle.mp3");
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();

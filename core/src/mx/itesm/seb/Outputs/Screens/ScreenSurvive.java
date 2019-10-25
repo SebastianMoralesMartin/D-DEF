@@ -54,6 +54,7 @@ public class ScreenSurvive implements Screen {
     private Texture MAX_PROJECTILE_TEXTURE;
     private PlayerProjectile playerProjectile;
     private float speed;
+    private float power;
     private long startTime = (long)Gdx.graphics.getDeltaTime();
 
     //Music
@@ -148,36 +149,34 @@ public class ScreenSurvive implements Screen {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 //Fire interaction
+                LinkedList<Texture> textures = new LinkedList<Texture>();
+                textures.add(LOW_PROJECTILE_TEXTURE);
+                textures.add(MID_PROJECTILE_TEXTURE);
+                textures.add(MAX_PROJECTILE_TEXTURE);
                 if(playerProjectile == null) {
                     if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(200)) {
                         speed = 300;
-                            LinkedList<Texture> textures = new LinkedList<Texture>();
-                            textures.add(LOW_PROJECTILE_TEXTURE);
-                            textures.add(MID_PROJECTILE_TEXTURE);
-                            textures.add(MAX_PROJECTILE_TEXTURE);
-                            playerProjectile = new PlayerProjectile(textures, playerSubmarine);
-                            energy-= 25;
+                        power = 25f;
+                        playerProjectile = new PlayerProjectile(textures, playerSubmarine);
+                        playerProjectile.setType(Projectile.ProjectileType.HIGH);
+                        energy-= 25;
                             //startTime = 0;
                     } else if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(500)) {
                         //Fire interaction
                         speed = 200;
-                            LinkedList<Texture> textures = new LinkedList<Texture>();
-                            textures.add(LOW_PROJECTILE_TEXTURE);
-                            textures.add(MID_PROJECTILE_TEXTURE);
-                            textures.add(MAX_PROJECTILE_TEXTURE);
-                            playerProjectile = new PlayerProjectile(textures, playerSubmarine);
-                            energy -= 75f;
-                            //startTime = 0;
+                        power = 75f;
+                        playerProjectile = new PlayerProjectile(textures, playerSubmarine);
+                        playerProjectile.setType(Projectile.ProjectileType.MID);
+                        energy -= 75f;
+                        //startTime = 0;
                     } else{
                         speed = 150;
+                        power = 100f;
                         //Fire interaction
-                            LinkedList<Texture> textures = new LinkedList<Texture>();
-                            textures.add(LOW_PROJECTILE_TEXTURE);
-                            textures.add(MID_PROJECTILE_TEXTURE);
-                            textures.add(MAX_PROJECTILE_TEXTURE);
-                            playerProjectile = new PlayerProjectile(textures, playerSubmarine);
-                            energy -= 100f;
-                            startTime = 0;
+                        playerProjectile = new PlayerProjectile(textures, playerSubmarine);
+                        playerProjectile.setType(Projectile.ProjectileType.HIGH);
+                        energy -= 100f;
+                        startTime = 0;
                     }
 
                 }
@@ -279,11 +278,12 @@ public class ScreenSurvive implements Screen {
     private void colisionVerifier() {
         if(playerProjectile==null){return;}
         for(int i = enemies.size -1; i>=0; i--){
-            Rectangle rectanguloBala = playerProjectile.getSprite().getBoundingRectangle();
-            Rectangle rectanguloEnemigo = enemies.get(i).getSprite().getBoundingRectangle();
-            if(rectanguloBala.overlaps(rectanguloEnemigo)){
+            Rectangle projectileRect = playerProjectile.getSprite().getBoundingRectangle();
+            Rectangle enemyRect = enemies.get(i).getSprite().getBoundingRectangle();
+            if(projectileRect.overlaps(enemyRect)){
                 playerProjectile = null;
                 enemies.removeIndex(i);
+                energy += power *2;
                 break;
             }
         }

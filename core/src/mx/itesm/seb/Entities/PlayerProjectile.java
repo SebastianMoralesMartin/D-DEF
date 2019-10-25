@@ -26,22 +26,17 @@ public class PlayerProjectile extends Projectile {
     public void setType(ProjectileType projectileType){
         switch(projectileType){
             case LOW:
-                //sprite.setTexture(lowPowerTexture);
-                switchTexture();
                 this.setSpeed(500);
                 power = 100;
                 this.setExistanceExhaust(20);
                 break;
             case MID:
-                //sprite.setTexture(midPowerTexture);
                 switchTexture();
                 this.setSpeed(300);
                 power = 200;
                 this.setExistanceExhaust(50);
                 break;
             case HIGH:
-                //sprite.setTexture(highPowerTexture);
-                switchTexture();
                 switchTexture();
                 this.setSpeed(150);
                 power = 300;

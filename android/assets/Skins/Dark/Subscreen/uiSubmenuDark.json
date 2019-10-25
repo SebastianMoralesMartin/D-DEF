@@ -14,38 +14,38 @@
     tiny: {
       background: Submenu200Dark,
       titleFont: default-font,
-      titleFontColor: black
+      titleFontColor: white
     },
     small: {
       background: Submenu500Dark,
       titleFont: default-font,
-      titleFontColor: black
+      titleFontColor: white
     },
     medium: {
       background: Submenu600Dark,
       titleFont: default-font,
-      titleFontColor: black
+      titleFontColor: white
     },
     big: {
       background: Submenu1000Dark,
       titleFont: default-font,
-      titleFontColor: black
+      titleFontColor: white
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
     title: {
       background: Submenu200Dark,
       font: default-font,
-      fontColor: black
+      fontColor: white
     }
     content: {
       background: Submenu1000Dark,
       font: default-font,
-      fontColor: black
+      fontColor: white
     }
     content-naked: {
       font: default-font,
-      fontColor: black
+      fontColor: white
     }
   }
 }

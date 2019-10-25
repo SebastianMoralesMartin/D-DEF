@@ -66,7 +66,7 @@ public class ScreenAbout implements Screen {
     }*/
 
     private void setLabels() {
-        title = new Label("Hola, Bienvenido a D-Def", uiModeSkinSubscreens, "title");
+        /*title = new Label("Hola, Bienvenido a D-Def", uiModeSkinSubscreens, "title");
         title.setAlignment(Align.center);
         title.setFontScale(1.5f);
         title.setWrap(true);
@@ -75,7 +75,7 @@ public class ScreenAbout implements Screen {
         content.setAlignment(Align.center);
         content.setFontScale(1.3f);
         content.setWrap(true);
-        content.setWidth(700);
+        content.setWidth(700);*/
     }
 
     private void setSkins() {

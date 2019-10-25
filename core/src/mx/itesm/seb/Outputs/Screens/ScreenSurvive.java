@@ -291,6 +291,12 @@ public class ScreenSurvive implements Screen {
             if(projectileRect.overlaps(enemyRect)){
                 playerProjectile = null;
                 enemies.removeIndex(i);
+                AssetManager manager = videogame.callAssetManager();
+                manager.load("Music/explosion.mp3", Music.class);
+                manager.finishLoading();
+                Music effect = manager.get("Music/explosion.mp3");
+                effect.setVolume(75);
+                effect.play();
                 energy += power *2;
                 break;
             }

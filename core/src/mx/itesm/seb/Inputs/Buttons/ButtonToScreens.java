@@ -133,7 +133,6 @@ public class ButtonToScreens extends Button {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.StopMusic();
                         System.exit(0);
                     }
                 });

@@ -29,7 +29,6 @@ public class ButtonToAbout extends EnhancedImageButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.StopMusic();
                 videogame.setScreen(new ScreenAbout(videogame));
             }
         });

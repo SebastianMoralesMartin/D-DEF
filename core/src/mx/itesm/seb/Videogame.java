@@ -22,7 +22,7 @@ public class Videogame extends Game {
 		return assetManager;
 	}
 
-	public Music getBackgroundMusic(){
+	/*public Music getBackgroundMusic(){
 		AssetManager assetManager = this.callAssetManager();
 		assetManager.load("Music/Phantoms Castle.mp3", Music.class);
 		assetManager.finishLoading();
@@ -32,7 +32,7 @@ public class Videogame extends Game {
 
 	public void StopMusic(){
 		if (backgroundMusic.isPlaying()){backgroundMusic.stop();}
-	}
+	}*/
 	public Stack<Object> screenStack = new Stack<>();
 
 

@@ -93,7 +93,7 @@ public class ButtonToScreens extends Button {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.StopMusic();
+
                         game.setScreen(new ScreenMenu(game));
                     }
                 });
@@ -103,7 +103,7 @@ public class ButtonToScreens extends Button {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.StopMusic();
+
                         game.setScreen(new ScreenSurvive(game));
                     }
                 });
@@ -113,7 +113,7 @@ public class ButtonToScreens extends Button {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.StopMusic();
+
                         game.setScreen(new ScreenSettings(game));
                     }
                 });
@@ -123,7 +123,7 @@ public class ButtonToScreens extends Button {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.StopMusic();
+
                         game.setScreen(new ScreenAbout(game));
                     }
                 });
@@ -142,7 +142,6 @@ public class ButtonToScreens extends Button {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.StopMusic();
                         game.setScreen(new ScreenSubMenuAbout(game));
                     }
                 });

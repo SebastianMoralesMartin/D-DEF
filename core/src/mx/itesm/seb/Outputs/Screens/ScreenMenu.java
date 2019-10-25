@@ -3,6 +3,7 @@ package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,10 +43,14 @@ public class ScreenMenu implements Screen {
     private Stage menu;
     private Table mainLayout;
     private Table secondaryLayout;
+    private Music backgroundMusic;
 
     public ScreenMenu(Videogame videogame) {
         this.videogame = videogame;
+
     }
+
+
 
     @Override
     public void show() {
@@ -55,6 +60,7 @@ public class ScreenMenu implements Screen {
         this.setButtons();
         this.setImages();
         this.setStage();
+        this.setMusic();
     }
 
     private void setSkins() {
@@ -64,6 +70,13 @@ public class ScreenMenu implements Screen {
                 new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
         this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
                 new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
+    }
+
+    private void setMusic(){
+        backgroundMusic = videogame.sendMusic();
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(50);
+        backgroundMusic.play();
     }
 
     private void setStage() {

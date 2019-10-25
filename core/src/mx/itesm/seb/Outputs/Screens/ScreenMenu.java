@@ -61,7 +61,7 @@ public class ScreenMenu implements Screen {
         this.setButtons();
         this.setImages();
         this.setStage();
-        this.setMusic();
+        //this.setMusic();
     }
 
     private void setSkins() {
@@ -73,12 +73,12 @@ public class ScreenMenu implements Screen {
                 new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
     }
 
-    private void setMusic(){
+    /*private void setMusic(){
         backgroundMusic = videogame.getBackgroundMusic();
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();
-    }
+    }*/
 
     private void setStage() {
         menu = new Stage(view);

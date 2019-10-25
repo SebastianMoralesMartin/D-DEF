@@ -84,12 +84,16 @@ public class ScreenSurvive implements Screen {
     private void setMusic(){
         AssetManager manager = videogame.callAssetManager();
 
-        manager.load("Music/Battle.mp3", Music.class);
+        manager.load("Music/Phantoms Castle.mp3", Music.class);
         manager.finishLoading();
-        backgroundMusic = manager.get("Music/Battle.mp3");
+        backgroundMusic = manager.get("Music/Phantoms Castle.mp3");
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();
+    }
+
+    private void stopMusic(){
+        backgroundMusic.stop();
     }
 
     private void setTimer() {
@@ -236,7 +240,7 @@ public class ScreenSurvive implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.StopMusic();
+                stopMusic();
                 videogame.setScreen(new ScreenMenu(videogame));
             }
         });

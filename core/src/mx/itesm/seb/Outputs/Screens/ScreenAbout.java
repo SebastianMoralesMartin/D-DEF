@@ -52,10 +52,10 @@ public class ScreenAbout implements Screen {
         this.setLabels();
         this.setTextures();
         this.setStage();
-        this.setMusic();
+        //this.setMusic();
     }
 
-    private void setMusic(){
+    /*private void setMusic(){
         AssetManager manager = videogame.callAssetManager();
         manager.load("Music/Double The Bits.mp3", Music.class);
         manager.finishLoading();
@@ -63,8 +63,7 @@ public class ScreenAbout implements Screen {
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();
-
-    }
+    }*/
 
     private void setLabels() {
         title = new Label("Hola, Bienvenido a D-Def", uiModeSkinSubscreens, "title");
@@ -131,7 +130,6 @@ public class ScreenAbout implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.StopMusic();
                 videogame.setScreen(new ScreenMenu(videogame));
             }
         });

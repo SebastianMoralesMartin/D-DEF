@@ -44,10 +44,10 @@ public class ScreenSettings implements Screen {
         setView();
         setTextures();
         setStage();
-        setMusic();
+        //setMusic();
     }
 
-    private void setMusic(){
+    /*private void setMusic(){
         AssetManager manager = videogame.callAssetManager();
 
         manager.load("Music/Double The Bits.mp3", Music.class);
@@ -56,7 +56,7 @@ public class ScreenSettings implements Screen {
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();
-    }
+    }*/
 
     private void setStage() {
         settings = new Stage(view);
@@ -81,7 +81,6 @@ public class ScreenSettings implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.StopMusic();
                 videogame.setScreen(new ScreenMenu(videogame));
             }
         });

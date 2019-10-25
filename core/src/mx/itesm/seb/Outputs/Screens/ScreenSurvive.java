@@ -74,14 +74,14 @@ public class ScreenSurvive implements Screen {
 
         //PROTOTYPE: Creates an object that draws text outputs onto a screen
         text = new Text("Energy");
-        AssetManager assetmanager = new AssetManager();
+        /*AssetManager assetmanager = new AssetManager();
         assetmanager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetmanager.load("Music/Background_placeholder.mp3", Music.class);
         assetmanager.finishLoading();
         fondo = assetmanager.get("Music/Background_placeholder.mp3");
         fondo.setLooping(true);
         fondo.setVolume(50);
-        fondo.play();
+        fondo.play();*/
 
 
     }

@@ -163,6 +163,7 @@ public class ScreenSurvive implements Screen {
                         power = 25f;
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
+
                         energy-= 25;
                             //startTime = 0;
                     } else if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(500)) {
@@ -171,6 +172,7 @@ public class ScreenSurvive implements Screen {
                         power = 75f;
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.MID);
+                        playerProjectile.switchTexture();
                         energy -= 75f;
                         //startTime = 0;
                     } else{
@@ -179,6 +181,8 @@ public class ScreenSurvive implements Screen {
                         //Fire interaction
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
+                        playerProjectile.switchTexture();
+                        playerProjectile.switchTexture();
                         energy -= 100f;
                         startTime = 0;
                     }

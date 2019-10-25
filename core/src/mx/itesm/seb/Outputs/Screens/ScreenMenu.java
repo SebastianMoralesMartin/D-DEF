@@ -3,11 +3,16 @@ package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -32,6 +37,8 @@ public class ScreenMenu implements Screen {
     private ButtonToScreens btnSettings;
     private ButtonToScreens btnAbout;
     private Stage menu;
+    private Music fondo;
+
 
     public ScreenMenu(Videogame videogame) {
         this.videogame = videogame;
@@ -43,6 +50,16 @@ public class ScreenMenu implements Screen {
         setTextures();
         setTexts();
         setStage();
+
+        AssetManager assetmanager = new AssetManager();
+        assetmanager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetmanager.load("Music/Background_placeholder.mp3", Music.class);
+        assetmanager.finishLoading();
+        fondo = assetmanager.get("Music/Background_placeholder.mp3");
+        fondo.setLooping(true);
+        fondo.setVolume(50);
+        fondo.play();
+
     }
 
     private void setStage() {

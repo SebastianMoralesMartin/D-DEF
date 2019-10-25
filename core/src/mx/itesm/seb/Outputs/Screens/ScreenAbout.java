@@ -39,19 +39,7 @@ public class ScreenAbout implements Screen {
     public void show() {
         setView();
         setTextures();
-        setTexts();
         setStage();
-
-    }//commentario
-
-    private void setTexts() {
-        titleHead = new Text("About");
-        subtitleHead = new Text("Bienvenido a D-DEF"+"\n Salva Heroes");
-        content =new Text("Hoy Te encuentras en 1943 en la bahia de "+"\nDunquerque."+"\nTu misión es salvar a tus compañeros que"
-                +"\nquieren regresar a casa sanos y salvos.Estas"+"\nen un submarino que fue dañado en la batalla"+"\ny no se puede sumergir"
-                +"\nte van a atacar desde el aire y necesitas defenderte"+"\ncuentas con energia ilimitada para salvar a tus compañeros"+
-                "\nasí que aprende a moverte de una manera tactica y ofensiva"+"\ncuentas con diferentes tipos de "+"\ndisparo para poder defenderte"
-                +"\nSi derribas el Zeppelín recibiras "+"\nuna recompensa."+"\nMucha Suerte!!!!!!");
 
     }
 
@@ -85,7 +73,7 @@ public class ScreenAbout implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/Background.jpeg");
+        textureBackground = new Texture("Screens/Backgrounds/Background_About2.jpg");
     }
 
     private void setView(){
@@ -122,10 +110,6 @@ public class ScreenAbout implements Screen {
 
         batch.draw(textureBackground, 0, 0);
         batch.draw(textureBackground,1,1);
-        titleHead.draw(batch, videogame.WIDTH /2 - titleHead.getWidth(), videogame.HEIGHT -80);
-        subtitleHead.draw(batch, videogame.WIDTH /2 - subtitleHead.getWidth()/2, videogame.HEIGHT -120);
-        content.draw(batch, videogame.WIDTH -170 - content.getWidth()/2, videogame.HEIGHT -220);
-
         batch.end();
 
         about.draw();

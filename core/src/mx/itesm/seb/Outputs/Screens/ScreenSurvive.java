@@ -3,11 +3,16 @@ package mx.itesm.seb.Outputs.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -50,6 +55,7 @@ public class ScreenSurvive implements Screen {
     private static final float LOW_POWER_SHOT = 30f;
     private static final float MID_POWER_SHOT = 60f;
     private static final float MAX_POWER_SHOT = 90f;
+    private Music fondo;
 
     public ScreenSurvive(Videogame videogame) {
         this.videogame = videogame;
@@ -68,6 +74,16 @@ public class ScreenSurvive implements Screen {
 
         //PROTOTYPE: Creates an object that draws text outputs onto a screen
         text = new Text("Energy");
+        AssetManager assetmanager = new AssetManager();
+        assetmanager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetmanager.load("Music/Background_placeholder.mp3", Music.class);
+        assetmanager.finishLoading();
+        fondo = assetmanager.get("Music/Background_placeholder.mp3");
+        fondo.setLooping(true);
+        fondo.setVolume(50);
+        fondo.play();
+
+
     }
 
     private void createSubmarine() {

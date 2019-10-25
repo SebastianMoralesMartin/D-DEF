@@ -163,7 +163,6 @@ public class ScreenSurvive implements Screen {
                     }
 
                 }
-                System.out.println(TimeUtils.nanosToMillis(TimeUtils.timeSinceNanos(startTime)));
             }
         });
         return btnFire;

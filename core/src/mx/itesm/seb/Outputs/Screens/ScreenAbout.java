@@ -123,7 +123,7 @@ public class ScreenAbout implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/Background_About2.jpg");
+        textureBackground = new Texture("Screens/Backgrounds/Background_About3.png");
     }
 
     private void setView(){

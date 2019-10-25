@@ -7,12 +7,17 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -25,10 +30,12 @@ public class ScreenAbout implements Screen {
     private Viewport view;
     private SpriteBatch batch;
     private Texture textureBackground;
-    private Text titleHead;
-    private Text subtitleHead;
-    private Text content;
+    private Table mainLayout;
+    private Label title;
+    private Label content;
     private Stage about;
+    private Skin buttonSkins;
+    private Skin uiModeSkinSubscreens;
 
 
     public ScreenAbout(Videogame videogame) {
@@ -37,17 +44,60 @@ public class ScreenAbout implements Screen {
 
     @Override
     public void show() {
-        setView();
-        setTextures();
-        setStage();
+        this.setSkins();
+        this.setView();
+        this.setLabels();
+        this.setTextures();
+        this.setStage();
+    }
 
+    private void setLabels() {
+        title = new Label("Hola, Bienvenido a D-Def", uiModeSkinSubscreens, "title");
+        title.setAlignment(Align.center);
+        title.setFontScale(1.5f);
+        title.setWrap(true);
+        title.setWidth(700);
+        content = new Label("Inspirado en los eventos que sucedieron en la bahia de Dunquerque en 1943 durante la segunda guerra mundial. Tu mision es derribar a los aviones enemigos y sobrevivir el mayor tiempo posible. Pero cuidado porque tu submarino esta dañado y la energía con la que cuentas es limitada, tanto disparar como moverse hará que disminuya.", uiModeSkinSubscreens, "content-big");
+        content.setAlignment(Align.center);
+        content.setFontScale(1.3f);
+        content.setWrap(true);
+        content.setWidth(700);
+    }
+
+    private void setSkins() {
+        this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
+        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
+        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
     }
 
     private void setStage() {
         about = new Stage(view);
+        Gdx.input.setInputProcessor(about);
+        this.setMainLayout();
         ImageButton btnBack = configurarBotonBack();
         addButtons(btnBack);
-        Gdx.input.setInputProcessor(about);
+        about.addActor(this.mainLayout);
+    }
+
+    private void setMainLayout() {
+        this.mainLayout = new Table();
+        this.mainLayout.setFillParent(true);
+        this.mainLayout.top();
+        this.mainLayout.pad(20);
+        this.addElementsToMainLayout();
+    }
+
+    private void addElementsToMainLayout() {
+        this.addLabelsToMainLayout();
+    }
+
+    private void addLabelsToMainLayout() {
+        this.mainLayout.add(this.title).pad(10).fillX().width(700);
+        this.mainLayout.row();
+        this.mainLayout.add(this.content).pad(5).fillX().width(700);
     }
 
     private void addButtons(ImageButton btnBack) {
@@ -73,7 +123,7 @@ public class ScreenAbout implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/Background_About2.jpg");
+        textureBackground = new Texture("Screens/Backgrounds/Background_About3.png");
     }
 
     private void setView(){

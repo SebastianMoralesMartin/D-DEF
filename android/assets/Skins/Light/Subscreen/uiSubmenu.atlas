@@ -1,30 +1,30 @@
 uiSubmenu.png
-size: 2048, 2048
+size: 1440, 1500
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Submenu200Dark
+Submenu200
   rotate: false
   xy: 0, 0
   size: 720, 200
   orig: 720, 200
   offset: 0, 0
   index: -1
-Submenu500Dark
+Submenu500
   rotate: false
   xy: 720, 0
   size: 720, 500
   orig: 720, 500
   offset: 0, 0
   index: -1
-Submenu600Dark
+Submenu600
   rotate: false
   xy: 0, 500
   size: 720, 600
   orig: 720, 600
   offset: 0, 0
   index: -1
-Submenu1000Dark
+Submenu1000
   rotate: false
   xy: 720, 500
   size: 720, 1000

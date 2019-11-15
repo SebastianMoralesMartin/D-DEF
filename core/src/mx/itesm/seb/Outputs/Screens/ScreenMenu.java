@@ -140,7 +140,6 @@ public class ScreenMenu implements Screen {
 
     private void addButtonsMainLayout() {
         mainLayout.add(this.btnAbout).pad(20);
-        mainLayout.row();
         mainLayout.add(this.btnSettings).pad(20);
         mainLayout.add(this.btnNewGame).pad(20);
     }

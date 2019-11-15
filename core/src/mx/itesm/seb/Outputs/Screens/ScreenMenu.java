@@ -64,7 +64,7 @@ public class ScreenMenu implements Screen {
 
     private void setSkins() {
         Boolean flag = new Boolean(true);
-        if(flag == true) {
+        if(flag == false) {
             this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
             this.uiModeSkinDialog = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
@@ -140,6 +140,7 @@ public class ScreenMenu implements Screen {
 
     private void addButtonsMainLayout() {
         mainLayout.add(this.btnAbout).pad(20);
+        mainLayout.row();
         mainLayout.add(this.btnSettings).pad(20);
         mainLayout.add(this.btnNewGame).pad(20);
     }

@@ -33,6 +33,7 @@ import mx.itesm.seb.Entities.Projectile;
 import mx.itesm.seb.Entities.TestProjectile;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
+import sun.awt.ModalExclude;
 
 public class ScreenSurvive implements Screen {
     private final Videogame videogame;
@@ -225,8 +226,14 @@ public class ScreenSurvive implements Screen {
         btnIzq.addListener(new ClickListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (playerSubmarine.getSprite().getX() == 0){
+                    stateSubmarine = Movement.STATIC;
+                    return true;
+                }
+                else{
                 stateSubmarine = Movement.LEFT;
                 return true;
+                }
             }
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {

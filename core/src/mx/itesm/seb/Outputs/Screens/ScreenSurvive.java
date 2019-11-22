@@ -34,6 +34,8 @@ import mx.itesm.seb.Entities.TestProjectile;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
+import static java.lang.Math.abs;
+
 public class ScreenSurvive implements Screen {
     private final Videogame videogame;
     private OrthographicCamera camera;
@@ -58,6 +60,7 @@ public class ScreenSurvive implements Screen {
     private float power;
     private long startTime = (long)Gdx.graphics.getDeltaTime();
     private long timeCounterAttack = 0;
+    private gamestate state = gamestate.GAME;
 
     //Music
     private Music backgroundMusic;
@@ -86,9 +89,9 @@ public class ScreenSurvive implements Screen {
     private void setMusic(){
         AssetManager manager = videogame.callAssetManager();
 
-        manager.load("Music/Phantoms Castle.mp3", Music.class);
+        manager.load("Music/Double The Bits.mp3", Music.class);
         manager.finishLoading();
-        backgroundMusic = manager.get("Music/Phantoms Castle.mp3");
+        backgroundMusic = manager.get("Music/Double The Bits.mp3");
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();
@@ -117,9 +120,9 @@ public class ScreenSurvive implements Screen {
         textures.add(textureStable);
         textures.add(textureTilted);
         enemies = new Array<>(11 * 5);
-        for(int renglon = 0; renglon < 3; renglon++){
-            for(int columna=0; columna <4; columna++){
-                EnemyPlane enemyPlane = new EnemyPlane(textures, 40 + columna * 250, 5* Videogame.HEIGHT /7 + renglon * 120);
+        for (int renglon = 0; renglon < 3; renglon++) {
+            for (int columna = 0; columna < 4; columna++) {
+                EnemyPlane enemyPlane = new EnemyPlane(textures, 40 + columna * 250, 5 * Videogame.HEIGHT / 7 + renglon * 120);
                 enemies.add(enemyPlane);
             }
         }
@@ -267,7 +270,7 @@ public class ScreenSurvive implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                stopMusic();
+                 stopMusic();
                 videogame.setScreen(new ScreenMenu(videogame));
             }
         });
@@ -304,6 +307,7 @@ public class ScreenSurvive implements Screen {
         //Borrar pantalla
         eraseScreen();
         colisionVerifier();
+
     }
 
     private void colisionVerifier() {
@@ -357,10 +361,11 @@ public class ScreenSurvive implements Screen {
                 //enemyPlane.switchTexture();
             }
             steps++;
-            if(steps >= 40){
+            if(steps >= 20){
                 steps = 0;
                 DX = -DX;
                 for(EnemyPlane enemyPlane : enemies){
+                    enemyPlane.move(0, -2*abs(DX));
                     enemyPlane.switchTexture();
                 }
             }
@@ -412,6 +417,7 @@ public class ScreenSurvive implements Screen {
 
     @Override
     public void pause() {
+
 
     }
 
@@ -480,5 +486,11 @@ public class ScreenSurvive implements Screen {
         public boolean scrolled(int amount) {
             return false;
         }
+    }
+    private enum gamestate{
+        PAUSE,
+        GAME,
+        WIN,
+        LOSE
     }
 }

@@ -62,6 +62,7 @@ public class ScreenSurvive implements Screen {
     private long startTime = (long)Gdx.graphics.getDeltaTime();
     private long timeCounterAttack = 0;
     private gamestate state = gamestate.GAME;
+    private int destroyed = 0;
 
     //Music
     private Music backgroundMusic;
@@ -332,6 +333,8 @@ public class ScreenSurvive implements Screen {
                 effect.setVolume(75);
                 effect.play();
                 energy += power *2;
+                destroyed ++;
+                System.out.println("Destruido " + destroyed);
                 break;
             }
         }
@@ -398,6 +401,8 @@ public class ScreenSurvive implements Screen {
             playerProjectile.render(batch);}
         text.setMessage("Energy: " + Float.toString(energy));
         text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - text.getHeight());
+        text.setMessage("Score: " + Integer.toString(destroyed));
+        text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - 3*text.getHeight());
         batch.end();
     }
 

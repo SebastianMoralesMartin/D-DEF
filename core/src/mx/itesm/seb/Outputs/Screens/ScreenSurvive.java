@@ -71,6 +71,11 @@ public class ScreenSurvive implements Screen {
         this.videogame = videogame;
     }
 
+    private void updateState(){
+        if(state == gamestate.PAUSE){pause();}
+        if(state == gamestate.LOSE){lost();}
+    }
+
     @Override
     public void show() {
         setView();
@@ -338,6 +343,7 @@ public class ScreenSurvive implements Screen {
                 break;
             }
         }
+        if(destroyed == enemies.size){state = gamestate.WIN;}
     }
 
     private void updateProjectile(float delta) {
@@ -375,9 +381,18 @@ public class ScreenSurvive implements Screen {
                 steps = 0;
                 DX = -DX;
                 for(EnemyPlane enemyPlane : enemies){
-                    enemyPlane.move(0, -2*abs(DX));
+                    enemyPlane.move(0, -3*abs(DX));
                     enemyPlane.switchTexture();
                 }
+            }
+        }
+        for(EnemyPlane enemyPlane : enemies){
+            System.out.println("Submarine " + playerSubmarine.getSprite().getY());
+            System.out.println(enemyPlane.getSprite().getY());
+            if(enemyPlane.getSprite().getY() <= (playerSubmarine.getSprite().getY()+playerSubmarine.getSprite().getHeight())){
+               state = gamestate.LOSE;
+               lost();
+               System.out.println("Llego" + state);
             }
         }
 
@@ -431,6 +446,11 @@ public class ScreenSurvive implements Screen {
     public void pause() {
 
 
+    }
+
+    public void lost(){
+        stopMusic();
+        videogame.setScreen(new ScreenLost(destroyed, videogame));
     }
 
     @Override

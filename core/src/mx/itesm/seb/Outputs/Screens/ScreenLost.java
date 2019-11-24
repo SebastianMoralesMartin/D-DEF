@@ -19,13 +19,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
-public class ScreenAbout implements Screen {
+
+class ScreenLost implements Screen {
     private final Videogame videogame;
     private OrthographicCamera camera;
     private Viewport view;
@@ -38,10 +37,12 @@ public class ScreenAbout implements Screen {
     private Skin buttonSkins;
     private Skin uiModeSkinSubscreens;
     private Music backgroundMusic;
+    private int destroyed;
 
 
-    public ScreenAbout(Videogame videogame) {
+    public ScreenLost(int destroyed, Videogame videogame) {
         this.videogame = videogame;
+        this.destroyed = destroyed;
     }
 
     @Override
@@ -54,15 +55,15 @@ public class ScreenAbout implements Screen {
         //this.setMusic();
     }
 
-    /*private void setMusic(){
+    private void setMusic(){
         AssetManager manager = videogame.callAssetManager();
-        manager.load("Music/Double The Bits.mp3", Music.class);
+        manager.load("Music/Phantoms Castle.mp3", Music.class);
         manager.finishLoading();
-        backgroundMusic = manager.get("Music/Double The Bits.mp3");
+        backgroundMusic = manager.get("Music/Phantoms Castle.mp3");
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();
-    }*/
+    }
 
     private void setLabels() {
         /*title = new Label("Hola, Bienvenido a D-Def", uiModeSkinSubscreens, "title");
@@ -130,13 +131,14 @@ public class ScreenAbout implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 videogame.setScreen(new ScreenMenu(videogame));
+
             }
         });
         return btnBack;
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/Background_About3.png");
+        textureBackground = new Texture("Screens/Backgrounds/Background.jpeg");
     }
 
     private void setView(){

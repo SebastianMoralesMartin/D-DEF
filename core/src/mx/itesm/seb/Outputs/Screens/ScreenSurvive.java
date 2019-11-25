@@ -289,7 +289,7 @@ public class ScreenSurvive implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
+        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical_try.png");
         LOW_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball.png");
         MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball2.png");
         MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball3.png");
@@ -403,14 +403,14 @@ public class ScreenSurvive implements Screen {
         drawBackground();
         drawEnemies();
         drawSubmarine();
-        batch.draw(healthbarBackGround, Videogame.WIDTH - 400, Videogame.HEIGHT - 20, 300, 100);
-        batch.draw(healthbarForeGround, Videogame.WIDTH - 400, Videogame.HEIGHT - 20, energy, 100);
+        batch.draw(healthbarBackGround, Videogame.WIDTH/2 - 150, 20 * (Videogame.HEIGHT/100)+text.getHeight(), 300, 25);
+        batch.draw(healthbarForeGround, Videogame.WIDTH/2 - 150, 20 * (Videogame.HEIGHT/100)+text.getHeight(), energy, 25);
         if(playerProjectile != null){
             playerProjectile.render(batch);}
         text.setMessage("Energy: " + Integer.toString(energy));
-        text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - text.getHeight());
+        text.draw(batch, (60 * Videogame.WIDTH)/100, 30 * (Videogame.HEIGHT/100)+text.getHeight());
         text.setMessage("Score: " + Integer.toString(destroyed));
-        text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - 3*text.getHeight());
+        text.draw(batch, (10 * Videogame.WIDTH)/100, 30 * (Videogame.HEIGHT/100)+text.getHeight());
         batch.end();
     }
 

@@ -66,14 +66,14 @@ public class ScreenMenu implements Screen {
         Boolean flag = new Boolean(true);
         if(flag == false) {
             this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
+                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
             this.uiModeSkinDialog = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
             this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
         } else {
             this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
+                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
             this.uiModeSkinDialog = new Skin(Gdx.files.internal("Skins/Dark/Dialog/uiDarkDialog.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Dark/Dialog/uiDialogDark.atlas")));
             this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Dark/Subscreen/uiSubmenuDark.json"),

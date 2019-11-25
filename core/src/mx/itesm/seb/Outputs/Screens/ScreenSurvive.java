@@ -181,12 +181,7 @@ public class ScreenSurvive implements Screen {
                         power = 25f;
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
-                        AssetManager manager = videogame.callAssetManager();
-                        manager.load("Music/explosion.mp3", Music.class);
-                        manager.finishLoading();
-                        Music effect = manager.get("Music/explosion.mp3");
-                        effect.setVolume(25);
-                        effect.play();
+                        playeffect();
                         energy-= 25;
                             //startTime = 0;
                     } else if (TimeUtils.timeSinceNanos(startTime) < TimeUtils.millisToNanos(1000)) {
@@ -197,12 +192,7 @@ public class ScreenSurvive implements Screen {
                         playerProjectile = new PlayerProjectile(textures, playerSubmarine);
                         playerProjectile.setType(Projectile.ProjectileType.MID);
                         playerProjectile.switchTexture();
-                        AssetManager manager = videogame.callAssetManager();
-                        manager.load("Music/explosion.mp3", Music.class);
-                        manager.finishLoading();
-                        Music effect = manager.get("Music/explosion.mp3");
-                        effect.setVolume(50);
-                        effect.play();
+                        playeffect();
                         energy -= 75f;
                         //startTime = 0;
                     } else{
@@ -214,12 +204,7 @@ public class ScreenSurvive implements Screen {
                         playerProjectile.setType(Projectile.ProjectileType.HIGH);
                         playerProjectile.switchTexture();
                         playerProjectile.switchTexture();
-                        AssetManager manager = videogame.callAssetManager();
-                        manager.load("Music/explosion.mp3", Music.class);
-                        manager.finishLoading();
-                        Music effect = manager.get("Music/explosion.mp3");
-                        effect.setVolume(100);
-                        effect.play();
+                        playeffect();
                         energy -= 100f;
                         startTime = 0;
                     }
@@ -228,6 +213,15 @@ public class ScreenSurvive implements Screen {
             }
         });
         return btnFire;
+    }
+
+    private void playeffect() {
+        AssetManager manager = videogame.callAssetManager();
+        manager.load("Music/explosion.mp3", Music.class);
+        manager.finishLoading();
+        Music effect = manager.get("Music/explosion.mp3");
+        effect.setVolume(50);
+        effect.play();
     }
 
     private ImageButton configurarBotonIzquierda() {
@@ -337,12 +331,7 @@ public class ScreenSurvive implements Screen {
             if(projectileRect.overlaps(enemyRect)){
                 playerProjectile = null;
                 enemies.removeIndex(i);
-                AssetManager manager = videogame.callAssetManager();
-                manager.load("Music/explosion.mp3", Music.class);
-                manager.finishLoading();
-                Music effect = manager.get("Music/explosion.mp3");
-                effect.setVolume(75);
-                effect.play();
+                playeffect();
                 energy += power *2;
                 destroyed ++;
                 break;

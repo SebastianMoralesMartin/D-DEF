@@ -37,7 +37,7 @@ class ScreenLost implements Screen {
     private Skin buttonSkins;
     private Skin uiModeSkinSubscreens;
     private Music backgroundMusic;
-    private int destroyed;
+    public int destroyed;
 
 
     public ScreenLost(int destroyed, Videogame videogame) {

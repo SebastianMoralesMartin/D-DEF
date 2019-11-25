@@ -392,7 +392,6 @@ public class ScreenSurvive implements Screen {
             if(enemyPlane.getSprite().getY() <= (playerSubmarine.getSprite().getY()+playerSubmarine.getSprite().getHeight())){
                state = gamestate.LOSE;
                lost();
-               System.out.println("Llego" + state);
             }
         }
 

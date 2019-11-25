@@ -366,7 +366,7 @@ public class ScreenSurvive implements Screen {
             timerStep = 0;
             for(EnemyPlane enemyPlane : enemies){
                 enemyPlane.move(DX,0);
-                //enemyPlane.switchTexture();
+
             }
             steps++;
             if(steps >= 20){

@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -51,7 +52,7 @@ public class ScreenSurvive implements Screen {
     private Movement stateSubmarine = Movement.STATIC;
     private Texture textureBackground;
     private Stage survive;
-    private float energy = 999;
+    private int energy = 300;
     private Text text;
     private Texture LOW_PROJECTILE_TEXTURE;
     private Texture MID_PROJECTILE_TEXTURE;
@@ -63,6 +64,7 @@ public class ScreenSurvive implements Screen {
     private long timeCounterAttack = 0;
     private gamestate state = gamestate.GAME;
     private int destroyed = 0;
+    private Texture healthbarForeGround, healthbarBackGround;
 
     //Music
     private Music backgroundMusic;
@@ -111,6 +113,8 @@ public class ScreenSurvive implements Screen {
     private void setTimer() {
         startTime = TimeUtils.nanoTime();
         timeCounterAttack = TimeUtils.nanoTime();
+    }
+    private void gameEngine(){
     }
 
     private void createSubmarine() {
@@ -301,6 +305,7 @@ public class ScreenSurvive implements Screen {
         setCamera();
         view = new StretchViewport(Videogame.WIDTH, Videogame.HEIGHT, camera);
         batch = new SpriteBatch();
+        initTestObjects();
     }
 
     private void setCamera() {
@@ -320,6 +325,7 @@ public class ScreenSurvive implements Screen {
         //Borrar pantalla
         eraseScreen();
         colisionVerifier();
+
 
     }
 
@@ -412,9 +418,11 @@ public class ScreenSurvive implements Screen {
         drawBackground();
         drawEnemies();
         drawSubmarine();
+        batch.draw(healthbarBackGround, Videogame.WIDTH - 400, Videogame.HEIGHT - 20, 300, 100);
+        batch.draw(healthbarForeGround, Videogame.WIDTH - 400, Videogame.HEIGHT - 20, energy, 100);
         if(playerProjectile != null){
             playerProjectile.render(batch);}
-        text.setMessage("Energy: " + Float.toString(energy));
+        text.setMessage("Energy: " + Integer.toString(energy));
         text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - text.getHeight());
         text.setMessage("Score: " + Integer.toString(destroyed));
         text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - 3*text.getHeight());
@@ -472,6 +480,30 @@ public class ScreenSurvive implements Screen {
         STATIC,
         RIGHT,
         LEFT
+    }
+    private void initTestObjects() {
+
+        int width =1 ;
+        int height = 1;
+        Pixmap pixmap = createProceduralPixmap(width, height,0,1,0);
+        Pixmap pixmap2 = createProceduralPixmap(width, height,1,0,0);
+
+        healthbarForeGround = new Texture(pixmap);
+        healthbarBackGround = new Texture(pixmap2);
+
+
+
+    }
+
+
+
+    private Pixmap createProceduralPixmap (int width, int height,int r,int g,int b) {
+        Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
+
+        pixmap.setColor(r, g, b, 1);
+        pixmap.fill();
+
+        return pixmap;
     }
     //Procesador de entrada de la pantalla tactil (toma control total y los botones dejan de funcionar)
     class ProcesadorEntrada implements InputProcessor {

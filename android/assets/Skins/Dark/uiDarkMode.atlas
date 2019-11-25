@@ -1,0 +1,32 @@
+uiDarkMode.png
+size: 256, 256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+darkDialog
+  rotate: false
+  xy: 1, 1
+  size: 100, 100
+  split: 30, 30, 28, 28
+  pad: 30, 30, 28, 26
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+greenDarkDialog
+  rotate: false
+  xy: 1, 103
+  size: 100, 100
+  split: 30, 30, 28, 28
+  pad: 50, 49, 27, 27
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+redDarkDialog
+  rotate: false
+  xy: 103, 1
+  size: 100, 100
+  split: 30, 30, 28, 28
+  pad: 30, 49, 29, 29
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

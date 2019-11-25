@@ -31,51 +31,42 @@
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
-    greenSmall: {
-      background: Dialog600x200,
+    subscreen: {
+      background: lightDialog,
       titleFont: default,
       titleFontColor: black
     },
-    redSmall: {
-      background: Dialog600x200Red,
+    green: {
+      background: greenLightDialog,
       titleFont: default,
       titleFontColor: black
     },
-    greenMedium: {
-      background: Dialog600x400,
-      titleFont: default,
-      titleFontColor: black
-    },
-    redMedium: {
-      background: Dialog600x400Red,
-      titleFont: default,
-      titleFontColor: black
-    },
-    greenBig: {
-      background: Dialog600x600,
-      titleFont: default,
-      titleFontColor: black
-    },
-    redBig: {
-      background: Dialog600x600Red,
+    red: {
+      background: redLightDialog,
       titleFont: default,
       titleFontColor: black
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-    greenTitle: {
-      background: Dialog600x200
-      font: default,
-      fontColor: black
-    },
-    redTitle: {
-      background: Dialog600x200Red
-      font: default,
-      fontColor: black
-    },
     content: {
+      font: default,
+      fontColor: black
+    },
+    default: {
+      background: lightDialog
+      font: default,
+      fontColor: black
+    },
+    green: {
+      background: greenLightDialog
+      font: default,
+      fontColor: black
+    },
+    red: {
+      background: redLightDialog
       font: default,
       fontColor: black
     }
   }
 }
+

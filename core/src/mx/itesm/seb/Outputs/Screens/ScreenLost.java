@@ -35,8 +35,8 @@ class ScreenLost implements Screen {
     private Label title;
     private Label content;
     private Stage about;
-    private Skin buttonSkins;
-    private Skin uiModeSkinSubscreens;
+    private Skin uiButton;
+    private Skin uiSkin;
     private Music backgroundMusic;
     public int destroyed;
     private Text score_txt;
@@ -91,12 +91,10 @@ class ScreenLost implements Screen {
     }
 
     private void setSkins() {
-        this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
-        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
-                new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
-        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
-                new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
+        this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
+        this.uiSkin = new Skin(Gdx.files.internal("Skins/Light/uiLightMode.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Light/uiLightMode.atlas")));
     }
 
     private void setStage() {

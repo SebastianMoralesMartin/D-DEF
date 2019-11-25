@@ -3,7 +3,6 @@ package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -28,9 +27,8 @@ import mx.itesm.seb.Videogame;
 
 public class ScreenMenu implements Screen {
     private final Videogame videogame;
-    private Skin buttonSkins;
-    private Skin uiModeSkinSubscreens;
-    private Skin uiModeSkinDialog;
+    private Skin uiButton;
+    private Skin uiSkin;
     private OrthographicCamera camera;
     private Viewport view;
     private SpriteBatch batch;
@@ -65,19 +63,15 @@ public class ScreenMenu implements Screen {
     private void setSkins() {
         Boolean flag = new Boolean(true);
         if(flag == false) {
-            this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
+            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiModeSkinDialog = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
-            this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
+            this.uiSkin = new Skin(Gdx.files.internal("Skins/Light/uiLightMode.json"),
+                    new TextureAtlas(Gdx.files.internal("Skins/Light/uiLightMode.atlas")));
         } else {
-            this.buttonSkins = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
+            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiModeSkinDialog = new Skin(Gdx.files.internal("Skins/Dark/Dialog/uiDarkDialog.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Dark/Dialog/uiDialogDark.atlas")));
-            this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Dark/Subscreen/uiSubmenuDark.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Dark/Subscreen/uiSubmenuDark.atlas")));
+            this.uiSkin = new Skin(Gdx.files.internal("Skins/Dark/uiDarkMode.json"),
+                    new TextureAtlas(Gdx.files.internal("Skins/Dark/uiDarkMode.atlas")));
         }
     }
 
@@ -145,9 +139,9 @@ public class ScreenMenu implements Screen {
     }
 
     private void setButtons(){
-        this.btnNewGame = new ButtonToGame(videogame, buttonSkins);
-        this.btnSettings = new ButtonToSettings(videogame, buttonSkins);
-        this.btnAbout = new ButtonToAbout(videogame, buttonSkins);
+        this.btnNewGame = new ButtonToGame(videogame, uiButton);
+        this.btnSettings = new ButtonToSettings(videogame, uiButton);
+        this.btnAbout = new ButtonToAbout(videogame, uiButton);
     }
 
     private void addButton(ImageButton button) {
@@ -168,10 +162,10 @@ public class ScreenMenu implements Screen {
     }
 
     private void setLabels(){
-        titleHead = new Label("Dunkirk-Defense", uiModeSkinSubscreens, "title");
+        titleHead = new Label("Dunkirk-Defense", uiSkin, "default");
         titleHead.setAlignment(Align.center);
         titleHead.setFontScale(2);
-        subtitleHead = new Label("SALVA HEROES", uiModeSkinSubscreens, "title");
+        subtitleHead = new Label("SALVA HEROES", uiSkin, "default");
         subtitleHead.setAlignment(Align.center);
         subtitleHead.setFontScale(1.5f);
     }

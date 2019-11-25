@@ -1,0 +1,32 @@
+uiLightMode.png
+size: 256, 256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+greenLightDialog
+  rotate: false
+  xy: 1, 1
+  size: 100, 100
+  split: 30, 30, 28, 28
+  pad: 50, 49, 27, 27
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+lightDialog
+  rotate: false
+  xy: 1, 103
+  size: 100, 100
+  split: 30, 30, 28, 28
+  pad: 50, 49, 27, 27
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+redLightDialog
+  rotate: false
+  xy: 103, 1
+  size: 100, 100
+  split: 30, 30, 28, 28
+  pad: 30, 29, 27, 27
+  orig: 100, 100
+  offset: 0, 0
+  index: -1

@@ -339,7 +339,6 @@ public class ScreenSurvive implements Screen {
                 effect.play();
                 energy += power *2;
                 destroyed ++;
-                System.out.println("Destruido " + destroyed);
                 break;
             }
         }
@@ -387,8 +386,6 @@ public class ScreenSurvive implements Screen {
             }
         }
         for(EnemyPlane enemyPlane : enemies){
-            System.out.println("Submarine " + playerSubmarine.getSprite().getY());
-            System.out.println(enemyPlane.getSprite().getY());
             if(enemyPlane.getSprite().getY() <= (playerSubmarine.getSprite().getY()+playerSubmarine.getSprite().getHeight())){
                state = gamestate.LOSE;
                lost();

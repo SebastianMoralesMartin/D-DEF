@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
 class ScreenLost implements Screen {
@@ -38,6 +39,7 @@ class ScreenLost implements Screen {
     private Skin uiModeSkinSubscreens;
     private Music backgroundMusic;
     public int destroyed;
+    private Text score_txt;
 
 
     public ScreenLost(int destroyed, Videogame videogame) {
@@ -52,6 +54,7 @@ class ScreenLost implements Screen {
         this.setLabels();
         this.setTextures();
         this.setStage();
+        score_txt = new Text("Final Score: " + destroyed);
         //this.setMusic();
     }
 
@@ -63,6 +66,15 @@ class ScreenLost implements Screen {
         backgroundMusic.setLooping(true);
         backgroundMusic.setVolume(50);
         backgroundMusic.play();
+    }
+    private void drawElements() {
+        //Batch escalado a la vista y la camara
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        score_txt.setMessage("Score: " + Integer.toString(destroyed));
+
+        score_txt.draw(batch, Videogame.WIDTH/2 - score_txt.getWidth(), Videogame.HEIGHT/2 - score_txt.getHeight());
+        batch.end();
     }
 
     private void setLabels() {
@@ -167,18 +179,6 @@ class ScreenLost implements Screen {
         about.draw();
     }
 
-    private void drawElements() {
-        //Batch escalado a la vista y la camara
-        batch.setProjectionMatrix(camera.combined);
-
-        batch.begin();
-
-        batch.draw(textureBackground, 0, 0);
-        batch.draw(textureBackground,1,1);
-        batch.end();
-
-        about.draw();
-    }
 
     @Override
     public void resize(int width, int height) {

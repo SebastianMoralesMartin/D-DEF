@@ -21,7 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -31,10 +30,8 @@ import mx.itesm.seb.Entities.EnemyPlane;
 import mx.itesm.seb.Entities.PlayerProjectile;
 import mx.itesm.seb.Entities.PlayerSubmarine;
 import mx.itesm.seb.Entities.Projectile;
-import mx.itesm.seb.Entities.TestProjectile;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
-import sun.awt.ModalExclude;
 
 import static java.lang.Math.abs;
 
@@ -299,7 +296,7 @@ public class ScreenSurvive implements Screen {
         setCamera();
         view = new StretchViewport(Videogame.WIDTH, Videogame.HEIGHT, camera);
         batch = new SpriteBatch();
-        initTestObjects();
+        initHealthbar();
     }
 
     private void setCamera() {
@@ -333,6 +330,7 @@ public class ScreenSurvive implements Screen {
                 enemies.removeIndex(i);
                 playeffect();
                 energy += power *2;
+                if (energy > 300){energy = 300;}
                 destroyed ++;
                 break;
             }
@@ -368,7 +366,7 @@ public class ScreenSurvive implements Screen {
             timerStep = 0;
             for(EnemyPlane enemyPlane : enemies){
                 enemyPlane.move(DX,0);
-                //enemyPlane.switchTexture();
+
             }
             steps++;
             if(steps >= 20){
@@ -403,14 +401,14 @@ public class ScreenSurvive implements Screen {
         drawBackground();
         drawEnemies();
         drawSubmarine();
-        batch.draw(healthbarBackGround, Videogame.WIDTH - 400, Videogame.HEIGHT - 20, 300, 100);
-        batch.draw(healthbarForeGround, Videogame.WIDTH - 400, Videogame.HEIGHT - 20, energy, 100);
+        batch.draw(healthbarBackGround, Videogame.WIDTH/2 - 150, 20 * (Videogame.HEIGHT/100)+text.getHeight(), 300, 25);
+        batch.draw(healthbarForeGround, Videogame.WIDTH/2 - 150, 20 * (Videogame.HEIGHT/100)+text.getHeight(), energy, 25);
         if(playerProjectile != null){
             playerProjectile.render(batch);}
         text.setMessage("Energy: " + Integer.toString(energy));
-        text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - text.getHeight());
+        text.draw(batch, (60 * Videogame.WIDTH)/100, 30 * (Videogame.HEIGHT/100)+text.getHeight());
         text.setMessage("Score: " + Integer.toString(destroyed));
-        text.draw(batch, (60 * Videogame.WIDTH)/100, Videogame.HEIGHT - 3*text.getHeight());
+        text.draw(batch, (10 * Videogame.WIDTH)/100, 30 * (Videogame.HEIGHT/100)+text.getHeight());
         batch.end();
     }
 
@@ -466,7 +464,7 @@ public class ScreenSurvive implements Screen {
         RIGHT,
         LEFT
     }
-    private void initTestObjects() {
+    private void initHealthbar() {
 
         int width =1 ;
         int height = 1;

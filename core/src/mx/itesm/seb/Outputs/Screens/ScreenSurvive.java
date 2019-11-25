@@ -21,7 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -31,10 +30,8 @@ import mx.itesm.seb.Entities.EnemyPlane;
 import mx.itesm.seb.Entities.PlayerProjectile;
 import mx.itesm.seb.Entities.PlayerSubmarine;
 import mx.itesm.seb.Entities.Projectile;
-import mx.itesm.seb.Entities.TestProjectile;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
-import sun.awt.ModalExclude;
 
 import static java.lang.Math.abs;
 
@@ -289,7 +286,7 @@ public class ScreenSurvive implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical_try.png");
+        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
         LOW_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball.png");
         MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball2.png");
         MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball3.png");
@@ -299,7 +296,7 @@ public class ScreenSurvive implements Screen {
         setCamera();
         view = new StretchViewport(Videogame.WIDTH, Videogame.HEIGHT, camera);
         batch = new SpriteBatch();
-        initTestObjects();
+        initHealthbar();
     }
 
     private void setCamera() {
@@ -333,6 +330,7 @@ public class ScreenSurvive implements Screen {
                 enemies.removeIndex(i);
                 playeffect();
                 energy += power *2;
+                if (energy > 300){energy = 300;}
                 destroyed ++;
                 break;
             }
@@ -466,7 +464,7 @@ public class ScreenSurvive implements Screen {
         RIGHT,
         LEFT
     }
-    private void initTestObjects() {
+    private void initHealthbar() {
 
         int width =1 ;
         int height = 1;

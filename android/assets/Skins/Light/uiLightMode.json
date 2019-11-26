@@ -127,6 +127,11 @@
       font: regular,
       fontColor: black
     }
+  },
+  com.badlogic.gdx.scenes.scene2d.ui.Image: {
+    background: {
+      drawable: lightBackground
+    }
   }
 }
 

@@ -175,7 +175,7 @@ public class ScreenMenu implements Screen {
     }
 
     private void setImages() {
-        this.imageBackground = new Image(new Texture(Gdx.files.internal("Screens/Backgrounds/oceanBackgroundVertical.png")));
+        this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Dark/darkBackground.png")));
         this.imageTitle = new Image(new Texture(Gdx.files.internal("Screens/Titles/TitleHead.png")));
     }
 
@@ -247,5 +247,6 @@ public class ScreenMenu implements Screen {
     @Override
     public void dispose() {
         ((SpriteDrawable) imageBackground.getDrawable()).getSprite().getTexture().dispose();
+        menu.dispose();
     }
 }

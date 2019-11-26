@@ -43,6 +43,12 @@
       b: 0,
       g: 0,
       r: 0
+    },
+    alpha: {
+      a: 0,
+      b: 0,
+      g: 0,
+      r: 0
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
@@ -126,6 +132,12 @@
       background: redDarkDialog
       font: regular,
       fontColor: white
+    }
+  },
+  com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
+    background: {
+      name: darkBackground,
+      color: alpha
     }
   }
 }

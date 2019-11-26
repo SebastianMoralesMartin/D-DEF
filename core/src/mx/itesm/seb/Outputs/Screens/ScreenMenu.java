@@ -141,14 +141,14 @@ public class ScreenMenu implements Screen {
     }
 
     private void addLabelsToTopLayout() {
-        this.topLayout.add(this.title).colspan(3).pad(10).fillX();
+        this.topLayout.add(this.title).pad(10).padLeft(20).padRight(20).fillX();
         this.topLayout.row();
-        this.topLayout.add(this.subtitle).colspan(3).pad(5).fillX();
+        this.topLayout.add(this.subtitle).pad(10).padLeft(20).padRight(20).fillX();
         this.topLayout.row();
     }
 
     private void addImagesToTopLayout() {
-        topLayout.add(this.imageTitle).colspan(3).pad(20).uniformX().maxHeight(279f).maxWidth(710f);
+        topLayout.add(this.imageTitle).pad(20).padBottom(5).uniformX().maxHeight(279f).maxWidth(710f);
         topLayout.row();
     }
 
@@ -160,7 +160,6 @@ public class ScreenMenu implements Screen {
         this.topLayout = new Table();
         this.topLayout.setFillParent(true);
         this.topLayout.top();
-        this.topLayout.pad(20);
         this.topLayout.debug();
         this.addElementsToTopLayout();
     }

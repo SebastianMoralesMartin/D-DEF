@@ -1,7 +1,22 @@
 {
   com.badlogic.gdx.graphics.g2d.BitmapFont: {
-    default: {
+    regular: {
       file: Fonts/IBMPlexRegular.fnt
+    },
+    italic: {
+      file: Fonts/IBMPlexItalic.fnt
+    },
+    bold: {
+      file: Fonts/IBMPlexBold.fnt
+    },
+    bold-italic: {
+      file: Fonts/IBMPlexBoldItalic.fnt
+    },
+    light: {
+      file: Fonts/IBMPlexLight.fnt
+    },
+    light-italic: {
+      file: Fonts/IBMPlexLightItalic.fnt
     }
   },
   com.badlogic.gdx.graphics.Color: {
@@ -33,38 +48,83 @@
   com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
     subscreen: {
       background: lightDialog,
-      titleFont: default,
+      titleFont: regular,
       titleFontColor: black
     },
     green: {
       background: greenLightDialog,
-      titleFont: default,
+      titleFont: regular,
       titleFontColor: black
     },
     red: {
       background: redLightDialog,
-      titleFont: default,
+      titleFont: regular,
       titleFontColor: black
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
     content: {
-      font: default,
+      font: regular,
+      fontColor: black
+    },
+    content-italic: {
+      font: italic,
+      fontColor: black
+    },
+    content-bold: {
+      font: bold,
+      fontColor: black
+    },
+    content-bold-italic: {
+      font: bold-italic,
+      fontColor: black
+    },
+    content-light: {
+      font: light,
+      fontColor: black
+    },
+    content-light-italic: {
+      font: light-italic,
       fontColor: black
     },
     default: {
       background: lightDialog
-      font: default,
+      font: regular,
+      fontColor: black
+    },
+    default-italic: {
+      background: lightDialog
+      font: italic,
+      fontColor: black
+    },
+    default-bold: {
+      background: lightDialog
+      font: bold,
+      fontColor: black
+    },
+    default-bold-italic: {
+      background: lightDialog
+      font: bold-italic,
+      fontColor: black
+    },
+    default-light: {
+      background: lightDialog
+      font: light,
+      fontColor: black
+    },
+    default-light-italic: {
+      background: lightDialog
+      font: light-italic,
       fontColor: black
     },
     green: {
       background: greenLightDialog
-      font: default,
+      font: regular,
       fontColor: black
     },
     red: {
       background: redLightDialog
-      font: default,
+      font: regular,
       fontColor: black
     }
   }

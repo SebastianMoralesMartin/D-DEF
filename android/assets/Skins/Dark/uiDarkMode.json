@@ -1,7 +1,22 @@
 {
   com.badlogic.gdx.graphics.g2d.BitmapFont: {
-    default: {
+    regular: {
       file: Fonts/IBMPlexRegular.fnt
+    },
+    italic: {
+      file: Fonts/IBMPlexItalic.fnt
+    },
+    bold: {
+      file: Fonts/IBMPlexBold.fnt
+    },
+    bold-italic: {
+      file: Fonts/IBMPlexBoldItalic.fnt
+    },
+    light: {
+      file: Fonts/IBMPlexLight.fnt
+    },
+    light-italic: {
+      file: Fonts/IBMPlexLightItalic.fnt
     }
   },
   com.badlogic.gdx.graphics.Color: {
@@ -33,38 +48,83 @@
   com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
     subscreen: {
       background: darkDialog,
-      titleFont: default,
+      titleFont: regular,
       titleFontColor: white
     },
     green: {
       background: greenDarkDialog,
-      titleFont: default,
+      titleFont: regular,
       titleFontColor: white
     },
     red: {
       background: redDarkDialog,
-      titleFont: default,
+      titleFont: regular,
       titleFontColor: white
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
     content: {
-      font: default,
+      font: regular,
+      fontColor: white
+    },
+    content-italic: {
+      font: italic,
+      fontColor: white
+    },
+    content-bold: {
+      font: bold,
+      fontColor: white
+    },
+    content-bold-italic: {
+      font: bold-italic,
+      fontColor: white
+    },
+    content-light: {
+      font: light,
+      fontColor: white
+    },
+    content-light-italic: {
+      font: light-italic,
       fontColor: white
     },
     default: {
       background: darkDialog
-      font: default,
+      font: regular,
+      fontColor: white
+    },
+    default-italic: {
+      background: darkDialog
+      font: italic,
+      fontColor: white
+    },
+    default-bold: {
+      background: darkDialog
+      font: bold,
+      fontColor: white
+    },
+    default-bold-italic: {
+      background: darkDialog
+      font: bold-italic,
+      fontColor: white
+    },
+    default-light: {
+      background: darkDialog
+      font: light,
+      fontColor: white
+    },
+    default-light-italic: {
+      background: darkDialog
+      font: light-italic,
       fontColor: white
     },
     green: {
       background: greenDarkDialog
-      font: default,
+      font: regular,
       fontColor: white
     },
     red: {
       background: redDarkDialog
-      font: default,
+      font: regular,
       fontColor: white
     }
   }

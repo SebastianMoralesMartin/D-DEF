@@ -34,14 +34,18 @@ public class ScreenMenu implements Screen {
     private SpriteBatch batch;
     private Image imageBackground;
     private Image imageTitle;
-    private Label titleHead;
-    private Label subtitleHead;
+    private Label title;
+    private Label subtitle;
+    private Label about;
+    private Label settings;
+    private Label play;
     private ButtonToGame btnNewGame;
     private ButtonToSettings btnSettings;
     private ButtonToAbout btnAbout;
     private Stage menu;
-    private Table mainLayout;
-    private Table secondaryLayout;
+    private Table topLayout;
+    private Table midLayout;
+    private Table bottomLayout;
     private Music backgroundMusic;
 
     public ScreenMenu(Videogame videogame) {
@@ -83,59 +87,82 @@ public class ScreenMenu implements Screen {
     }*/
 
     private void setStage() {
-        menu = new Stage(view);
+        this.menu = new Stage(view);
+        this.setTopLayout();
+        this.setMidLayout();
+        this.setBottomLayout();
+        this.menu.addActor(this.topLayout);
+        this.menu.addActor(this.midLayout);
+        this.menu.addActor(this.bottomLayout);
         Gdx.input.setInputProcessor(menu);
-        this.setMainLayout();
-        this.setSecondaryLayout();
-        menu.addActor(this.mainLayout);
     }
 
-    private void setSecondaryLayout() {
-        this.secondaryLayout = new Table();
-        this.secondaryLayout.setFillParent(true);
-        this.secondaryLayout.top();
-        this.secondaryLayout.pad(20);
-        this.addElementsToSecondaryLayout();
+    private void setMidLayout() {
+        this.midLayout = new Table();
+        this.midLayout.setFillParent(true);
+        this.midLayout.center();
+        this.midLayout.debug();
+        this.addElementsToMidLayout();
     }
 
-    private void addElementsToSecondaryLayout() {
-        this.addButtonsToSecondaryLayout();
+    private void addElementsToMidLayout() {
     }
 
-    private void addButtonsToSecondaryLayout() {
-        this.secondaryLayout.add();
+    private void setBottomLayout() {
+        this.bottomLayout = new Table();
+        this.bottomLayout.setFillParent(true);
+        this.bottomLayout.bottom();
+        this.bottomLayout.debug();
+        this.addElementsToBottomLayout();
     }
 
-    private void addElementsToMainLayout() {
-        this.addImagesToMainLayout();
-        this.addLabelsToMainLayout();
-        this.addButtonsMainLayout();
+    private void addElementsToBottomLayout() {
+        this.addButtonsToBottomLayout();
+        this.addLabelsToBottomLayout();
     }
 
-    private void addLabelsToMainLayout() {
-        this.mainLayout.add(this.titleHead).colspan(3).pad(10).fillX();
-        this.mainLayout.row();
-        this.mainLayout.add(this.subtitleHead).colspan(3).pad(5).fillX();
-        this.mainLayout.row();
+    private void addLabelsToBottomLayout() {
+        this.bottomLayout.row();
+        this.bottomLayout.add(this.about).pad(20).padBottom(5).padTop(0).fillX();
+        this.bottomLayout.add(this.settings).pad(20).padBottom(5).padTop(0).fillX();
+        this.bottomLayout.add(this.play).pad(20).padBottom(5).padTop(0).fillX();
     }
 
-    private void addImagesToMainLayout() {
-        mainLayout.add(this.imageTitle).colspan(3).pad(20).uniformX().maxHeight(279f).maxWidth(710f);
-        mainLayout.row();
+    private void addButtonsToBottomLayout() {
+        bottomLayout.add(this.btnAbout).pad(20).padBottom(5);
+        bottomLayout.add(this.btnSettings).pad(20).padBottom(5);
+        bottomLayout.add(this.btnNewGame).pad(20).padBottom(5);
     }
 
-    private void setMainLayout() {
-        this.mainLayout = new Table();
-        this.mainLayout.setFillParent(true);
-        this.mainLayout.top();
-        this.mainLayout.pad(20);
-        this.addElementsToMainLayout();
+    private void addElementsToTopLayout() {
+        this.addImagesToTopLayout();
+        this.addLabelsToTopLayout();
+        this.addButtonsToTopLayout();
     }
 
-    private void addButtonsMainLayout() {
-        mainLayout.add(this.btnAbout).pad(20);
-        mainLayout.add(this.btnSettings).pad(20);
-        mainLayout.add(this.btnNewGame).pad(20);
+    private void addLabelsToTopLayout() {
+        this.topLayout.add(this.title).colspan(3).pad(10).fillX();
+        this.topLayout.row();
+        this.topLayout.add(this.subtitle).colspan(3).pad(5).fillX();
+        this.topLayout.row();
+    }
+
+    private void addImagesToTopLayout() {
+        topLayout.add(this.imageTitle).colspan(3).pad(20).uniformX().maxHeight(279f).maxWidth(710f);
+        topLayout.row();
+    }
+
+    private void addButtonsToTopLayout() {
+
+    }
+
+    private void setTopLayout() {
+        this.topLayout = new Table();
+        this.topLayout.setFillParent(true);
+        this.topLayout.top();
+        this.topLayout.pad(20);
+        this.topLayout.debug();
+        this.addElementsToTopLayout();
     }
 
     private void setButtons(){
@@ -162,12 +189,21 @@ public class ScreenMenu implements Screen {
     }
 
     private void setLabels(){
-        titleHead = new Label("Dunkirk-Defense", uiSkin, "default");
-        titleHead.setAlignment(Align.center);
-        titleHead.setFontScale(2);
-        subtitleHead = new Label("SALVA HEROES", uiSkin, "default");
-        subtitleHead.setAlignment(Align.center);
-        subtitleHead.setFontScale(1.5f);
+        title = new Label("Dunkirk-Defense", uiSkin, "default-bold");
+        title.setAlignment(Align.center);
+        title.setFontScale(1.5f);
+        subtitle = new Label("SALVA HEROES", uiSkin, "default");
+        subtitle.setAlignment(Align.center);
+        subtitle.setFontScale(1f);
+        settings = new Label("Settings", uiSkin, "default-bold");
+        settings.setAlignment(Align.center);
+        settings.setFontScale(1f);
+        about = new Label("About", uiSkin, "default-bold");
+        about.setAlignment(Align.center);
+        about.setFontScale(1f);
+        play = new Label("Play", uiSkin, "default-bold");
+        play.setAlignment(Align.center);
+        play.setFontScale(1f);
     }
 
     @Override

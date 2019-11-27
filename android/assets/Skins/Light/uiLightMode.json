@@ -98,11 +98,11 @@
     },
     content-title: {
       font: title,
-      fontColor: white
+      fontColor: black
     },
     content-subtitle: {
       font: subtitle,
-      fontColor: white
+      fontColor: black
     },
     default: {
       background: lightDialog

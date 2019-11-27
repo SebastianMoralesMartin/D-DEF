@@ -82,7 +82,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void setSkins() {
-        Boolean flag = new Boolean(true);
+        Boolean flag = new Boolean(false);
         if(flag == false) {
             this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));

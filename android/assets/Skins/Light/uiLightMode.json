@@ -17,6 +17,9 @@
     },
     light-italic: {
       file: Fonts/IBMPlexLightItalic.fnt
+    },
+    title: {
+      file: Fonts/IBMPlexBold64.fnt
     }
   },
   com.badlogic.gdx.graphics.Color: {
@@ -48,18 +51,21 @@
   com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
     subscreen: {
       background: lightDialog,
-      titleFont: bold,
-      titleFontColor: black
+      titleFont: title,
+      titleFontColor: black,
+      stageBackground: lightTransparent
     },
     green: {
       background: greenLightDialog,
-      titleFont: bold,
-      titleFontColor: black
+      titleFont: title,
+      titleFontColor: black,
+      stageBackground: lightTransparent
     },
     red: {
       background: redLightDialog,
-      titleFont: bold,
-      titleFontColor: black
+      titleFont: title,
+      titleFontColor: black,
+      stageBackground: lightTransparent
     }
   },
   com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {

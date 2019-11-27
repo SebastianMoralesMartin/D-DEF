@@ -1,26 +1,35 @@
 package mx.itesm.seb.Inputs.Buttons;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.itesm.seb.Outputs.Screens.ScreenAbout;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToAbout extends EnhancedImageButton {
+public class ButtonToAbout extends EnhancedTextButton {
+
+    public ButtonToAbout(Videogame videogame, String text, Skin skin) {
+        super(videogame, text, skin, "rectangle");
+        this.setScreen();
+    }
 
     public ButtonToAbout(Videogame videogame, Skin skin) {
-        super(videogame, skin, "information");
+        super(videogame, "The Game", skin, "rectangle");
         this.setScreen();
     }
 
     public ButtonToAbout(Videogame videogame, Skin skin, String styleName) {
-        super(videogame, skin, styleName);
+        super(videogame, "The Game", skin, styleName);
         this.setScreen();
     }
 
-    public ButtonToAbout(Videogame videogame, ImageButtonStyle style) {
-        super(videogame, style);
+    public ButtonToAbout(Videogame videogame, String text, TextButtonStyle style) {
+        super(videogame, "The Game", style);
+        this.setScreen();
+    }
+
+    public ButtonToAbout(Videogame videogame, TextButtonStyle style) {
+        super(videogame, "The Game", style);
         this.setScreen();
     }
 

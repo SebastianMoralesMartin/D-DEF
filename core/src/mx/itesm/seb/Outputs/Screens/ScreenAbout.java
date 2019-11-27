@@ -82,8 +82,8 @@ public class ScreenAbout implements Screen {
                 new TextureAtlas(Gdx.files.internal("Skins/Buttons/buttonTextureAtlas.atlas")));
         this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Dialog/uiLightDialog.json"),
                 new TextureAtlas(Gdx.files.internal("Skins/Light/Dialog/uiDialog.atlas")));
-        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/Subscreen/uiLightSubmenu.json"),
-                new TextureAtlas(Gdx.files.internal("Skins/Light/Subscreen/uiSubmenu.atlas")));
+        this.uiModeSkinSubscreens = new Skin(Gdx.files.internal("Skins/Light/SubscreenAbout/uiLightSubmenu.json"),
+                new TextureAtlas(Gdx.files.internal("Skins/Light/SubscreenAbout/uiSubmenu.atlas")));
     }
 
     private void setStage() {

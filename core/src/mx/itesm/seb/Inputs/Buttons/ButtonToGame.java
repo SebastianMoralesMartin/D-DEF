@@ -1,13 +1,12 @@
 package mx.itesm.seb.Inputs.Buttons;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToGame extends EnhancedImageButton {
+public class ButtonToGame extends EnhancedButton {
 
     public ButtonToGame(Videogame videogame, Skin skin) {
         super(videogame, skin, "sum");
@@ -19,7 +18,7 @@ public class ButtonToGame extends EnhancedImageButton {
         this.setScreen();
     }
 
-    public ButtonToGame(Videogame videogame, ImageButtonStyle style) {
+    public ButtonToGame(Videogame videogame, ButtonStyle style) {
         super(videogame, style);
         this.setScreen();
     }

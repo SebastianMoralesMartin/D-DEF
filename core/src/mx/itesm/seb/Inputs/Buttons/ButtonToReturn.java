@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToReturn extends EnhancedImageButton {
+public class ButtonToReturn extends EnhancedButton {
 
     public ButtonToReturn(Videogame videogame, Skin skin) {
         super(videogame, skin, "sum");
@@ -19,7 +19,7 @@ public class ButtonToReturn extends EnhancedImageButton {
         this.setScreen();
     }
 
-    public ButtonToReturn(Videogame videogame, ImageButtonStyle style) {
+    public ButtonToReturn(Videogame videogame, ButtonStyle style) {
         super(videogame, style);
         this.setScreen();
     }

@@ -1,18 +1,18 @@
 uiDarkMode.png
-size: 1024, 2048
+size: 312, 102
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-darkBackground
+darkTransparent
   rotate: false
-  xy: 1, 1
-  size: 720, 1280
-  orig: 720, 1280
+  xy: 307, 1
+  size: 4, 4
+  orig: 4, 4
   offset: 0, 0
   index: -1
 darkDialog
   rotate: false
-  xy: 723, 1
+  xy: 1, 1
   size: 100, 100
   split: 30, 30, 28, 28
   pad: 30, 30, 28, 26
@@ -21,7 +21,7 @@ darkDialog
   index: -1
 greenDarkDialog
   rotate: false
-  xy: 825, 1
+  xy: 103, 1
   size: 100, 100
   split: 30, 30, 28, 28
   pad: 50, 49, 27, 27
@@ -30,7 +30,7 @@ greenDarkDialog
   index: -1
 redDarkDialog
   rotate: false
-  xy: 723, 103
+  xy: 205, 1
   size: 100, 100
   split: 30, 30, 28, 28
   pad: 30, 49, 29, 29

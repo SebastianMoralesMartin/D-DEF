@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.itesm.seb.Outputs.Screens.ScreenSettings;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToSettings extends EnhancedImageButton {
+public class ButtonToSettings extends EnhancedButton {
 
     public ButtonToSettings(Videogame videogame, Skin skin) {
         super(videogame, skin, "settings");
@@ -18,7 +18,7 @@ public class ButtonToSettings extends EnhancedImageButton {
         this.setScreen();
     }
 
-    public ButtonToSettings(Videogame videogame, ImageButtonStyle style) {
+    public ButtonToSettings(Videogame videogame, ButtonStyle style) {
         super(videogame, style);
         this.setScreen();
     }

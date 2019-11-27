@@ -5,11 +5,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
-import mx.itesm.seb.Outputs.Screens.ScreenAbout;
-import mx.itesm.seb.Outputs.Screens.ScreenMenu;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToSubAbout extends EnhancedImageButton {
+public class ButtonToSubAbout extends EnhancedButton {
 
     private EnhancedScreen screen;
 
@@ -25,7 +23,7 @@ public class ButtonToSubAbout extends EnhancedImageButton {
         this.setScreen();
     }
 
-    public ButtonToSubAbout(Videogame videogame, EnhancedScreen screen, ImageButtonStyle style) {
+    public ButtonToSubAbout(Videogame videogame, EnhancedScreen screen, ButtonStyle style) {
         super(videogame, style);
         this.screen = screen;
         this.setScreen();

@@ -5,283 +5,271 @@ filter: Linear,Linear
 repeat: none
 blueButton
   rotate: false
-  xy: 506, 405
+  xy: 810, 1
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 blueButtonPressed
   rotate: false
-  xy: 708, 405
+  xy: 810, 203
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 1, 607
+  xy: 203, 303
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonInformation
-  rotate: true
-  xy: 809, 1415
+  rotate: false
+  xy: 1, 1819
   size: 197, 200
   orig: 200, 200
   offset: 3, 0
   index: -1
 buttonInformationPressed
   rotate: false
-  xy: 203, 607
+  xy: 405, 303
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonNo
   rotate: false
-  xy: 405, 607
+  xy: 607, 303
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonNoPressed
   rotate: false
-  xy: 607, 607
+  xy: 809, 405
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonOK
   rotate: false
-  xy: 809, 607
+  xy: 1, 505
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonOkPressed
   rotate: false
-  xy: 1, 809
+  xy: 203, 505
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonPause
   rotate: false
-  xy: 203, 809
+  xy: 405, 505
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonPausePressed
   rotate: false
-  xy: 405, 809
+  xy: 607, 505
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonPlay
   rotate: false
-  xy: 607, 809
+  xy: 809, 607
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonPlayPressed
   rotate: false
-  xy: 809, 809
+  xy: 1, 707
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonPressed
   rotate: false
-  xy: 1, 1011
+  xy: 203, 707
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonRes
   rotate: false
-  xy: 203, 1011
+  xy: 405, 707
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonResPressed
   rotate: false
-  xy: 303, 405
+  xy: 1, 1
   size: 201, 200
   orig: 201, 200
   offset: 0, 0
   index: -1
 buttonReturn
   rotate: false
-  xy: 405, 1011
+  xy: 607, 707
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonReturnPressed
   rotate: false
-  xy: 607, 1011
+  xy: 809, 809
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonSettings
   rotate: false
-  xy: 809, 1011
+  xy: 1, 909
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonSettingsPressed
   rotate: false
-  xy: 1, 1213
+  xy: 203, 909
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonSum
   rotate: false
-  xy: 1, 1415
+  xy: 405, 909
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonSumPressed
   rotate: false
-  xy: 1, 1617
+  xy: 607, 909
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonYes
   rotate: false
-  xy: 1, 1819
+  xy: 809, 1011
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 buttonYesPressed
   rotate: false
-  xy: 203, 1213
+  xy: 1, 1111
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 greenButton
   rotate: false
-  xy: 405, 1213
+  xy: 203, 1111
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 greenButtonPressed
   rotate: false
-  xy: 607, 1213
+  xy: 405, 1111
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 greenSwitch
-  rotate: true
-  xy: 907, 203
+  rotate: false
+  xy: 1, 1313
   size: 200, 100
   orig: 200, 100
   offset: 0, 0
   index: -1
 leftButton
-  rotate: true
-  xy: 1, 203
+  rotate: false
+  xy: 204, 1
   size: 200, 300
   orig: 200, 300
   offset: 0, 0
   index: -1
 leftButtonPressed
-  rotate: true
-  xy: 303, 203
+  rotate: false
+  xy: 1, 203
   size: 200, 300
   orig: 200, 300
   offset: 0, 0
   index: -1
 orangeButton
   rotate: false
-  xy: 809, 1213
+  xy: 607, 1111
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 orangeButtonPressed
   rotate: false
-  xy: 203, 1415
+  xy: 809, 1213
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
-rectangleButtom
+rectangleButton
   rotate: false
-  xy: 1, 1
-  size: 500, 200
-  orig: 500, 200
+  xy: 200, 1819
+  size: 200, 100
+  split: 6, 6, 6, 30
+  pad: 100, 99, 50, 49
+  orig: 200, 100
   offset: 0, 0
   index: -1
-rectangleButtomPressed
+rectangleButtonPressed
   rotate: false
-  xy: 503, 1
-  size: 500, 200
-  orig: 500, 200
+  xy: 200, 1921
+  size: 200, 100
+  split: 7, 6, 6, 7
+  pad: 0, 0, 0, 0
+  orig: 200, 100
   offset: 0, 0
   index: -1
 redButton
   rotate: false
-  xy: 203, 1617
+  xy: 1, 1415
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 redButtonPressed
   rotate: false
-  xy: 203, 1819
+  xy: 1, 1617
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 redSwitch
-  rotate: true
-  xy: 910, 405
+  rotate: false
+  xy: 402, 1313
   size: 200, 100
   orig: 200, 100
   offset: 0, 0
   index: -1
 rightButton
-  rotate: true
-  xy: 605, 203
+  rotate: false
+  xy: 406, 1
   size: 200, 300
   orig: 200, 300
   offset: 0, 0
   index: -1
 rightButtonPressed
-  rotate: true
-  xy: 1, 405
+  rotate: false
+  xy: 608, 1
   size: 200, 300
   orig: 200, 300
-  offset: 0, 0
-  index: -1
-squareButton
-  rotate: false
-  xy: 405, 1415
-  size: 200, 200
-  split: 6, 6, 6, 27
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-squareButtonPressed
-  rotate: false
-  xy: 607, 1415
-  size: 200, 200
-  split: 6, 7, 7, 7
-  orig: 200, 200
   offset: 0, 0
   index: -1

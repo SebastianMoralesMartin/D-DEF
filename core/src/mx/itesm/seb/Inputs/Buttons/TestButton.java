@@ -5,13 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.seb.Videogame;
 
-public class Button extends Actor {
+public class TestButton extends Actor {
     protected Videogame game;
     protected ImageButton button;
     protected TextureRegionDrawable unpressed;
@@ -21,23 +19,23 @@ public class Button extends Actor {
     protected float x = 0;
     protected float y = 0;
 
-    public Button(){
+    public TestButton(){
     }
 
-    public Button(Videogame game){
-        new Button(game, "Buttons/buttonBase.png", "Buttons/buttonBasePressed.png");
+    public TestButton(Videogame game){
+        new TestButton(game, "Buttons/buttonBase.png", "Buttons/buttonBasePressed.png");
     }
 
-    public Button(Videogame game, String unpressedPath){
-        new Button(game, unpressedPath, unpressedPath);
+    public TestButton(Videogame game, String unpressedPath){
+        new TestButton(game, unpressedPath, unpressedPath);
     }
 
 
-    public Button(Videogame game, String unpressedPath, String pressedPath){
-        new Button(game, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
+    public TestButton(Videogame game, String unpressedPath, String pressedPath){
+        new TestButton(game, unpressedPath, pressedPath, (float) 0.0, (float) 0.0);
     }
 
-    public Button(Videogame game, String unpressedPath, String pressedPath, float x, float y){
+    public TestButton(Videogame game, String unpressedPath, String pressedPath, float x, float y){
         this.game = game;
         this.setUnpressed(unpressedPath);
         this.setPressed(pressedPath);

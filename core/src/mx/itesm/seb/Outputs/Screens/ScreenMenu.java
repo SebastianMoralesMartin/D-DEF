@@ -15,16 +15,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToAbout;
 import mx.itesm.seb.Inputs.Buttons.ButtonToGame;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSubAbout;
+import mx.itesm.seb.Outputs.Subscreens.SubscreenAbout;
 import mx.itesm.seb.Videogame;
 
 public class ScreenMenu extends EnhancedScreen implements Screen {
@@ -48,7 +47,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     private Table topLayout;
     private Table midLayout;
     private Table bottomLayout;
-    private Window window;
+    private SubscreenAbout subscreenAbout;
     private Music backgroundMusic;
 
     public ScreenMenu(Videogame videogame) {
@@ -75,7 +74,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void setSkins() {
-        Boolean flag = new Boolean(false);
+        Boolean flag = new Boolean(true);
         if(flag == false) {
             this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
@@ -107,7 +106,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         if (this.screenState != subscreen.MAIN) {
             switch (this.screenState) {
                 case ABOUT:
-                    this.menu.addActor(this.window);
+                    this.menu.addActor(this.subscreenAbout.getWindow());
                     break;
             }
         }
@@ -240,13 +239,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         if (this.screenState != subscreen.MAIN) {
             switch (this.screenState) {
                 case ABOUT:
-                    this.window.setPosition(this.videogame.WIDTH/2, this.videogame.HEIGHT/2);
-                    this.window.setMovable(false);
-                    this.window.setResizable(true);
-                    this.window.setModal(true);
-                    this.window.getTitleLabel().setEllipsis(false);
-                    System.out.println(this.uiSkin.getJsonClassTags());
-                    this.window.draw(this.batch, 1f);
+                    this.subscreenAbout.draw(this.batch, 1f);
                     break;
             }
         }
@@ -260,7 +253,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void setSubAbout(){
-        this.window = new Window("Test", this.uiSkin, "subscreen");
+        this.subscreenAbout = new SubscreenAbout(this.videogame, this.uiSkin, this.uiButton);
     }
 
     @Override
@@ -287,5 +280,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     public void dispose() {
         ((SpriteDrawable) imageBackground.getDrawable()).getSprite().getTexture().dispose();
         menu.dispose();
+        uiSkin.dispose();
+        uiButton.dispose();
     }
 }

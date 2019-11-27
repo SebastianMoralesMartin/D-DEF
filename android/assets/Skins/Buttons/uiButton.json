@@ -1,7 +1,25 @@
 {
   com.badlogic.gdx.graphics.g2d.BitmapFont: {
-    default-font: {
-      file: Fonts/pixelNormal.fnt
+    regular: {
+      file: Fonts/IBMPlexRegular.fnt
+    },
+    italic: {
+      file: Fonts/IBMPlexItalic.fnt
+    },
+    bold: {
+      file: Fonts/IBMPlexBold.fnt
+    },
+    bold-italic: {
+      file: Fonts/IBMPlexBoldItalic.fnt
+    },
+    light: {
+      file: Fonts/IBMPlexLight.fnt
+    },
+    light-italic: {
+      file: Fonts/IBMPlexLightItalic.fnt
+    },
+    title: {
+      file: Fonts/IBMPlexBold64.fnt
     }
   },
   com.badlogic.gdx.graphics.Color: {
@@ -30,7 +48,7 @@
       r: 0
     }
   },
-  com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+  com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
     default: {
       down: buttonPressed,
       up: button
@@ -109,31 +127,37 @@
     default: {
       down: buttonPressed,
       up: button,
-      font: default-font,
+      font: title,
       fontColor: black
     },
     red: {
       down: redButtonPressed,
       up: redButton,
-      font: default-font,
+      font: title,
       fontColor: black
     },
     green: {
       down: greenButtonPressed,
       up: greenButton,
-      font: default-font,
+      font: title,
       fontColor: black
     },
     orange: {
       down: orangeButtonPressed,
       up: orangeButton,
-      font: default-font,
+      font: title,
       fontColor: black
     },
     blue: {
       down: blueButtonPressed,
       up: blueButton,
-      font: default-font,
+      font: title,
+      fontColor: black
+    },
+    rectangle: {
+      down: rectangleButtonPressed,
+      up: rectangleButton,
+      font: title,
       fontColor: black
     }
   }

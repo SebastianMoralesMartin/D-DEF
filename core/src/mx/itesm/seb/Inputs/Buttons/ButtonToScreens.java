@@ -1,6 +1,5 @@
 package mx.itesm.seb.Inputs.Buttons;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -15,7 +14,7 @@ import mx.itesm.seb.Outputs.Screens.ScreenSubMenuAbout;
 import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToScreens extends Button {
+public class ButtonToScreens extends TestButton {
     protected ToScreen toScreen = ToScreen.DEFAULT;
 
     public ButtonToScreens(Videogame game, ToScreen toScreenReference){

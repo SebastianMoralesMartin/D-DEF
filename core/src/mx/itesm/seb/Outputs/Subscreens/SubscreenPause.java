@@ -65,6 +65,7 @@ public class SubscreenPause {
         this.window.padTop(64);
         this.window.setModal(true);
         this.window.pack();
+        //this.window.debug();
         this.window.setPosition(this.videogame.WIDTH/2 - this.window.getWidth()/2,
                 this.videogame.HEIGHT/2 - this.window.getHeight()/2);
     }

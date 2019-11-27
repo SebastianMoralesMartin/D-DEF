@@ -155,7 +155,7 @@
     default: {
       background: darkTextfield,
       font: light,
-      fontColor: black,
+      fontColor: white,
       selection: selection,
       cursor: cursor
     }

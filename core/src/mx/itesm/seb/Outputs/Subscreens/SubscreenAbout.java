@@ -66,7 +66,7 @@ public class SubscreenAbout {
         this.window.setModal(true);
         this.window.pack();
         this.window.setWidth(this.videogame.WIDTH);
-        this.window.debug();
+        //this.window.debug();
         this.window.setPosition(this.videogame.WIDTH/2 - this.window.getWidth()/2,
                 this.videogame.HEIGHT/2 - this.window.getHeight()/2);
     }

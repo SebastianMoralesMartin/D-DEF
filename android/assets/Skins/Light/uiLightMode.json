@@ -149,7 +149,7 @@
     default: {
       background: lightTextfield,
       font: light,
-      fontColor: white,
+      fontColor: black,
       selection: selection,
       cursor: cursor
     }

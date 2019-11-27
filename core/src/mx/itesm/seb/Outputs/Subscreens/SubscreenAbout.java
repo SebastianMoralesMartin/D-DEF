@@ -54,9 +54,9 @@ public class SubscreenAbout {
     }
 
     private void setWindowElements() {
-        this.window.add(this.buttonToAboutTheGame).pad(10).fillX();
+        this.window.add(this.buttonToAboutTheGame).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToAboutTheDevs).pad(10).fillX();
+        this.window.add(this.buttonToAboutTheDevs).width(600).height(150).pad(10).fillX();
         this.window.row();
         this.window.add(this.buttonToMain).pad(10);
     }

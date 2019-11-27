@@ -58,11 +58,11 @@ public class SubscreenPlay {
     }
 
     private void setWindowElements() {
-        this.window.add(this.buttonToTutorial).pad(10).fillX();
+        this.window.add(this.buttonToTutorial).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToSurvive).pad(10).fillX();
+        this.window.add(this.buttonToSurvive).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToDefense).pad(10).fillX();
+        this.window.add(this.buttonToDefense).width(600).height(150).pad(10).fillX();
         this.window.row();
         this.window.add(this.buttonToMain).pad(10);
     }

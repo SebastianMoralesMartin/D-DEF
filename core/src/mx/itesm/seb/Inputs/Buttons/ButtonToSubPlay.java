@@ -3,23 +3,29 @@ package mx.itesm.seb.Inputs.Buttons;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
+
+import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToGame extends EnhancedButton {
+public class ButtonToSubPlay extends EnhancedButton {
 
-    public ButtonToGame(Videogame videogame, Skin skin) {
+    private EnhancedScreen screen;
+
+    public ButtonToSubPlay(Videogame videogame, EnhancedScreen screen, Skin skin) {
         super(videogame, skin, "sum");
+        this.screen = screen;
         this.setScreen();
     }
 
-    public ButtonToGame(Videogame videogame, Skin skin, String styleName) {
+    public ButtonToSubPlay(Videogame videogame, EnhancedScreen screen, Skin skin, String styleName) {
         super(videogame, skin, styleName);
+        this.screen = screen;
         this.setScreen();
     }
 
-    public ButtonToGame(Videogame videogame, ButtonStyle style) {
+    public ButtonToSubPlay(Videogame videogame, EnhancedScreen screen, ButtonStyle style) {
         super(videogame, style);
+        this.screen = screen;
         this.setScreen();
     }
 
@@ -28,7 +34,8 @@ public class ButtonToGame extends EnhancedButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.setScreen(new ScreenSurvive(videogame));
+                    screen.setScreenState(EnhancedScreen.subscreen.SUBSCREEN_3);
+                    screen.updateScreen();
             }
         });
     }

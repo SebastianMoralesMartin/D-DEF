@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToGame;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSurvive;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSubAbout;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenAbout;
@@ -40,7 +40,7 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     private Label about;
     private Label settings;
     private Label play;
-    private ButtonToGame btnNewGame;
+    private ButtonToSurvive btnNewGame;
     private ButtonToSettings btnSettings;
     private ButtonToSubAbout btnAbout;
     private Stage aboutTheGame;
@@ -166,7 +166,7 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     }
 
     private void setButtons(){
-        this.btnNewGame = new ButtonToGame(videogame, uiButton);
+        this.btnNewGame = new ButtonToSurvive(videogame, uiButton);
         this.btnSettings = new ButtonToSettings(videogame, uiButton);
         this.btnAbout = new ButtonToSubAbout(videogame, this, uiButton);
     }

@@ -20,10 +20,12 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToGame;
-import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSubAbout;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSubPlay;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSubSettings;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenAbout;
+import mx.itesm.seb.Outputs.Subscreens.SubscreenPlay;
+import mx.itesm.seb.Outputs.Subscreens.SubscreenSettings;
 import mx.itesm.seb.Videogame;
 
 public class ScreenMenu extends EnhancedScreen implements Screen {
@@ -40,19 +42,20 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     private Label about;
     private Label settings;
     private Label play;
-    private ButtonToGame btnNewGame;
-    private ButtonToSettings btnSettings;
-    private ButtonToSubAbout btnAbout;
+    private ButtonToSubPlay btnSubPlay;
+    private ButtonToSubSettings btnSubSettings;
+    private ButtonToSubAbout btnSubAbout;
     private Stage menu;
     private Table topLayout;
     private Table midLayout;
     private Table bottomLayout;
     private SubscreenAbout subscreenAbout;
+    private SubscreenSettings subscreenSettings;
+    private SubscreenPlay subscreenPlay;
     private Music backgroundMusic;
 
     public ScreenMenu(Videogame videogame) {
         this.videogame = videogame;
-
     }
 
     @Override
@@ -67,6 +70,11 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
                 case SUBSCREEN_1:
                     this.setSubAbout();
                     break;
+                case SUBSCREEN_2:
+                    this.setSubSettings();
+                    break;
+                case SUBSCREEN_3:
+                    this.setSubPlay();
             }
         }
         this.setStage();
@@ -108,6 +116,11 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
                 case SUBSCREEN_1:
                     this.menu.addActor(this.subscreenAbout.getWindow());
                     break;
+                case SUBSCREEN_2:
+                    this.menu.addActor(this.subscreenSettings.getWindow());
+                    break;
+                case SUBSCREEN_3:
+                    this.menu.addActor(this.subscreenPlay.getWindow());
             }
         }
         Gdx.input.setInputProcessor(menu);
@@ -145,9 +158,9 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void addButtonsToBottomLayout() {
-        bottomLayout.add(this.btnAbout).pad(20).padBottom(5);
-        bottomLayout.add(this.btnSettings).pad(20).padBottom(5);
-        bottomLayout.add(this.btnNewGame).pad(20).padBottom(5);
+        bottomLayout.add(this.btnSubAbout).pad(20).padBottom(5);
+        bottomLayout.add(this.btnSubSettings).pad(20).padBottom(5);
+        bottomLayout.add(this.btnSubPlay).pad(20).padBottom(5);
     }
 
     private void addElementsToTopLayout() {
@@ -181,9 +194,9 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void setButtons(){
-        this.btnNewGame = new ButtonToGame(videogame, uiButton);
-        this.btnSettings = new ButtonToSettings(videogame, uiButton);
-        this.btnAbout = new ButtonToSubAbout(videogame, this, uiButton);
+        this.btnSubPlay = new ButtonToSubPlay(videogame, this, uiButton);
+        this.btnSubSettings = new ButtonToSubSettings(videogame, this, uiButton);
+        this.btnSubAbout = new ButtonToSubAbout(videogame, this, uiButton);
     }
 
     private void addButton(ImageButton button) {
@@ -241,6 +254,12 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
                 case SUBSCREEN_1:
                     this.subscreenAbout.draw(this.batch, 1f);
                     break;
+                case SUBSCREEN_2:
+                    this.subscreenSettings.draw(this.batch, 1f);
+                    break;
+                case SUBSCREEN_3:
+                    this.subscreenPlay.draw(this.batch, 1f);
+                    break;
             }
         }
         batch.end();
@@ -254,6 +273,14 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
 
     private void setSubAbout(){
         this.subscreenAbout = new SubscreenAbout(this.videogame, this.uiSkin, this.uiButton);
+    }
+
+    private void setSubSettings(){
+        this.subscreenSettings = new SubscreenSettings(this.videogame, this.uiSkin, this.uiButton);
+    }
+
+    private void setSubPlay(){
+        this.subscreenPlay = new SubscreenPlay(this.videogame, this.uiSkin, this.uiButton);
     }
 
     @Override

@@ -5,9 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheDevs;
-import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheGame;
+import mx.itesm.seb.Inputs.Buttons.ButtonToDefense;
 import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSurvive;
+import mx.itesm.seb.Inputs.Buttons.ButtonToTutorial;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
@@ -16,8 +17,9 @@ public class SubscreenPlay {
     private Skin uiSkin;
     private Skin uiButton;
     private Videogame videogame;
+    private ButtonToTutorial buttonToTutorial;
     private ButtonToSurvive buttonToSurvive;
-    private ButtonToAboutTheDevs buttonToAboutTheDevs;
+    private ButtonToDefense buttonToDefense;
     private ButtonToMain buttonToMain;
 
 
@@ -44,8 +46,9 @@ public class SubscreenPlay {
     }
 
     private void setButtons() {
+        this.buttonToTutorial = new ButtonToTutorial(this.videogame, this.uiButton);
         this.buttonToSurvive = new ButtonToSurvive(this.videogame, this.uiButton);
-        this.buttonToAboutTheDevs = new ButtonToAboutTheDevs(this.videogame, this.uiButton);
+        this.buttonToDefense = new ButtonToDefense(this.videogame, this.uiButton);
         this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
@@ -55,9 +58,11 @@ public class SubscreenPlay {
     }
 
     private void setWindowElements() {
+        this.window.add(this.buttonToTutorial).pad(10).fillX();
+        this.window.row();
         this.window.add(this.buttonToSurvive).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToAboutTheDevs).pad(10).fillX();
+        this.window.add(this.buttonToDefense).pad(10).fillX();
         this.window.row();
         this.window.add(this.buttonToMain).pad(10);
     }
@@ -66,6 +71,8 @@ public class SubscreenPlay {
         this.window.padTop(64);
         this.window.setModal(true);
         this.window.pack();
+        this.window.setWidth(this.videogame.WIDTH);
+        this.window.debug();
         this.window.setPosition(this.videogame.WIDTH/2 - this.window.getWidth()/2,
                 this.videogame.HEIGHT/2 - this.window.getHeight()/2);
     }

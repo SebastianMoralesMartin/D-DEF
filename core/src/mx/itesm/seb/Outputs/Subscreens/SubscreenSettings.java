@@ -1,12 +1,12 @@
 package mx.itesm.seb.Outputs.Subscreens;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheDevs;
-import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheGame;
 import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
+import mx.itesm.seb.Inputs.CheckBoxes.SettingSwitch;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
@@ -15,8 +15,16 @@ public class SubscreenSettings {
     private Skin uiSkin;
     private Skin uiButton;
     private Videogame videogame;
-    private ButtonToAboutTheGame buttonToAboutTheGame;
-    private ButtonToAboutTheDevs buttonToAboutTheDevs;
+    private SettingSwitch switchDarkMode;
+    private Label darkMode;
+    private Label music;
+    private Label sound;
+    private SettingSwitch switchMusic;
+    private SettingSwitch switchSound;
+    //private SettingSwitch settingSwitch4; BORRAR MARCADORES
+    //CAMBIAR NOMBRE DEL CUATE
+    //SUBSCREEN ALERTA
+    //LANGUAGE
     private ButtonToMain buttonToMain;
 
 
@@ -39,12 +47,24 @@ public class SubscreenSettings {
     }
 
     private void setElements() {
+        this.setLabels();
         this.setButtons();
+        this.setCheckBoxes();
+    }
+
+    private void setLabels() {
+        this.darkMode = new Label("Dark Mode", this.uiSkin, "content-subtitle");
+        this.music = new Label("Music", this.uiSkin, "content-subtitle");
+        this.sound = new Label("Sound", this.uiSkin, "content-subtitle");
+    }
+
+    private void setCheckBoxes() {
+        this.switchDarkMode = new SettingSwitch(this.videogame, this.uiButton);
+        this.switchMusic = new SettingSwitch(this.videogame, this.uiButton);
+        this.switchSound = new SettingSwitch(this.videogame, this.uiButton);
     }
 
     private void setButtons() {
-        this.buttonToAboutTheGame = new ButtonToAboutTheGame(this.videogame, this.uiButton);
-        this.buttonToAboutTheDevs = new ButtonToAboutTheDevs(this.videogame, this.uiButton);
         this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
@@ -54,17 +74,24 @@ public class SubscreenSettings {
     }
 
     private void setWindowElements() {
-        this.window.add(this.buttonToAboutTheGame).pad(10).fillX();
+        this.window.add(this.switchDarkMode).pad(10).fillX();
+        this.window.add(this.darkMode).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToAboutTheDevs).pad(10).fillX();
+        this.window.add(this.switchMusic).pad(10).fillX();
+        this.window.add(this.music).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToMain).pad(10);
+        this.window.add(this.switchSound).pad(10).fillX();
+        this.window.add(this.sound).pad(10).fillX();
+        this.window.row();
+        this.window.add(this.buttonToMain).pad(10).colspan(2);
     }
 
     private void setWindowProperties() {
         this.window.padTop(64);
         this.window.setModal(true);
         this.window.pack();
+        this.window.setWidth(this.videogame.WIDTH);
+        this.window.debug();
         this.window.setPosition(this.videogame.WIDTH/2 - this.window.getWidth()/2,
                 this.videogame.HEIGHT/2 - this.window.getHeight()/2);
     }

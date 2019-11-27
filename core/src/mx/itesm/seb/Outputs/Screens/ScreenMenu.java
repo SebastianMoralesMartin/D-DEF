@@ -252,12 +252,15 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         if (this.screenState != subscreen.MAIN) {
             switch (this.screenState) {
                 case SUBSCREEN_1:
+                    this.subscreenAbout.getWindow().setY(0);
                     this.subscreenAbout.draw(this.batch, 1f);
                     break;
                 case SUBSCREEN_2:
+                    this.subscreenSettings.getWindow().setY(0);
                     this.subscreenSettings.draw(this.batch, 1f);
                     break;
                 case SUBSCREEN_3:
+                    this.subscreenPlay.getWindow().setY(0);
                     this.subscreenPlay.draw(this.batch, 1f);
                     break;
             }

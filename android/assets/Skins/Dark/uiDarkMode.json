@@ -20,6 +20,9 @@
     },
     title: {
       file: Fonts/IBMPlexBold64.fnt
+    },
+    subtitle: {
+      file: Fonts/IBMPlexRegular64.fnt
     }
   },
   com.badlogic.gdx.graphics.Color: {
@@ -97,6 +100,14 @@
     },
     content-light-italic: {
       font: light-italic,
+      fontColor: white
+    },
+    content-title: {
+      font: title,
+      fontColor: white
+    },
+    content-subtitle: {
+      font: subtitle,
       fontColor: white
     },
     default: {

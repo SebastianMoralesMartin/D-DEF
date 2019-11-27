@@ -160,5 +160,12 @@
       font: title,
       fontColor: black
     }
+  },
+  com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+    switch: {
+      checkboxOn: greenSwitch,
+      checkboxOff: redSwitch,
+      font: title
+    }
   }
 }

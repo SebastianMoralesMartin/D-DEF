@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -23,9 +24,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import mx.itesm.seb.Inputs.Buttons.ButtonToAbout;
 import mx.itesm.seb.Inputs.Buttons.ButtonToGame;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSubAbout;
 import mx.itesm.seb.Videogame;
 
-public class ScreenMenu implements Screen {
+public class ScreenMenu extends EnhancedScreen implements Screen {
     private final Videogame videogame;
     private Skin uiButton;
     private Skin uiSkin;
@@ -41,11 +43,12 @@ public class ScreenMenu implements Screen {
     private Label play;
     private ButtonToGame btnNewGame;
     private ButtonToSettings btnSettings;
-    private ButtonToAbout btnAbout;
+    private ButtonToSubAbout btnAbout;
     private Stage menu;
     private Table topLayout;
     private Table midLayout;
     private Table bottomLayout;
+    private Window window;
     private Music backgroundMusic;
 
     public ScreenMenu(Videogame videogame) {
@@ -60,12 +63,19 @@ public class ScreenMenu implements Screen {
         this.setLabels();
         this.setButtons();
         this.setImages();
+        if (this.screenState != subscreen.MAIN) {
+            switch (this.screenState) {
+                case ABOUT:
+                    this.setSubAbout();
+                    break;
+            }
+        }
         this.setStage();
         //this.setMusic();
     }
 
     private void setSkins() {
-        Boolean flag = new Boolean(true);
+        Boolean flag = new Boolean(false);
         if(flag == false) {
             this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
@@ -94,6 +104,13 @@ public class ScreenMenu implements Screen {
         this.menu.addActor(this.topLayout);
         this.menu.addActor(this.midLayout);
         this.menu.addActor(this.bottomLayout);
+        if (this.screenState != subscreen.MAIN) {
+            switch (this.screenState) {
+                case ABOUT:
+                    this.menu.addActor(this.window);
+                    break;
+            }
+        }
         Gdx.input.setInputProcessor(menu);
     }
 
@@ -101,7 +118,7 @@ public class ScreenMenu implements Screen {
         this.midLayout = new Table();
         this.midLayout.setFillParent(true);
         this.midLayout.center();
-        this.midLayout.debug();
+        //this.midLayout.debug();
         this.addElementsToMidLayout();
     }
 
@@ -112,7 +129,7 @@ public class ScreenMenu implements Screen {
         this.bottomLayout = new Table();
         this.bottomLayout.setFillParent(true);
         this.bottomLayout.bottom();
-        this.bottomLayout.debug();
+        //this.bottomLayout.debug();
         this.addElementsToBottomLayout();
     }
 
@@ -160,14 +177,14 @@ public class ScreenMenu implements Screen {
         this.topLayout = new Table();
         this.topLayout.setFillParent(true);
         this.topLayout.top();
-        this.topLayout.debug();
+        //this.topLayout.debug();
         this.addElementsToTopLayout();
     }
 
     private void setButtons(){
         this.btnNewGame = new ButtonToGame(videogame, uiButton);
         this.btnSettings = new ButtonToSettings(videogame, uiButton);
-        this.btnAbout = new ButtonToAbout(videogame, uiButton);
+        this.btnAbout = new ButtonToSubAbout(videogame, this, uiButton);
     }
 
     private void addButton(ImageButton button) {
@@ -175,7 +192,7 @@ public class ScreenMenu implements Screen {
     }
 
     private void setImages() {
-        this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Dark/darkBackground.png")));
+        this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Light/lightBackground.png")));
         this.imageTitle = new Image(new Texture(Gdx.files.internal("Screens/Titles/TitleHead.png")));
     }
 
@@ -219,9 +236,31 @@ public class ScreenMenu implements Screen {
     private void drawElements(){
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        imageBackground.draw(batch, 1);
+        imageBackground.draw(this.batch, 1);
+        if (this.screenState != subscreen.MAIN) {
+            switch (this.screenState) {
+                case ABOUT:
+                    this.window.setPosition(this.videogame.WIDTH/2, this.videogame.HEIGHT/2);
+                    this.window.setMovable(false);
+                    this.window.setResizable(true);
+                    this.window.setModal(true);
+                    this.window.getTitleLabel().setEllipsis(false);
+                    System.out.println(this.uiSkin.getJsonClassTags());
+                    this.window.draw(this.batch, 1f);
+                    break;
+            }
+        }
         batch.end();
         menu.draw();
+    }
+
+    @Override
+    public void updateScreen(){
+        this.show();
+    }
+
+    private void setSubAbout(){
+        this.window = new Window("Test", this.uiSkin, "subscreen");
     }
 
     @Override

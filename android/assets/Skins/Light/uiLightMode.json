@@ -48,17 +48,17 @@
   com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
     subscreen: {
       background: lightDialog,
-      titleFont: regular,
+      titleFont: bold,
       titleFontColor: black
     },
     green: {
       background: greenLightDialog,
-      titleFont: regular,
+      titleFont: bold,
       titleFontColor: black
     },
     red: {
       background: redLightDialog,
-      titleFont: regular,
+      titleFont: bold,
       titleFontColor: black
     }
   },
@@ -126,11 +126,6 @@
       background: redLightDialog
       font: regular,
       fontColor: black
-    }
-  },
-  com.badlogic.gdx.scenes.scene2d.ui.Image: {
-    background: {
-      drawable: lightBackground
     }
   }
 }

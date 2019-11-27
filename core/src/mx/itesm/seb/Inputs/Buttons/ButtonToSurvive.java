@@ -10,12 +10,12 @@ import mx.itesm.seb.Videogame;
 public class ButtonToSurvive extends EnhancedTextButton {
 
     public ButtonToSurvive(Videogame videogame, String text, Skin skin) {
-        super(videogame, text, skin, "rectangle");
+        super(videogame, text, skin, "yellowRectangle");
         this.setScreen();
     }
 
     public ButtonToSurvive(Videogame videogame, Skin skin) {
-        super(videogame, "Survive", skin, "rectangle");
+        super(videogame, "Survive", skin, "yellowRectangle");
         this.setScreen();
     }
 

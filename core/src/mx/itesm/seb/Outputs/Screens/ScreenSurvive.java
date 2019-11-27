@@ -62,6 +62,7 @@ public class ScreenSurvive implements Screen {
     private gamestate state = gamestate.GAME;
     private int destroyed = 0;
     private Texture healthbarForeGround, healthbarBackGround;
+    private PauseScene pauseScene;
 
     //Music
     private Music backgroundMusic;
@@ -142,15 +143,40 @@ public class ScreenSurvive implements Screen {
         ImageButton btnDer = configurarBotonDerecha();
         ImageButton btnIzq = configurarBotonIzquierda();
         ImageButton btnFire = configureFireButton();
-        addButtons(btnBack, btnDer, btnIzq, btnFire);
+        ImageButton btnPause = configurePauseButton();
+        addButtons(btnBack, btnDer, btnIzq, btnFire, btnPause);
         Gdx.input.setInputProcessor(survive);
     }
 
-    private void addButtons(ImageButton btnBack, ImageButton btnRight, ImageButton btnLeft, ImageButton btnFire) {
-        survive.addActor(btnBack);
+    private void addButtons(ImageButton btnBack, ImageButton btnRight, ImageButton btnLeft, ImageButton btnFire, ImageButton btnPause) {
+        //survive.addActor(btnBack);
         survive.addActor(btnRight);
         survive.addActor(btnLeft);
         survive.addActor(btnFire);
+        survive.addActor(btnPause);
+    }
+    private ImageButton configurePauseButton(){
+        TextureRegionDrawable trdPause = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/NewStyle/buttonPause.png")));
+        final ImageButton btnPause = new ImageButton(trdPause);
+        btnPause.setPosition(0, Videogame.HEIGHT-btnPause.getHeight());
+        btnPause.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if (state == gamestate.GAME) {
+                    state = gamestate.PAUSE;
+                    stopMusic();
+                    if (pauseScene == null) {
+                        pauseScene = new PauseScene(view, batch);
+                    }
+                } else {
+                    state = gamestate.GAME;
+                    backgroundMusic.play();
+                }
+                return true;
+            }
+        });
+
+        return btnPause;
     }
     private ImageButton configureFireButton(){
         TextureRegionDrawable trdDisparo = new TextureRegionDrawable(
@@ -286,7 +312,7 @@ public class ScreenSurvive implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
+        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical_try.png");
         LOW_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball.png");
         MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball2.png");
         MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball3.png");
@@ -335,7 +361,6 @@ public class ScreenSurvive implements Screen {
                 break;
             }
         }
-        if(destroyed == enemies.size){state = gamestate.WIN;}
     }
 
     private void updateProjectile(float delta) {
@@ -366,7 +391,7 @@ public class ScreenSurvive implements Screen {
             timerStep = 0;
             for(EnemyPlane enemyPlane : enemies){
                 enemyPlane.move(DX,0);
-
+                //enemyPlane.switchTexture();
             }
             steps++;
             if(steps >= 20){
@@ -537,7 +562,12 @@ public class ScreenSurvive implements Screen {
     private enum gamestate{
         PAUSE,
         GAME,
-        WIN,
         LOSE
+    }
+    class PauseScene extends Stage {
+        public PauseScene(Viewport view, SpriteBatch batch){
+            super(view, batch);
+            //this.addActor();
+        }
     }
 }

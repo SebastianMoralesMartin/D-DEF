@@ -26,7 +26,7 @@ import mx.itesm.seb.Inputs.Buttons.ButtonToSubAbout;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenAbout;
 import mx.itesm.seb.Videogame;
 
-public class ScreenMenu extends EnhancedScreen implements Screen {
+public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     private final Videogame videogame;
     private Skin uiButton;
     private Skin uiSkin;
@@ -43,16 +43,14 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     private ButtonToGame btnNewGame;
     private ButtonToSettings btnSettings;
     private ButtonToSubAbout btnAbout;
-    private Stage menu;
+    private Stage aboutTheGame;
     private Table topLayout;
-    private Table midLayout;
     private Table bottomLayout;
     private SubscreenAbout subscreenAbout;
     private Music backgroundMusic;
 
-    public ScreenMenu(Videogame videogame) {
+    public ScreenAboutTheGame(Videogame videogame) {
         this.videogame = videogame;
-
     }
 
     @Override
@@ -96,32 +94,19 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }*/
 
     private void setStage() {
-        this.menu = new Stage(view);
+        this.aboutTheGame = new Stage(view);
         this.setTopLayout();
-        this.setMidLayout();
         this.setBottomLayout();
-        this.menu.addActor(this.topLayout);
-        this.menu.addActor(this.midLayout);
-        this.menu.addActor(this.bottomLayout);
+        this.aboutTheGame.addActor(this.topLayout);
+        this.aboutTheGame.addActor(this.bottomLayout);
         if (this.screenState != subscreen.MAIN) {
             switch (this.screenState) {
                 case SUBSCREEN_1:
-                    this.menu.addActor(this.subscreenAbout.getWindow());
+                    this.aboutTheGame.addActor(this.subscreenAbout.getWindow());
                     break;
             }
         }
-        Gdx.input.setInputProcessor(menu);
-    }
-
-    private void setMidLayout() {
-        this.midLayout = new Table();
-        this.midLayout.setFillParent(true);
-        this.midLayout.center();
-        //this.midLayout.debug();
-        this.addElementsToMidLayout();
-    }
-
-    private void addElementsToMidLayout() {
+        Gdx.input.setInputProcessor(aboutTheGame);
     }
 
     private void setBottomLayout() {
@@ -187,7 +172,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void addButton(ImageButton button) {
-        menu.addActor(button);
+        aboutTheGame.addActor(button);
     }
 
     private void setImages() {
@@ -244,7 +229,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
             }
         }
         batch.end();
-        menu.draw();
+        aboutTheGame.draw();
     }
 
     @Override
@@ -279,7 +264,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     @Override
     public void dispose() {
         ((SpriteDrawable) imageBackground.getDrawable()).getSprite().getTexture().dispose();
-        menu.dispose();
+        aboutTheGame.dispose();
         uiSkin.dispose();
         uiButton.dispose();
     }

@@ -7,23 +7,23 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToSubAbout extends EnhancedButton {
+public class ButtonToMain extends EnhancedButton {
 
     private EnhancedScreen screen;
 
-    public ButtonToSubAbout(Videogame videogame, EnhancedScreen screen, Skin skin) {
-        super(videogame, skin, "information");
+    public ButtonToMain(Videogame videogame, EnhancedScreen screen, Skin skin) {
+        super(videogame, skin, "return");
         this.screen = screen;
         this.setScreen();
     }
 
-    public ButtonToSubAbout(Videogame videogame, EnhancedScreen screen, Skin skin, String styleName) {
+    public ButtonToMain(Videogame videogame, EnhancedScreen screen, Skin skin, String styleName) {
         super(videogame, skin, styleName);
         this.screen = screen;
         this.setScreen();
     }
 
-    public ButtonToSubAbout(Videogame videogame, EnhancedScreen screen, ButtonStyle style) {
+    public ButtonToMain(Videogame videogame, EnhancedScreen screen, ButtonStyle style) {
         super(videogame, style);
         this.screen = screen;
         this.setScreen();
@@ -34,7 +34,7 @@ public class ButtonToSubAbout extends EnhancedButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                    screen.setScreenState(EnhancedScreen.subscreen.SUBSCREEN_1);
+                    screen.setScreenState(EnhancedScreen.subscreen.MAIN);
                     screen.updateScreen();
             }
         });

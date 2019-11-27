@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToAbout;
-import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
+import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheDevs;
+import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheGame;
+import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
+import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
 public class SubscreenAbout {
@@ -13,8 +15,9 @@ public class SubscreenAbout {
     private Skin uiSkin;
     private Skin uiButton;
     private Videogame videogame;
-    private ButtonToAbout buttonToAbout;
-    private ButtonToSettings buttonToSettings;
+    private ButtonToAboutTheGame buttonToAboutTheGame;
+    private ButtonToAboutTheDevs buttonToAboutTheDevs;
+    private ButtonToMain buttonToMain;
 
 
     public SubscreenAbout(Videogame videogame, String title, Skin uiSkin, Skin uiButton){
@@ -40,7 +43,9 @@ public class SubscreenAbout {
     }
 
     private void setButtons() {
-        this.buttonToAbout = new ButtonToAbout(this.videogame, this.uiButton);
+        this.buttonToAboutTheGame = new ButtonToAboutTheGame(this.videogame, this.uiButton);
+        this.buttonToAboutTheDevs = new ButtonToAboutTheDevs(this.videogame, this.uiButton);
+        this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
     private void setWindow() {
@@ -49,7 +54,11 @@ public class SubscreenAbout {
     }
 
     private void setWindowElements() {
-        this.window.add(this.buttonToAbout).fillX();
+        this.window.add(this.buttonToAboutTheGame).pad(10).fillX();
+        this.window.row();
+        this.window.add(this.buttonToAboutTheDevs).pad(10).fillX();
+        this.window.row();
+        this.window.add(this.buttonToMain).pad(10);
     }
 
     private void setWindowProperties() {

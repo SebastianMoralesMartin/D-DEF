@@ -11,9 +11,9 @@ public abstract class EnhancedScreen {
 
     public enum subscreen {
         MAIN,
-        ABOUT,
-        SETTINGS,
-        PLAY,
-        PAUSE
+        SUBSCREEN_1,
+        SUBSCREEN_2,
+        SUBSCREEN_3,
+        SUBSCREEN_4
     }
 }

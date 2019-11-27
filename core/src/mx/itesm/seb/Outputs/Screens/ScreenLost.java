@@ -34,7 +34,7 @@ class ScreenLost implements Screen {
     private Table mainLayout;
     private Label title;
     private Label content;
-    private Stage about;
+    private Stage lost;
     private Skin uiButton;
     private Skin uiSkin;
     private Music backgroundMusic;
@@ -71,10 +71,15 @@ class ScreenLost implements Screen {
         //Batch escalado a la vista y la camara
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        score_txt.setMessage("Score: " + Integer.toString(destroyed));
+        batch.draw(textureBackground, 1,1);
+        batch.draw(textureBackground, 0,0);
 
-        score_txt.draw(batch, Videogame.WIDTH/2 - score_txt.getWidth(), Videogame.HEIGHT/2 - score_txt.getHeight());
+        score_txt.setMessage("You lost :( \n"+"Score: " + Integer.toString(destroyed));
+        score_txt.draw(batch, Videogame.WIDTH/2 - score_txt.getWidth()/2, Videogame.HEIGHT/2 - score_txt.getHeight());
+
         batch.end();
+        lost.draw();
+
     }
 
     private void setLabels() {
@@ -98,12 +103,12 @@ class ScreenLost implements Screen {
     }
 
     private void setStage() {
-        about = new Stage(view);
-        Gdx.input.setInputProcessor(about);
+        lost = new Stage(view);
+        Gdx.input.setInputProcessor(lost);
         this.setMainLayout();
         ImageButton btnBack = configurarBotonBack();
         addButtons(btnBack);
-        about.addActor(this.mainLayout);
+        lost.addActor(this.mainLayout);
     }
 
     private void setMainLayout() {
@@ -125,7 +130,7 @@ class ScreenLost implements Screen {
     }
 
     private void addButtons(ImageButton btnBack) {
-        about.addActor(btnBack);
+        lost.addActor(btnBack);
     }
 
     private ImageButton configurarBotonBack() {
@@ -148,7 +153,7 @@ class ScreenLost implements Screen {
     }
 
     private void setTextures() {
-        textureBackground = new Texture("Screens/Backgrounds/Background.jpeg");
+        textureBackground = new Texture("Screens/Backgrounds/oceanBackgroundPlayVertical.png");
     }
 
     private void setView(){
@@ -174,7 +179,7 @@ class ScreenLost implements Screen {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.drawElements();
-        about.draw();
+        lost.draw();
     }
 
 

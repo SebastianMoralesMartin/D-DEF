@@ -365,7 +365,7 @@ public class ScreenSurvive implements Screen {
                 playerProjectile = null;
                 enemies.removeIndex(i);
                 playeffect();
-                energy += power *2;
+                energy += power *1.25f;
                 if (energy > 300){energy = 300;}
                 destroyed ++;
                 break;

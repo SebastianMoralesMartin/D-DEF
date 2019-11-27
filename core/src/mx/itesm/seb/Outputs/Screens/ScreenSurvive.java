@@ -577,6 +577,7 @@ public class ScreenSurvive implements Screen {
     class PauseScene extends Stage {
         public PauseScene(Viewport view, SpriteBatch batch){
             super(view, batch);
+
         }
     }
 }

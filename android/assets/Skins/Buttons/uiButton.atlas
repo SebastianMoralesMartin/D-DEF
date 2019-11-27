@@ -171,6 +171,14 @@ buttonYesPressed
   orig: 200, 200
   offset: 0, 0
   index: -1
+darkTextfield
+  rotate: false
+  xy: 200, 1998
+  size: 32, 32
+  split: 11, 11, 11, 11
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 greenButton
   rotate: false
   xy: 203, 1111
@@ -183,6 +191,23 @@ greenButtonPressed
   xy: 405, 1111
   size: 200, 200
   orig: 200, 200
+  offset: 0, 0
+  index: -1
+greenRectangleButton
+  rotate: false
+  xy: 200, 1921
+  size: 75, 75
+  split: 7, 7, 8, 45
+  pad: 37, 37, 7, 37
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+greenRectangleButtonPressed
+  rotate: false
+  xy: 277, 1921
+  size: 75, 75
+  split: 7, 7, 8, 8
+  orig: 75, 75
   offset: 0, 0
   index: -1
 greenSwitch
@@ -206,6 +231,15 @@ leftButtonPressed
   orig: 200, 300
   offset: 0, 0
   index: -1
+lightTextfield
+  rotate: false
+  xy: 234, 1998
+  size: 32, 32
+  split: 11, 11, 11, 11
+  pad: 11, 12, 16, 15
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 orangeButton
   rotate: false
   xy: 607, 1111
@@ -220,22 +254,21 @@ orangeButtonPressed
   orig: 200, 200
   offset: 0, 0
   index: -1
-rectangleButton
+orangeRectangleButton
   rotate: false
-  xy: 200, 1819
-  size: 200, 100
-  split: 6, 6, 6, 30
-  pad: 100, 99, 50, 49
-  orig: 200, 100
+  xy: 354, 1921
+  size: 75, 75
+  split: 7, 7, 8, 45
+  pad: 37, 37, 7, 37
+  orig: 75, 75
   offset: 0, 0
   index: -1
-rectangleButtonPressed
+orangeRectangleButtonPressed
   rotate: false
-  xy: 200, 1921
-  size: 200, 100
-  split: 7, 6, 6, 7
-  pad: 0, 0, 0, 0
-  orig: 200, 100
+  xy: 431, 1313
+  size: 75, 75
+  split: 7, 7, 8, 8
+  orig: 75, 75
   offset: 0, 0
   index: -1
 redButton
@@ -252,9 +285,26 @@ redButtonPressed
   orig: 200, 200
   offset: 0, 0
   index: -1
+redRectangleButton
+  rotate: false
+  xy: 203, 1313
+  size: 75, 75
+  split: 7, 7, 7, 45
+  pad: 37, 37, 7, 37
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+redRectangleButtonPressed
+  rotate: false
+  xy: 280, 1313
+  size: 75, 75
+  split: 7, 7, 8, 8
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
 redSwitch
   rotate: false
-  xy: 402, 1313
+  xy: 200, 1819
   size: 200, 100
   orig: 200, 100
   offset: 0, 0
@@ -271,5 +321,22 @@ rightButtonPressed
   xy: 608, 1
   size: 200, 300
   orig: 200, 300
+  offset: 0, 0
+  index: -1
+yellowRectangleButton
+  rotate: false
+  xy: 508, 1313
+  size: 75, 75
+  split: 7, 7, 8, 45
+  pad: 37, 37, 7, 37
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+yellowRectangleButtonPressed
+  rotate: false
+  xy: 585, 1313
+  size: 75, 75
+  split: 7, 7, 8, 8
+  orig: 75, 75
   offset: 0, 0
   index: -1

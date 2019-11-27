@@ -154,9 +154,27 @@
       font: title,
       fontColor: black
     },
-    rectangle: {
-      down: rectangleButtonPressed,
-      up: rectangleButton,
+    yellowRectangle: {
+      down: yellowRectangleButtonPressed,
+      up: yellowRectangleButton,
+      font: title,
+      fontColor: black
+    },
+    redRectangle: {
+      down: redRectangleButtonPressed,
+      up: redRectangleButton,
+      font: title,
+      fontColor: black
+    },
+    orangeRectangle: {
+      down: orangeRectangleButtonPressed,
+      up: orangeRectangleButton,
+      font: title,
+      fontColor: black
+    },
+    greenRectangle: {
+      down: greenRectangleButtonPressed,
+      up: greenRectangleButton,
       font: title,
       fontColor: black
     }

@@ -9,12 +9,12 @@ import mx.itesm.seb.Videogame;
 public class ButtonToAboutTheGame extends EnhancedTextButton {
 
     public ButtonToAboutTheGame(Videogame videogame, String text, Skin skin) {
-        super(videogame, text, skin, "rectangle");
+        super(videogame, text, skin, "yellowRectangle");
         this.setScreen();
     }
 
     public ButtonToAboutTheGame(Videogame videogame, Skin skin) {
-        super(videogame, "The Game", skin, "rectangle");
+        super(videogame, "The Game", skin, "yellowRectangle");
         this.setScreen();
     }
 

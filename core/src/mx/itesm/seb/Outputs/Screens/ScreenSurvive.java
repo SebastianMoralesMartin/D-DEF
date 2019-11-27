@@ -144,16 +144,24 @@ public class ScreenSurvive implements Screen {
         ImageButton btnIzq = configurarBotonIzquierda();
         ImageButton btnFire = configureFireButton();
         ImageButton btnPause = configurePauseButton();
-        addButtons(btnBack, btnDer, btnIzq, btnFire, btnPause);
+        addButtons( btnDer, btnIzq, btnFire, btnPause);
+        if(state == gamestate.PAUSE){addPauseBtn(btnBack);}
+
         Gdx.input.setInputProcessor(survive);
     }
 
-    private void addButtons(ImageButton btnBack, ImageButton btnRight, ImageButton btnLeft, ImageButton btnFire, ImageButton btnPause) {
-        //survive.addActor(btnBack);
-        survive.addActor(btnRight);
-        survive.addActor(btnLeft);
-        survive.addActor(btnFire);
-        survive.addActor(btnPause);
+    private void addPauseBtn(ImageButton btnBack) {
+        survive.addActor(btnBack);
+    }
+
+    private void addButtons( ImageButton btnRight, ImageButton btnLeft, ImageButton btnFire, ImageButton btnPause) {
+        if(state == gamestate.GAME){
+            survive.addActor(btnRight);
+            survive.addActor(btnLeft);
+            survive.addActor(btnFire);
+            survive.addActor(btnPause);
+        }
+
     }
     private ImageButton configurePauseButton(){
         TextureRegionDrawable trdPause = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/NewStyle/buttonPause.png")));
@@ -164,7 +172,7 @@ public class ScreenSurvive implements Screen {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (state == gamestate.GAME) {
                     state = gamestate.PAUSE;
-                    stopMusic();
+                    backgroundMusic.pause();
                     if (pauseScene == null) {
                         pauseScene = new PauseScene(view, batch);
                     }
@@ -298,7 +306,7 @@ public class ScreenSurvive implements Screen {
         TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/back.png")));
         TextureRegionDrawable trdBackPressed = new TextureRegionDrawable(new TextureRegion(new Texture("Buttons/backPressed.png")));
         ImageButton btnBack = new ImageButton(trdBack, trdBackPressed);
-        btnBack.setPosition(0, Videogame.HEIGHT - btnBack.getHeight());
+        btnBack.setPosition(Videogame.WIDTH/2, Videogame.HEIGHT/2);
         //Evento de Botón Back
         btnBack.addListener(new ClickListener(){
             @Override
@@ -333,15 +341,17 @@ public class ScreenSurvive implements Screen {
 
     @Override
     public void render(float delta) {
-        //Dibujar enemies
-        updateEnemies(delta);
-        //Dibujar playerSubmarine
-        updateSubmarine();
-        //Update bullet path
-        updateProjectile(delta);
-        //Borrar pantalla
-        eraseScreen();
-        colisionVerifier();
+        if(state == gamestate.GAME){
+            //Dibujar enemies
+            updateEnemies(delta);
+            //Dibujar playerSubmarine
+            updateSubmarine();
+            //Update bullet path
+            updateProjectile(delta);
+            //Borrar pantalla
+            eraseScreen();
+            colisionVerifier();
+        }
 
 
     }
@@ -567,7 +577,6 @@ public class ScreenSurvive implements Screen {
     class PauseScene extends Stage {
         public PauseScene(Viewport view, SpriteBatch batch){
             super(view, batch);
-            //this.addActor();
         }
     }
 }

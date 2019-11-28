@@ -9,6 +9,9 @@ import com.badlogic.gdx.utils.Align;
 import mx.itesm.seb.Inputs.Buttons.ButtonToWarningDeleteData;
 import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
 import mx.itesm.seb.Inputs.CheckBoxes.SettingSwitch;
+import mx.itesm.seb.Inputs.CheckBoxes.SwitchDarkMode;
+import mx.itesm.seb.Inputs.CheckBoxes.SwitchMusic;
+import mx.itesm.seb.Inputs.CheckBoxes.SwitchSound;
 import mx.itesm.seb.Inputs.TextFields.InsertNameTextField;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
@@ -19,9 +22,9 @@ public class SubscreenSettings {
     private Skin uiButton;
     private Videogame videogame;
     private InsertNameTextField insertNameTextField;
-    private SettingSwitch switchDarkMode;
-    private SettingSwitch switchMusic;
-    private SettingSwitch switchSound;
+    private SwitchDarkMode switchDarkMode;
+    private SwitchMusic switchMusic;
+    private SwitchSound switchSound;
     private ButtonToWarningDeleteData buttonToWarningDeleteData;
     private Label name;
     private Label darkMode;
@@ -70,9 +73,9 @@ public class SubscreenSettings {
     }
 
     private void setCheckBoxes() {
-        this.switchDarkMode = new SettingSwitch(this.videogame, this.uiButton);
-        this.switchMusic = new SettingSwitch(this.videogame, this.uiButton);
-        this.switchSound = new SettingSwitch(this.videogame, this.uiButton);
+        this.switchDarkMode = new SwitchDarkMode(this.videogame, this.uiButton);
+        this.switchMusic = new SwitchMusic(this.videogame, this.uiButton);
+        this.switchSound = new SwitchSound(this.videogame, this.uiButton);
     }
 
     private void setButtons() {

@@ -105,4 +105,3 @@ public class SubscreenWarningDeleteData {
         this.window.draw(batch, parentAlpha);
     }
 }
-

@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 
 import java.util.Stack;
 
+import mx.itesm.seb.Outputs.Mechanics.Settings;
 import mx.itesm.seb.Outputs.Screens.ScreenMenu;
 
 public class Videogame extends Game {
@@ -18,6 +19,7 @@ public class Videogame extends Game {
 	//public static final float HEIGHTtest = Gdx.graphics.getHeight();
 	private Music backgroundMusic;
 	private AssetManager assetManager;
+	private Settings settings;
 
 
 	public AssetManager callAssetManager(){
@@ -36,12 +38,15 @@ public class Videogame extends Game {
 	public void StopMusic(){
 		if (backgroundMusic.isPlaying()){backgroundMusic.stop();}
 	}*/
-	public Stack<Object> screenStack = new Stack<>();
-
 
 	@Override
 	public void create () {
+		settings = new Settings();
 		setScreen(new ScreenMenu(this));
+	}
+
+	public Settings getSettings(){
+		return this.settings;
 	}
 
 }

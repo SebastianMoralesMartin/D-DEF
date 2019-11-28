@@ -58,11 +58,11 @@ public class SubscreenPlay {
     }
 
     private void setWindowElements() {
-        this.window.add(this.buttonToTutorial).pad(10).fillX();
+        this.window.add(this.buttonToTutorial).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToSurvive).pad(10).fillX();
+        this.window.add(this.buttonToSurvive).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToDefense).pad(10).fillX();
+        this.window.add(this.buttonToDefense).width(600).height(150).pad(10).fillX();
         this.window.row();
         this.window.add(this.buttonToMain).pad(10);
     }
@@ -72,7 +72,7 @@ public class SubscreenPlay {
         this.window.setModal(true);
         this.window.pack();
         this.window.setWidth(this.videogame.WIDTH);
-        this.window.debug();
+        //this.window.debug();
         this.window.setPosition(this.videogame.WIDTH/2 - this.window.getWidth()/2,
                 this.videogame.HEIGHT/2 - this.window.getHeight()/2);
     }

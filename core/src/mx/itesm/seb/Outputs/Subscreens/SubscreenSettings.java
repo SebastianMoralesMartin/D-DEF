@@ -4,9 +4,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.utils.Align;
 
+import mx.itesm.seb.Inputs.Buttons.ButtonDeleteData;
 import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
 import mx.itesm.seb.Inputs.CheckBoxes.SettingSwitch;
+import mx.itesm.seb.Inputs.TextFields.InsertNameTextField;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
@@ -15,12 +18,15 @@ public class SubscreenSettings {
     private Skin uiSkin;
     private Skin uiButton;
     private Videogame videogame;
+    private InsertNameTextField insertNameTextField;
     private SettingSwitch switchDarkMode;
+    private SettingSwitch switchMusic;
+    private SettingSwitch switchSound;
+    private ButtonDeleteData buttonDeleteData;
+    private Label name;
     private Label darkMode;
     private Label music;
     private Label sound;
-    private SettingSwitch switchMusic;
-    private SettingSwitch switchSound;
     //private SettingSwitch settingSwitch4; BORRAR MARCADORES
     //CAMBIAR NOMBRE DEL CUATE
     //SUBSCREEN ALERTA
@@ -50,9 +56,16 @@ public class SubscreenSettings {
         this.setLabels();
         this.setButtons();
         this.setCheckBoxes();
+        this.setTextFields();
+    }
+
+    private void setTextFields() {
+        this.insertNameTextField = new InsertNameTextField(this.videogame, this.uiSkin);
     }
 
     private void setLabels() {
+        this.name = new Label("Name", this.uiSkin, "content-subtitle");
+        this.name.setAlignment(Align.center);
         this.darkMode = new Label("Dark Mode", this.uiSkin, "content-subtitle");
         this.music = new Label("Music", this.uiSkin, "content-subtitle");
         this.sound = new Label("Sound", this.uiSkin, "content-subtitle");
@@ -65,6 +78,7 @@ public class SubscreenSettings {
     }
 
     private void setButtons() {
+        this.buttonDeleteData = new ButtonDeleteData(this.videogame, this.uiButton);
         this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
@@ -74,6 +88,10 @@ public class SubscreenSettings {
     }
 
     private void setWindowElements() {
+        this.window.add(this.name).pad(10).colspan(3);
+        this.window.row();
+        this.window.add(this.insertNameTextField).pad(10).padBottom(20).colspan(3).fillX();
+        this.window.row();
         this.window.add(this.switchDarkMode).pad(10).fillX();
         this.window.add(this.darkMode).pad(10).fillX();
         this.window.row();
@@ -83,7 +101,9 @@ public class SubscreenSettings {
         this.window.add(this.switchSound).pad(10).fillX();
         this.window.add(this.sound).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToMain).pad(10).colspan(2);
+        this.window.add(this.buttonDeleteData).width(600).height(150).pad(20).colspan(3).fillX();
+        this.window.row();
+        this.window.add(this.buttonToMain).pad(10).colspan(3);
     }
 
     private void setWindowProperties() {
@@ -91,7 +111,7 @@ public class SubscreenSettings {
         this.window.setModal(true);
         this.window.pack();
         this.window.setWidth(this.videogame.WIDTH);
-        this.window.debug();
+        //this.window.debug();
         this.window.setPosition(this.videogame.WIDTH/2 - this.window.getWidth()/2,
                 this.videogame.HEIGHT/2 - this.window.getHeight()/2);
     }

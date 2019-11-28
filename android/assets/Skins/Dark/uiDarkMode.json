@@ -150,5 +150,14 @@
       font: regular,
       fontColor: white
     }
+  },
+  com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+    default: {
+      background: darkTextfield,
+      font: light,
+      fontColor: white,
+      selection: selection,
+      cursor: cursor
+    }
   }
 }

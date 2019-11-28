@@ -55,16 +55,16 @@ class ScreenLost implements Screen {
         this.setTextures();
         this.setStage();
         score_txt = new Text("Final Score: " + destroyed);
-        //this.setMusic();
+        this.setMusic();
     }
 
     private void setMusic(){
         AssetManager manager = videogame.callAssetManager();
-        manager.load("Music/Phantoms Castle.mp3", Music.class);
+        manager.load("Music/Lost.mp3", Music.class);
         manager.finishLoading();
-        backgroundMusic = manager.get("Music/Phantoms Castle.mp3");
+        backgroundMusic = manager.get("Music/Lost.mp3");
         backgroundMusic.setLooping(true);
-        backgroundMusic.setVolume(50);
+        backgroundMusic.setVolume(80);
         backgroundMusic.play();
     }
     private void drawElements() {

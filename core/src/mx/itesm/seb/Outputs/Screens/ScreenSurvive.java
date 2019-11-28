@@ -179,6 +179,12 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void createEnemies() {
+        if(DX == -7){
+            DX = -DX;
+            for(EnemyPlane enemyPlane: enemies){
+                enemyPlane.switchTexture();
+            }
+        }
         enemyBullets = new Array<>(20);
         lifeItems = new Array<>(1);
         Texture textureStable = new Texture("Entities/Enemies/Planes/enemLuftRight.png");
@@ -445,7 +451,8 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
                 Rectangle projectileRect = lifeItems.get(i).getSprite().getBoundingRectangle();
                 if (projectileRect.overlaps(submarineRect)) {
                     lifeItems.removeIndex(i);
-                    energy += 50;
+                    energy += 30;
+                    if(energy >= 300){energy = 300;}
                 }
             }
 
@@ -506,13 +513,13 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
             case RIGHT:
                 if(playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getHeight() < Videogame.WIDTH ){
                 playerSubmarine.move(3, 0);
-                energy -=.05f;
+                energy -=.75f;
                 break;}
                 break;
             case LEFT:
                 if(playerSubmarine.getSprite().getX() > 0){
                 playerSubmarine.move(-3, 0);
-                energy-=.05f;
+                energy-=.75f;
                 break;}
                 break;
         }

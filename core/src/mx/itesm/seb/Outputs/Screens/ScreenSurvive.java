@@ -1,5 +1,4 @@
 package mx.itesm.seb.Outputs.Screens;
-//
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -32,6 +31,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -42,7 +42,6 @@ import mx.itesm.seb.Entities.PlayerSubmarine;
 import mx.itesm.seb.Entities.Projectile;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSubPauseFromSurvive;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenPause;
-import mx.itesm.seb.Outputs.Subscreens.SubscreenSettingsFromPlay;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
@@ -56,7 +55,8 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private Viewport view;
     private SpriteBatch batch;
     private Array<EnemyPlane> enemies;
-    private LinkedList<EnemyProjectile> enemyBullets;
+    private Array<EnemyProjectile> enemyBullets;
+    private Array<EnemyProjectile> lifeItems;
     private int DX = +7;
     private int steps = 0;
     private float timerStep = 0f;
@@ -65,12 +65,13 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private Movement stateSubmarine = Movement.STATIC;
     private Image imageBackground;
     private Stage survive;
-    private int energy = 300;
+    private float energy = 300;
     private Text text;
     private Texture LOW_PROJECTILE_TEXTURE;
     private Texture MID_PROJECTILE_TEXTURE;
     private Texture MAX_PROJECTILE_TEXTURE;
     private Texture ENEMY_PROJECTILE_TEXTURE;
+    private Texture LIFE_ITEM;
     private PlayerProjectile playerProjectile;
     private float speed;
     private float power;
@@ -91,7 +92,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private Label labelEnergy;
     private Label labelScore;
     private SubscreenPause subscreenPause;
-    private SubscreenSettingsFromPlay subscreenSettingsFromPlay;
 
     //Music
     private Music backgroundMusic;
@@ -116,10 +116,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         setTimer();
         setMusic();
 
-        //PROTOTYPE: Sets listener and input processor
-        //Gdx.input.setInputProcessor(new ProcesadorEntrada());
-
-        //PROTOTYPE: Creates an object that draws text outputs onto a screen
         text = new Text("Energy");
     }
 
@@ -128,11 +124,9 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         this.setMusic();
         switch (this.screenState) {
             case SUBSCREEN_1:
-                subscreenPause.getWindow().remove();
-                break;
-            case SUBSCREEN_2:
-                subscreenSettingsFromPlay.getWindow().remove();
-                break;
+                if (this.videogame.getSettings().getMusic() == true) {
+                    subscreenPause.getWindow().remove();
+                }
         }
     }
 
@@ -185,7 +179,8 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void createEnemies() {
-        enemyBullets = new LinkedList<>();
+        enemyBullets = new Array<>(20);
+        lifeItems = new Array<>(1);
         Texture textureStable = new Texture("Entities/Enemies/Planes/enemLuftRight.png");
         Texture textureTilted = new Texture("Entities/Enemies/Planes/enemLuft.png");
         LinkedList<Texture> textures = new LinkedList<Texture>();
@@ -400,6 +395,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball2.png");
         MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball3.png");
         ENEMY_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireballEnemy.png");
+        LIFE_ITEM = new Texture("Entities/Projectiles/fireballLife.png");
     }
 
     private void setView(){
@@ -432,13 +428,24 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void enemyColisionVerifier() {
-        if(enemyBullets.size() != 0){
-            for(int i = enemyBullets.size()-1; i>= 0; i--){
+        if(enemyBullets.size != 0){
+            for(int i = enemyBullets.size -1; i>= 0; i--){
                 Rectangle submarineRect = playerSubmarine.getSprite().getBoundingRectangle();
                 Rectangle projectileRect = enemyBullets.get(i).getSprite().getBoundingRectangle();
                 if (projectileRect.overlaps(submarineRect)) {
-                    enemyBullets.remove(i);
+                    enemyBullets.removeIndex(i);
                     energy -= 10;
+                }
+            }
+
+        }
+        if(lifeItems.size != 0){
+            for(int i = lifeItems.size -1; i>= 0; i--){
+                Rectangle submarineRect = playerSubmarine.getSprite().getBoundingRectangle();
+                Rectangle projectileRect = lifeItems.get(i).getSprite().getBoundingRectangle();
+                if (projectileRect.overlaps(submarineRect)) {
+                    lifeItems.removeIndex(i);
+                    energy += 50;
                 }
             }
 
@@ -470,11 +477,21 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
                 playerProjectile = null;
             }
         }
-        if (enemyBullets.size()!= 0){
+        if (enemyBullets.size != 0){
             for(EnemyProjectile projectile : enemyBullets){
                 projectile.move(0, -2f);
-                if(projectile.getSprite().getY() <= 0){
-                    projectile = null;
+                if(projectile.getSprite().getY() <= playerSubmarine.getSprite().getY() - 40){
+                    enemyBullets.removeIndex(enemyBullets.indexOf(projectile, true));
+                }
+
+
+            }
+        }
+        if (lifeItems.size != 0){
+            for(EnemyProjectile projectile : lifeItems){
+                projectile.move(0, -1f);
+                if(projectile.getSprite().getY() <= playerSubmarine.getSprite().getY() - 40){
+                    lifeItems.removeIndex(lifeItems.indexOf(projectile, true));
 
                 }
 
@@ -485,10 +502,9 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void updateSubmarine() {
-
         switch(stateSubmarine){
             case RIGHT:
-                if(playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getWidth() < (Videogame.WIDTH)){
+                if(playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getHeight() < Videogame.WIDTH ){
                 playerSubmarine.move(3, 0);
                 energy -=.05f;
                 break;}
@@ -533,10 +549,17 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
             float pY = plane.getSprite().getY();
             EnemyProjectile projectile = new EnemyProjectile(ENEMY_PROJECTILE_TEXTURE, pX, pY);
             enemyBullets.add(projectile);
-
-
-
-
+        }
+        if(energy <= 100){
+            if (steps % 40 == 0){
+                Random r = new Random();
+                int planeFiring = r.nextInt(enemies.size);
+                EnemyPlane plane = enemies.get(planeFiring);
+                float pX = plane.getSprite().getX();
+                float pY = plane.getSprite().getY();
+                EnemyProjectile projectile = new EnemyProjectile(LIFE_ITEM, pX, pY);
+                lifeItems.add(projectile);
+            }
         }
         for(EnemyPlane enemyPlane : enemies){
             if(enemyPlane.getSprite().getY() <= (playerSubmarine.getSprite().getY()+playerSubmarine.getSprite().getHeight())){
@@ -568,15 +591,12 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         batch.draw(healthbarForeGround, Videogame.WIDTH/2 - 300, 35 * (Videogame.HEIGHT/100)+text.getHeight(), energy * 2, 25);
         if(playerProjectile != null){
             playerProjectile.render(batch);}
-        labelEnergy.setText("Energy: " + Integer.toString(energy));
-        //text.draw(batch, (60 * Videogame.WIDTH)/100, 35 * (Videogame.HEIGHT/100)+text.getHeight());
+        DecimalFormat df = new DecimalFormat("###");
+        labelEnergy.setText("Energy: " + df.format(energy));
         labelScore.setText("Score: " + Integer.toString(destroyed));
-        //text.draw(batch, (10 * Videogame.WIDTH)/100, 35 * (Videogame.HEIGHT/100)+text.getHeight());
         switch (this.screenState){
             case SUBSCREEN_1:
-                if (this.videogame.getSettings().getMusic() == true){
-                    this.backgroundMusic.pause();
-                }
+                this.backgroundMusic.pause();
                 subscreenPause.getWindow().setY(0);
                 this.subscreenPause.draw(this.batch, 1f);
                 break;
@@ -595,6 +615,9 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         for(EnemyPlane enemyPlane : enemies){
             enemyPlane.render(batch);
         }for(EnemyProjectile projectile : enemyBullets){
+            projectile.render(batch);
+        }
+        for(EnemyProjectile projectile : lifeItems){
             projectile.render(batch);
         }
     }

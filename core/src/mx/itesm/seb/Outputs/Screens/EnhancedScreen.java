@@ -14,6 +14,7 @@ public abstract class EnhancedScreen {
         SUBSCREEN_1,
         SUBSCREEN_2,
         SUBSCREEN_3,
-        SUBSCREEN_4
+        SUBSCREEN_4,
+        SUBSCREEN_5
     }
 }

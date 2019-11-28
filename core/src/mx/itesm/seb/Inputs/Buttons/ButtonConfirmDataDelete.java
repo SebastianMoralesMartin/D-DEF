@@ -4,23 +4,23 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
+import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToReturn extends EnhancedTextButton {
+public class ButtonConfirmDataDelete extends EnhancedButton {
 
-    public ButtonToReturn(Videogame videogame, Skin skin) {
-        super(videogame, "Return", skin, "orangeRectangñe");
+    public ButtonConfirmDataDelete(Videogame videogame, Skin skin) {
+        super(videogame, skin, "yes");
         this.setScreen();
     }
 
-    public ButtonToReturn(Videogame videogame, Skin skin, String styleName) {
-        super(videogame, "Return", skin, styleName);
+    public ButtonConfirmDataDelete(Videogame videogame, Skin skin, String styleName) {
+        super(videogame, skin, styleName);
         this.setScreen();
     }
 
-    public ButtonToReturn(Videogame videogame, TextButtonStyle style) {
-        super(videogame, "Return", style);
+    public ButtonConfirmDataDelete(Videogame videogame, ButtonStyle style) {
+        super(videogame, style);
         this.setScreen();
     }
 
@@ -29,7 +29,7 @@ public class ButtonToReturn extends EnhancedTextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.setScreen(new ScreenSurvive(videogame));
+                System.out.println("Data deletion cancelled");
             }
         });
     }

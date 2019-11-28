@@ -26,6 +26,7 @@ import mx.itesm.seb.Inputs.Buttons.ButtonToSubSettings;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenAbout;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenPlay;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenSettings;
+import mx.itesm.seb.Outputs.Subscreens.SubscreenWarningDeleteData;
 import mx.itesm.seb.Videogame;
 
 public class ScreenMenu extends EnhancedScreen implements Screen {
@@ -52,6 +53,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     private SubscreenAbout subscreenAbout;
     private SubscreenSettings subscreenSettings;
     private SubscreenPlay subscreenPlay;
+    private SubscreenWarningDeleteData subscreenWarningDeleteData;
     private Music backgroundMusic;
 
     public ScreenMenu(Videogame videogame) {
@@ -68,13 +70,17 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         if (this.screenState != subscreen.MAIN) {
             switch (this.screenState) {
                 case SUBSCREEN_1:
-                    this.setSubAbout();
+                    this.setSubscreenAbout();
                     break;
                 case SUBSCREEN_2:
-                    this.setSubSettings();
+                    this.setSubscreenSettings();
                     break;
                 case SUBSCREEN_3:
-                    this.setSubPlay();
+                    this.setSubscreenPlay();
+                    break;
+                case SUBSCREEN_4:
+                    this.setSubscreenWarningDeleteData();
+                    break;
             }
         }
         this.setStage();
@@ -121,6 +127,10 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
                     break;
                 case SUBSCREEN_3:
                     this.menu.addActor(this.subscreenPlay.getWindow());
+                    break;
+                case SUBSCREEN_4:
+                    this.menu.addActor(this.subscreenWarningDeleteData.getWindow());
+                    break;
             }
         }
         Gdx.input.setInputProcessor(menu);
@@ -263,6 +273,10 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
                     this.subscreenPlay.getWindow().setY(0);
                     this.subscreenPlay.draw(this.batch, 1f);
                     break;
+                case SUBSCREEN_4:
+                    this.subscreenWarningDeleteData.getWindow().setY(0);
+                    this.subscreenWarningDeleteData.draw(this.batch, 1f);
+                    break;
             }
         }
         batch.end();
@@ -274,16 +288,20 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         this.show();
     }
 
-    private void setSubAbout(){
+    private void setSubscreenAbout(){
         this.subscreenAbout = new SubscreenAbout(this.videogame, this.uiSkin, this.uiButton);
     }
 
-    private void setSubSettings(){
+    private void setSubscreenSettings(){
         this.subscreenSettings = new SubscreenSettings(this.videogame, this.uiSkin, this.uiButton);
     }
 
-    private void setSubPlay(){
+    private void setSubscreenPlay(){
         this.subscreenPlay = new SubscreenPlay(this.videogame, this.uiSkin, this.uiButton);
+    }
+
+    private void setSubscreenWarningDeleteData(){
+        this.subscreenWarningDeleteData = new SubscreenWarningDeleteData(this.videogame, this.uiSkin, this.uiButton);
     }
 
     @Override

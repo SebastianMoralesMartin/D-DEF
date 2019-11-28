@@ -58,7 +58,7 @@ public class SubscreenPause {
         this.window.row();
         this.window.add(this.buttonToAboutTheDevs).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToMain).pad(10);
+        this.window.add(this.buttonToMain).width(500).height(150).pad(20).colspan(3);
     }
 
     private void setWindowProperties() {

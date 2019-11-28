@@ -4,10 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheDevs;
 import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheGame;
 import mx.itesm.seb.Inputs.Buttons.ButtonToMainFromSubPauseFromSurvive;
-import mx.itesm.seb.Inputs.Buttons.ButtonToSubSettingsFromPauseFromSurvive;
+import mx.itesm.seb.Inputs.Buttons.ButtonToMenu;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
@@ -16,8 +15,7 @@ public class SubscreenPause {
     private Skin uiSkin;
     private Skin uiButton;
     private Videogame videogame;
-    private ButtonToAboutTheGame buttonToAboutTheGame;
-    private ButtonToSubSettingsFromPauseFromSurvive buttonToSubSettingsFromPauseFromSurvive;
+    private ButtonToMenu buttonToMenu;
     private ButtonToMainFromSubPauseFromSurvive buttonToMain;
 
 
@@ -44,8 +42,7 @@ public class SubscreenPause {
     }
 
     private void setButtons() {
-        this.buttonToAboutTheGame = new ButtonToAboutTheGame(this.videogame, this.uiButton);
-        this.buttonToSubSettingsFromPauseFromSurvive = new ButtonToSubSettingsFromPauseFromSurvive(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
+        this.buttonToMenu = new ButtonToMenu(this.videogame, "Menu", this.uiButton);
         this.buttonToMain = new ButtonToMainFromSubPauseFromSurvive(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
@@ -55,9 +52,7 @@ public class SubscreenPause {
     }
 
     private void setWindowElements() {
-        this.window.add(this.buttonToAboutTheGame).width(600).height(150).pad(10).fillX();
-        this.window.row();
-        this.window.add(this.buttonToSubSettingsFromPauseFromSurvive).width(600).height(150).pad(10).fillX();
+        this.window.add(this.buttonToMenu).width(600).height(150).pad(10).fillX();
         this.window.row();
         this.window.add(this.buttonToMain).width(500).height(150).pad(20).colspan(3);
     }

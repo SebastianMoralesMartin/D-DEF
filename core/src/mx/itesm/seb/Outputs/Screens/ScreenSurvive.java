@@ -423,6 +423,10 @@ public class ScreenSurvive implements Screen {
                lost();
             }
         }
+        if (enemies.size <= 0){
+            createEnemies();
+        }
+
 
     }
 

@@ -504,7 +504,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private void updateSubmarine() {
         switch(stateSubmarine){
             case RIGHT:
-                if(playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getX() < Videogame.WIDTH ){
+                if(playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getHeight() < Videogame.WIDTH ){
                 playerSubmarine.move(3, 0);
                 energy -=.05f;
                 break;}

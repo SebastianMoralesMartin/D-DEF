@@ -55,7 +55,8 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private Viewport view;
     private SpriteBatch batch;
     private Array<EnemyPlane> enemies;
-    private LinkedList<EnemyProjectile> enemyBullets;
+    private Array<EnemyProjectile> enemyBullets;
+    private Array<EnemyProjectile> lifeItems;
     private int DX = +7;
     private int steps = 0;
     private float timerStep = 0f;
@@ -70,6 +71,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private Texture MID_PROJECTILE_TEXTURE;
     private Texture MAX_PROJECTILE_TEXTURE;
     private Texture ENEMY_PROJECTILE_TEXTURE;
+    private Texture LIFE_ITEM;
     private PlayerProjectile playerProjectile;
     private float speed;
     private float power;
@@ -114,10 +116,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         setTimer();
         setMusic();
 
-        //PROTOTYPE: Sets listener and input processor
-        //Gdx.input.setInputProcessor(new ProcesadorEntrada());
-
-        //PROTOTYPE: Creates an object that draws text outputs onto a screen
         text = new Text("Energy");
     }
 
@@ -181,7 +179,8 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void createEnemies() {
-        enemyBullets = new LinkedList<>();
+        enemyBullets = new Array<>(15);
+        lifeItems = new Array<>(3);
         Texture textureStable = new Texture("Entities/Enemies/Planes/enemLuftRight.png");
         Texture textureTilted = new Texture("Entities/Enemies/Planes/enemLuft.png");
         LinkedList<Texture> textures = new LinkedList<Texture>();
@@ -396,6 +395,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball2.png");
         MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball3.png");
         ENEMY_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireballEnemy.png");
+        LIFE_ITEM = new Texture("Entities/Projectiles/fireballLife.png");
     }
 
     private void setView(){
@@ -428,13 +428,24 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void enemyColisionVerifier() {
-        if(enemyBullets.size() != 0){
-            for(int i = enemyBullets.size()-1; i>= 0; i--){
+        if(enemyBullets.size != 0){
+            for(int i = enemyBullets.size -1; i>= 0; i--){
                 Rectangle submarineRect = playerSubmarine.getSprite().getBoundingRectangle();
                 Rectangle projectileRect = enemyBullets.get(i).getSprite().getBoundingRectangle();
                 if (projectileRect.overlaps(submarineRect)) {
-                    enemyBullets.remove(i);
+                    enemyBullets.removeIndex(i);
                     energy -= 10;
+                }
+            }
+
+        }
+        if(lifeItems.size != 0){
+            for(int i = lifeItems.size -1; i>= 0; i--){
+                Rectangle submarineRect = playerSubmarine.getSprite().getBoundingRectangle();
+                Rectangle projectileRect = lifeItems.get(i).getSprite().getBoundingRectangle();
+                if (projectileRect.overlaps(submarineRect)) {
+                    lifeItems.removeIndex(i);
+                    energy += 50;
                 }
             }
 
@@ -466,11 +477,21 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
                 playerProjectile = null;
             }
         }
-        if (enemyBullets.size()!= 0){
+        if (enemyBullets.size != 0){
             for(EnemyProjectile projectile : enemyBullets){
                 projectile.move(0, -2f);
-                if(projectile.getSprite().getY() <= 0){
-                    projectile = null;
+                if(projectile.getSprite().getY() <= playerSubmarine.getSprite().getY() - 40){
+                    enemyBullets.removeIndex(enemyBullets.indexOf(projectile, true));
+                }
+
+
+            }
+        }
+        if (lifeItems.size != 0){
+            for(EnemyProjectile projectile : lifeItems){
+                projectile.move(0, -2f);
+                if(projectile.getSprite().getY() <= playerSubmarine.getSprite().getY() - 40){
+                    lifeItems.removeIndex(lifeItems.indexOf(projectile, true));
 
                 }
 
@@ -524,10 +545,17 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
             float pY = plane.getSprite().getY();
             EnemyProjectile projectile = new EnemyProjectile(ENEMY_PROJECTILE_TEXTURE, pX, pY);
             enemyBullets.add(projectile);
-
-
-
-
+        }
+        if(energy <= 100){
+            if (steps % 40 == 0){
+                Random r = new Random();
+                int planeFiring = r.nextInt(enemies.size);
+                EnemyPlane plane = enemies.get(planeFiring);
+                float pX = plane.getSprite().getX();
+                float pY = plane.getSprite().getY();
+                EnemyProjectile projectile = new EnemyProjectile(ENEMY_PROJECTILE_TEXTURE, pX, pY);
+                lifeItems.add(projectile);
+            }
         }
         for(EnemyPlane enemyPlane : enemies){
             if(enemyPlane.getSprite().getY() <= (playerSubmarine.getSprite().getY()+playerSubmarine.getSprite().getHeight())){
@@ -584,6 +612,9 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         for(EnemyPlane enemyPlane : enemies){
             enemyPlane.render(batch);
         }for(EnemyProjectile projectile : enemyBullets){
+            projectile.render(batch);
+        }
+        for(EnemyProjectile projectile : lifeItems){
             projectile.render(batch);
         }
     }

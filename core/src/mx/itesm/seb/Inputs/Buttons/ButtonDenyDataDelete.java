@@ -7,24 +7,24 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
-public class ButtonToMain extends EnhancedTextButton {
+public class ButtonDenyDataDelete extends EnhancedButton {
 
     private EnhancedScreen screen;
 
-    public ButtonToMain(Videogame videogame, EnhancedScreen screen, Skin skin) {
-        super(videogame, "Return",skin, "orangeRectangle");
+    public ButtonDenyDataDelete(Videogame videogame, EnhancedScreen screen, Skin skin) {
+        super(videogame, skin, "no");
         this.screen = screen;
         this.setScreen();
     }
 
-    public ButtonToMain(Videogame videogame, EnhancedScreen screen, Skin skin, String styleName) {
-        super(videogame, "Return",skin, styleName);
+    public ButtonDenyDataDelete(Videogame videogame, EnhancedScreen screen, Skin skin, String styleName) {
+        super(videogame, skin, styleName);
         this.screen = screen;
         this.setScreen();
     }
 
-    public ButtonToMain(Videogame videogame, EnhancedScreen screen, TextButtonStyle style) {
-        super(videogame, "Return", style);
+    public ButtonDenyDataDelete(Videogame videogame, EnhancedScreen screen, ButtonStyle style) {
+        super(videogame, style);
         this.screen = screen;
         this.setScreen();
     }
@@ -34,8 +34,8 @@ public class ButtonToMain extends EnhancedTextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                    screen.setScreenState(EnhancedScreen.subscreen.MAIN);
-                    screen.updateScreen();
+                screen.setScreenState(EnhancedScreen.subscreen.SUBSCREEN_2);
+                screen.updateScreen();
             }
         });
     }

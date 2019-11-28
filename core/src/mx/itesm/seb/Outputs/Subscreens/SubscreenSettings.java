@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonDeleteData;
+import mx.itesm.seb.Inputs.Buttons.ButtonToWarningDeleteData;
 import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
 import mx.itesm.seb.Inputs.CheckBoxes.SettingSwitch;
 import mx.itesm.seb.Inputs.TextFields.InsertNameTextField;
@@ -22,13 +22,11 @@ public class SubscreenSettings {
     private SettingSwitch switchDarkMode;
     private SettingSwitch switchMusic;
     private SettingSwitch switchSound;
-    private ButtonDeleteData buttonDeleteData;
+    private ButtonToWarningDeleteData buttonToWarningDeleteData;
     private Label name;
     private Label darkMode;
     private Label music;
     private Label sound;
-    //private SettingSwitch settingSwitch4; BORRAR MARCADORES
-    //CAMBIAR NOMBRE DEL CUATE
     //SUBSCREEN ALERTA
     //LANGUAGE
     private ButtonToMain buttonToMain;
@@ -78,7 +76,7 @@ public class SubscreenSettings {
     }
 
     private void setButtons() {
-        this.buttonDeleteData = new ButtonDeleteData(this.videogame, this.uiButton);
+        this.buttonToWarningDeleteData = new ButtonToWarningDeleteData(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
         this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
@@ -101,9 +99,9 @@ public class SubscreenSettings {
         this.window.add(this.switchSound).pad(10).fillX();
         this.window.add(this.sound).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonDeleteData).width(600).height(150).pad(20).colspan(3).fillX();
+        this.window.add(this.buttonToWarningDeleteData).width(600).height(150).pad(20).colspan(3).fillX();
         this.window.row();
-        this.window.add(this.buttonToMain).pad(10).colspan(3);
+        this.window.add(this.buttonToMain).width(500).height(150).pad(20).colspan(2);
     }
 
     private void setWindowProperties() {

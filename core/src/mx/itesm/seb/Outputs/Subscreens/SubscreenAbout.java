@@ -58,7 +58,7 @@ public class SubscreenAbout {
         this.window.row();
         this.window.add(this.buttonToAboutTheDevs).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToMain).pad(10);
+        this.window.add(this.buttonToMain).width(500).height(150).pad(20).colspan(3);
     }
 
     private void setWindowProperties() {

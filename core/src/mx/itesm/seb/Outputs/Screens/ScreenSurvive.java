@@ -442,6 +442,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
                 Rectangle projectileRect = enemyBullets.get(i).getSprite().getBoundingRectangle();
                 if (projectileRect.overlaps(submarineRect)) {
                     enemyBullets.removeIndex(i);
+                    playenemyeffect();
                     energy -= 10;
                 }
             }
@@ -457,6 +458,18 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
                     if(energy >= 300){energy = 300;}
                 }
             }
+
+        }
+    }
+
+    private void playenemyeffect() {
+        if (this.videogame.getSettings().getSound() == true) {
+            AssetManager manager = videogame.callAssetManager();
+            manager.load("Music/bulletImpact.mp3", Music.class);
+            manager.finishLoading();
+            Music effect = manager.get("Music/bulletImpact.mp3");
+            effect.setVolume(50);
+            effect.play();
 
         }
     }

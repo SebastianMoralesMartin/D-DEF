@@ -87,7 +87,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         //this.setMusic();
     }
 
-    private void setSkins() {
+    public void setSkins() {
         if(this.videogame.getSettings().getDarkMode() == false) {
             this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Light/lightBackground.png")));
             this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),

@@ -71,7 +71,7 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
         //this.setMusic();
     }
 
-    private void setSkins() {
+    public void setSkins() {
         Boolean flag = new Boolean(true);
         if(flag == false) {
             this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),

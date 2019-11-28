@@ -9,6 +9,8 @@ public abstract class EnhancedScreen {
 
     public abstract void updateScreen();
 
+    public abstract void setSkins();
+
     public enum subscreen {
         MAIN,
         SUBSCREEN_1,

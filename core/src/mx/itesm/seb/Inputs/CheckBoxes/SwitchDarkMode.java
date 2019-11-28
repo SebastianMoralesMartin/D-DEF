@@ -47,7 +47,8 @@ public class SwitchDarkMode extends EnhancedCheckBox {
                 }
                 System.out.println("Updating Screen...");
                 EnhancedScreen screen = (EnhancedScreen) videogame.getScreen();
-                screen.updateScreen();
+                screen.setSkins();
+                //screen.updateScreen();
             }
         });
     }

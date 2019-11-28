@@ -42,6 +42,7 @@ import mx.itesm.seb.Entities.PlayerSubmarine;
 import mx.itesm.seb.Entities.Projectile;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSubPauseFromSurvive;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenPause;
+import mx.itesm.seb.Outputs.Subscreens.SubscreenSettingsFromPlay;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
@@ -90,6 +91,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private Label labelEnergy;
     private Label labelScore;
     private SubscreenPause subscreenPause;
+    private SubscreenSettingsFromPlay subscreenSettingsFromPlay;
 
     //Music
     private Music backgroundMusic;
@@ -126,9 +128,11 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         this.setMusic();
         switch (this.screenState) {
             case SUBSCREEN_1:
-                if (this.videogame.getSettings().getMusic() == true) {
-                    subscreenPause.getWindow().remove();
-                }
+                subscreenPause.getWindow().remove();
+                break;
+            case SUBSCREEN_2:
+                subscreenSettingsFromPlay.getWindow().remove();
+                break;
         }
     }
 
@@ -565,7 +569,9 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         //text.draw(batch, (10 * Videogame.WIDTH)/100, 35 * (Videogame.HEIGHT/100)+text.getHeight());
         switch (this.screenState){
             case SUBSCREEN_1:
-                this.backgroundMusic.pause();
+                if (this.videogame.getSettings().getMusic() == true){
+                    this.backgroundMusic.pause();
+                }
                 subscreenPause.getWindow().setY(0);
                 this.subscreenPause.draw(this.batch, 1f);
                 break;

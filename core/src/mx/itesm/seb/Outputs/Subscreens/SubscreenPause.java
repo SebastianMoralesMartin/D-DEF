@@ -6,7 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheDevs;
 import mx.itesm.seb.Inputs.Buttons.ButtonToAboutTheGame;
-import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
+import mx.itesm.seb.Inputs.Buttons.ButtonToMainFromSubPauseFromSurvive;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSubSettingsFromPauseFromSurvive;
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
 import mx.itesm.seb.Videogame;
 
@@ -16,8 +17,8 @@ public class SubscreenPause {
     private Skin uiButton;
     private Videogame videogame;
     private ButtonToAboutTheGame buttonToAboutTheGame;
-    private ButtonToAboutTheDevs buttonToAboutTheDevs;
-    private ButtonToMain buttonToMain;
+    private ButtonToSubSettingsFromPauseFromSurvive buttonToSubSettingsFromPauseFromSurvive;
+    private ButtonToMainFromSubPauseFromSurvive buttonToMain;
 
 
     public SubscreenPause(Videogame videogame, String title, Skin uiSkin, Skin uiButton){
@@ -44,8 +45,8 @@ public class SubscreenPause {
 
     private void setButtons() {
         this.buttonToAboutTheGame = new ButtonToAboutTheGame(this.videogame, this.uiButton);
-        this.buttonToAboutTheDevs = new ButtonToAboutTheDevs(this.videogame, this.uiButton);
-        this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
+        this.buttonToSubSettingsFromPauseFromSurvive = new ButtonToSubSettingsFromPauseFromSurvive(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
+        this.buttonToMain = new ButtonToMainFromSubPauseFromSurvive(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
     private void setWindow() {
@@ -56,7 +57,7 @@ public class SubscreenPause {
     private void setWindowElements() {
         this.window.add(this.buttonToAboutTheGame).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToAboutTheDevs).width(600).height(150).pad(10).fillX();
+        this.window.add(this.buttonToSubSettingsFromPauseFromSurvive).width(600).height(150).pad(10).fillX();
         this.window.row();
         this.window.add(this.buttonToMain).width(500).height(150).pad(20).colspan(3);
     }

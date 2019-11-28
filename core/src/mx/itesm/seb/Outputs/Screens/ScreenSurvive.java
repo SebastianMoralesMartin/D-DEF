@@ -123,7 +123,13 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
 
     @Override
     public void updateScreen() {
-        //this.show();
+        this.setMusic();
+        switch (this.screenState) {
+            case SUBSCREEN_1:
+                if (this.videogame.getSettings().getMusic() == true) {
+                    subscreenPause.getWindow().remove();
+                }
+        }
     }
 
     public void setSkins() {
@@ -236,8 +242,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
-                pause = new Stage(view);
-                pause.addActor(subscreenPause.getWindow());
+                survive.addActor(subscreenPause.getWindow());
                 /**super.clicked(event, x, y);
                     if (state == gamestate.GAME) {
                         subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
@@ -558,15 +563,16 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         //text.draw(batch, (60 * Videogame.WIDTH)/100, 35 * (Videogame.HEIGHT/100)+text.getHeight());
         labelScore.setText("Score: " + Integer.toString(destroyed));
         //text.draw(batch, (10 * Videogame.WIDTH)/100, 35 * (Videogame.HEIGHT/100)+text.getHeight());
-        survive.draw();
         switch (this.screenState){
             case SUBSCREEN_1:
+                this.backgroundMusic.pause();
                 subscreenPause.getWindow().setY(0);
                 this.subscreenPause.draw(this.batch, 1f);
-                pause.draw();
                 break;
         }
+
         batch.end();
+        survive.draw();
     }
 
     private void drawSubmarine() {
@@ -700,7 +706,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     class PauseScene extends Stage {
         public PauseScene(Viewport view, SpriteBatch batch){
             super(view, batch);
-
         }
     }
 }

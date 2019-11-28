@@ -6,9 +6,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
+import mx.itesm.seb.Inputs.Buttons.ButtonToMainFromSubSettings;
 import mx.itesm.seb.Inputs.Buttons.ButtonToWarningDeleteData;
 import mx.itesm.seb.Inputs.Buttons.ButtonToMain;
-import mx.itesm.seb.Inputs.CheckBoxes.SettingSwitch;
 import mx.itesm.seb.Inputs.CheckBoxes.SwitchDarkMode;
 import mx.itesm.seb.Inputs.CheckBoxes.SwitchMusic;
 import mx.itesm.seb.Inputs.CheckBoxes.SwitchSound;
@@ -30,9 +30,7 @@ public class SubscreenSettings {
     private Label darkMode;
     private Label music;
     private Label sound;
-    //SUBSCREEN ALERTA
-    //LANGUAGE
-    private ButtonToMain buttonToMain;
+    private ButtonToMainFromSubSettings buttonToMainFromSubSettings;
 
 
     public SubscreenSettings(Videogame videogame, String title, Skin uiSkin, Skin uiButton){
@@ -55,9 +53,9 @@ public class SubscreenSettings {
 
     private void setElements() {
         this.setLabels();
+        this.setTextFields();
         this.setButtons();
         this.setCheckBoxes();
-        this.setTextFields();
     }
 
     private void setTextFields() {
@@ -80,7 +78,7 @@ public class SubscreenSettings {
 
     private void setButtons() {
         this.buttonToWarningDeleteData = new ButtonToWarningDeleteData(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
-        this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
+        this.buttonToMainFromSubSettings = new ButtonToMainFromSubSettings(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.insertNameTextField, this.uiButton);
     }
 
     private void setWindow() {
@@ -104,7 +102,7 @@ public class SubscreenSettings {
         this.window.row();
         this.window.add(this.buttonToWarningDeleteData).width(600).height(150).pad(20).colspan(3).fillX();
         this.window.row();
-        this.window.add(this.buttonToMain).width(500).height(150).pad(20).colspan(2);
+        this.window.add(this.buttonToMainFromSubSettings).width(500).height(150).pad(20).colspan(2);
     }
 
     private void setWindowProperties() {

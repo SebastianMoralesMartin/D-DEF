@@ -134,6 +134,16 @@
       font: light-italic,
       fontColor: black
     },
+    default-title: {
+      background: lightDialog,
+      font: title,
+      fontColor: black
+    },
+    default-subtitle: {
+      background: lightDialog
+      font: subtitle,
+      fontColor: black
+    },
     green: {
       background: greenLightDialog
       font: regular,

@@ -227,21 +227,17 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void setLabels(){
-        title = new Label("Dunkirk-Defense", uiSkin, "default-bold");
+        title = new Label("Dunkirk-Defense", uiSkin, "default-title");
         title.setAlignment(Align.center);
-        title.setFontScale(1.5f);
-        subtitle = new Label("SALVA HEROES", uiSkin, "default");
+        subtitle = new Label("SAVE HEROES", uiSkin, "default-subtitle");
+        subtitle.setFontScale(.75f);
         subtitle.setAlignment(Align.center);
-        subtitle.setFontScale(1f);
         settings = new Label("Settings", uiSkin, "default-bold");
         settings.setAlignment(Align.center);
-        settings.setFontScale(1f);
         about = new Label("About", uiSkin, "default-bold");
         about.setAlignment(Align.center);
-        about.setFontScale(1f);
         play = new Label("Play", uiSkin, "default-bold");
         play.setAlignment(Align.center);
-        play.setFontScale(1f);
     }
 
     @Override

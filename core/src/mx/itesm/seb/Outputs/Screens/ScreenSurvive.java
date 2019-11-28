@@ -44,7 +44,7 @@ public class ScreenSurvive implements Screen {
     private int DX = +7;
     private int steps = 0;
     private float timerStep = 0f;
-    private float MAX_STEP = 0.055f;
+    private float MAX_STEP = 0.075f;
     private PlayerSubmarine playerSubmarine;
     private Movement stateSubmarine = Movement.STATIC;
     private Texture textureBackground;
@@ -131,7 +131,7 @@ public class ScreenSurvive implements Screen {
         enemies = new Array<>(11 * 5);
         for (int renglon = 0; renglon < 3; renglon++) {
             for (int columna = 0; columna < 4; columna++) {
-                EnemyPlane enemyPlane = new EnemyPlane(textures, 40 + columna * 250, 5 * Videogame.HEIGHT / 7 + renglon * 120);
+                EnemyPlane enemyPlane = new EnemyPlane(textures, columna * 150, 5 * Videogame.HEIGHT / 7 + renglon * 120);
                 enemies.add(enemyPlane);
             }
         }
@@ -393,6 +393,10 @@ public class ScreenSurvive implements Screen {
                 energy-=.25;
                 break;
         }
+        if (energy <= 0) {
+            state = gamestate.LOSE;
+            lost();
+        }
     }
 
     private void updateEnemies(float delta) {
@@ -404,11 +408,11 @@ public class ScreenSurvive implements Screen {
                 //enemyPlane.switchTexture();
             }
             steps++;
-            if(steps >= 20){
+            if(steps >= 40){
                 steps = 0;
                 DX = -DX;
                 for(EnemyPlane enemyPlane : enemies){
-                    enemyPlane.move(0, -3*abs(DX));
+                    enemyPlane.move(0, -2*abs(DX));
                     enemyPlane.switchTexture();
                 }
             }

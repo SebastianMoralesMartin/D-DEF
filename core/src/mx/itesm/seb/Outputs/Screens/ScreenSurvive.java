@@ -1,6 +1,7 @@
 package mx.itesm.seb.Outputs.Screens;
 //
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
@@ -47,7 +48,7 @@ import mx.itesm.seb.Videogame;
 
 import static java.lang.Math.abs;
 
-public class ScreenSurvive extends EnhancedScreen implements Screen {
+public class ScreenSurvive extends EnhancedScreen implements Screen{
     private final Videogame videogame;
     private Skin uiButton;
     private Skin uiSkin;
@@ -108,6 +109,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
 
     @Override
     public void show() {
+
         this.setSkins();
         setView();
         setTextures();
@@ -528,13 +530,13 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
             case RIGHT:
                 if(playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getHeight() < Videogame.WIDTH ){
                 playerSubmarine.move(3, 0);
-                energy -=.75f;
+                energy -=.50f;
                 break;}
                 break;
             case LEFT:
                 if(playerSubmarine.getSprite().getX() > 0){
                 playerSubmarine.move(-3, 0);
-                energy-=.75f;
+                energy-=.25f;
                 break;}
                 break;
         }
@@ -682,6 +684,8 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         uiButton.dispose();
     }
 
+
+
     public enum Movement {
         STATIC,
         RIGHT,
@@ -707,52 +711,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         pixmap.fill();
 
         return pixmap;
-    }
-    //Procesador de entrada de la pantalla tactil (toma control total y los botones dejan de funcionar)
-    class ProcesadorEntrada implements InputProcessor {
-
-        @Override
-        public boolean keyDown(int keycode) {
-            return false;
-        }
-
-        @Override
-        public boolean keyUp(int keycode) {
-            return false;
-        }
-
-        @Override
-        public boolean keyTyped(char character) {
-            return false;
-        }
-
-        @Override
-        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-            return false;
-        }
-
-        @Override
-        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-            return false;
-        }
-
-        @Override
-        public boolean touchDragged(int screenX, int screenY, int pointer) {
-            Vector3 v = new Vector3(screenX, screenY, 0);
-            camera.unproject(v);
-            playerSubmarine.getSprite().setX(v.x);
-            return true;
-        }
-
-        @Override
-        public boolean mouseMoved(int screenX, int screenY) {
-            return false;
-        }
-
-        @Override
-        public boolean scrolled(int amount) {
-            return false;
-        }
     }
     private enum gamestate{
         PAUSE,

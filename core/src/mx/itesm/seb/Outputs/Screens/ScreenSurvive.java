@@ -592,6 +592,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
             }
         }
         if (enemies.size <= 0){
+            steps = 0;
             createEnemies();
         }
 

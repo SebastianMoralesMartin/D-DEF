@@ -485,7 +485,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
                 playEffect();
                 energy += power *1.25f;
                 if (energy > 300){energy = 300;}
-                destroyed ++;
+                destroyed += 100;
                 break;
             }
         }

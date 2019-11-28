@@ -18,8 +18,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -42,6 +40,8 @@ import mx.itesm.seb.Entities.EnemyProjectile;
 import mx.itesm.seb.Entities.PlayerProjectile;
 import mx.itesm.seb.Entities.PlayerSubmarine;
 import mx.itesm.seb.Entities.Projectile;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSubPauseFromSurvive;
+import mx.itesm.seb.Outputs.Subscreens.SubscreenPause;
 import mx.itesm.seb.Outputs.Texts.Text;
 import mx.itesm.seb.Videogame;
 
@@ -64,7 +64,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private Movement stateSubmarine = Movement.STATIC;
     private Image imageBackground;
     private Stage survive;
-    private float energy = 300;
+    private int energy = 300;
     private Text text;
     private Texture LOW_PROJECTILE_TEXTURE;
     private Texture MID_PROJECTILE_TEXTURE;
@@ -78,7 +78,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private gamestate state = gamestate.GAME;
     private int destroyed = 0;
     private Texture healthbarForeGround, healthbarBackGround;
-    private PauseScene pauseScene;
+    private Stage pause;
 
     private Table bottomLayout;
     private Table topBottomLayout;
@@ -86,9 +86,10 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     private TextButton btnDer;
     private TextButton btnIzq;
     private TextButton btnFire;
-    private Button btnPause;
+    private ButtonToSubPauseFromSurvive btnPause;
     private Label labelEnergy;
     private Label labelScore;
+    private SubscreenPause subscreenPause;
 
     //Music
     private Music backgroundMusic;
@@ -122,7 +123,13 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
 
     @Override
     public void updateScreen() {
-        this.show();
+        this.setMusic();
+        switch (this.screenState) {
+            case SUBSCREEN_1:
+                if (this.videogame.getSettings().getMusic() == true) {
+                    subscreenPause.getWindow().remove();
+                }
+        }
     }
 
     public void setSkins() {
@@ -142,18 +149,21 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void setMusic(){
-        AssetManager manager = videogame.callAssetManager();
-
-        manager.load("Music/Double The Bits.mp3", Music.class);
-        manager.finishLoading();
-        backgroundMusic = manager.get("Music/Double The Bits.mp3");
-        backgroundMusic.setLooping(true);
-        backgroundMusic.setVolume(50);
-        backgroundMusic.play();
+        if (videogame.getSettings().getMusic() == true) {
+            AssetManager manager = videogame.callAssetManager();
+            manager.load("Music/Double The Bits.mp3", Music.class);
+            manager.finishLoading();
+            backgroundMusic = manager.get("Music/Double The Bits.mp3");
+            backgroundMusic.setLooping(true);
+            backgroundMusic.setVolume(50);
+            backgroundMusic.play();
+        }
     }
 
     private void stopMusic(){
-        backgroundMusic.stop();
+        if (videogame.getSettings().getMusic() == true) {
+            backgroundMusic.stop();
+        }
     }
 
     private void setTimer() {
@@ -209,7 +219,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void addPauseBtn(ImageButton btnBack) {
-        survive.addActor(btnBack);
+
     }
 
     private void addButtons() {
@@ -226,23 +236,25 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         }
     }
 
-    private Button configurePauseButton(){
-        final Button btnPause = new Button(this.uiButton, "pause");
-        btnPause.setPosition(0, Videogame.HEIGHT-btnPause.getHeight());
+    private ButtonToSubPauseFromSurvive configurePauseButton(){
+        final ButtonToSubPauseFromSurvive btnPause = new ButtonToSubPauseFromSurvive(this.videogame, this, this.uiButton);
         btnPause.addListener(new ClickListener(){
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if (state == gamestate.GAME) {
-                    state = gamestate.PAUSE;
-                    backgroundMusic.pause();
-                    if (pauseScene == null) {
-                        pauseScene = new PauseScene(view, batch);
-                    }
-                } else {
-                    state = gamestate.GAME;
-                    backgroundMusic.play();
-                }
-                return true;
+            public void clicked(InputEvent event, float x, float y) {
+                subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
+                survive.addActor(subscreenPause.getWindow());
+                /**super.clicked(event, x, y);
+                    if (state == gamestate.GAME) {
+                        subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
+                        state = gamestate.PAUSE;
+                        backgroundMusic.pause();
+                        if (pauseScene == null) {
+                            pauseScene = new PauseScene(view, batch);
+                        }
+                    } else {
+                        state = gamestate.GAME;
+                        backgroundMusic.play();
+                    } */
             }
         });
 
@@ -307,12 +319,14 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     }
 
     private void playEffect() {
-        AssetManager manager = videogame.callAssetManager();
-        manager.load("Music/explosion.mp3", Music.class);
-        manager.finishLoading();
-        Music effect = manager.get("Music/explosion.mp3");
-        effect.setVolume(50);
-        effect.play();
+        if (this.videogame.getSettings().getSound() == true) {
+            AssetManager manager = videogame.callAssetManager();
+            manager.load("Music/explosion.mp3", Music.class);
+            manager.finishLoading();
+            Music effect = manager.get("Music/explosion.mp3");
+            effect.setVolume(50);
+            effect.play();
+        }
     }
 
     private TextButton configurarBotonIzquierda() {
@@ -399,20 +413,18 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if(state == gamestate.GAME){
+        if(this.screenState == subscreen.MAIN){
             //Dibujar enemies
             updateEnemies(delta);
             //Dibujar playerSubmarine
             updateSubmarine();
             //Update bullet path
             updateProjectile(delta);
-            //Borrar pantalla
-            eraseScreen();
             colisionVerifier();
             enemyColisionVerifier();
         }
-
-
+        //Borrar pantalla
+        eraseScreen();
     }
 
     private void enemyColisionVerifier() {
@@ -534,7 +546,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         drawElements();
-        survive.draw();
     }
 
     private void drawElements() {
@@ -548,11 +559,20 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
         batch.draw(healthbarForeGround, Videogame.WIDTH/2 - 300, 35 * (Videogame.HEIGHT/100)+text.getHeight(), energy * 2, 25);
         if(playerProjectile != null){
             playerProjectile.render(batch);}
-        labelEnergy.setText("Energy: " + Float.toString(energy));
+        labelEnergy.setText("Energy: " + Integer.toString(energy));
         //text.draw(batch, (60 * Videogame.WIDTH)/100, 35 * (Videogame.HEIGHT/100)+text.getHeight());
         labelScore.setText("Score: " + Integer.toString(destroyed));
         //text.draw(batch, (10 * Videogame.WIDTH)/100, 35 * (Videogame.HEIGHT/100)+text.getHeight());
+        switch (this.screenState){
+            case SUBSCREEN_1:
+                this.backgroundMusic.pause();
+                subscreenPause.getWindow().setY(0);
+                this.subscreenPause.draw(this.batch, 1f);
+                break;
+        }
+
         batch.end();
+        survive.draw();
     }
 
     private void drawSubmarine() {
@@ -580,7 +600,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
 
     @Override
     public void pause() {
-
 
     }
 
@@ -687,7 +706,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
     class PauseScene extends Stage {
         public PauseScene(Viewport view, SpriteBatch batch){
             super(view, batch);
-
         }
     }
 }

@@ -63,7 +63,7 @@ class ScreenLost implements Screen {
         manager.load("Music/Lost.mp3", Music.class);
         manager.finishLoading();
         backgroundMusic = manager.get("Music/Lost.mp3");
-        backgroundMusic.setLooping(true);
+        backgroundMusic.setLooping(false);
         backgroundMusic.setVolume(80);
         backgroundMusic.play();
     }

@@ -95,6 +95,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
 
     //Music
     private Music backgroundMusic;
+    private Music battle;
 
     public ScreenSurvive(Videogame videogame) {
         this.videogame = videogame;
@@ -153,7 +154,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
             manager.finishLoading();
             backgroundMusic = manager.get("Music/Double The Bits.mp3");
             backgroundMusic.setLooping(true);
-            backgroundMusic.setVolume(50);
+            backgroundMusic.setVolume(70);
             backgroundMusic.play();
         }
     }
@@ -331,6 +332,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen {
             Music effect = manager.get("Music/explosion.mp3");
             effect.setVolume(50);
             effect.play();
+
         }
     }
 

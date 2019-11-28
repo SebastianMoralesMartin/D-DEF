@@ -20,10 +20,8 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import mx.itesm.seb.Inputs.Buttons.ButtonToSurvive;
-import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
-import mx.itesm.seb.Inputs.Buttons.ButtonToSubAbout;
-import mx.itesm.seb.Outputs.Subscreens.SubscreenAbout;
+import mx.itesm.seb.Inputs.Buttons.ButtonToMenu;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSite;
 import mx.itesm.seb.Videogame;
 
 public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
@@ -34,19 +32,16 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     private Viewport view;
     private SpriteBatch batch;
     private Image imageBackground;
-    private Image imageTitle;
+    private Image imageDunkirk;
     private Label title;
-    private Label subtitle;
-    private Label about;
-    private Label settings;
-    private Label play;
-    private ButtonToSurvive btnNewGame;
-    private ButtonToSettings btnSettings;
-    private ButtonToSubAbout btnAbout;
+    private Label gameDescription;
+    private Label contactUs;
+    private Label email;
+    private ButtonToMenu btnToMenu;
+    private ButtonToSite btnToSite;
     private Stage aboutTheGame;
     private Table topLayout;
     private Table bottomLayout;
-    private SubscreenAbout subscreenAbout;
     private Music backgroundMusic;
 
     public ScreenAboutTheGame(Videogame videogame) {
@@ -60,25 +55,19 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
         this.setLabels();
         this.setButtons();
         this.setImages();
-        if (this.screenState != subscreen.MAIN) {
-            switch (this.screenState) {
-                case SUBSCREEN_1:
-                    this.setSubAbout();
-                    break;
-            }
-        }
         this.setStage();
         //this.setMusic();
     }
 
     public void setSkins() {
-        Boolean flag = new Boolean(true);
-        if(flag == false) {
+        if(this.videogame.getSettings().getDarkMode() == false) {
+            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Light/lightBackground.png")));
             this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
             this.uiSkin = new Skin(Gdx.files.internal("Skins/Light/uiLightMode.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Light/uiLightMode.atlas")));
         } else {
+            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Dark/darkBackground.png")));
             this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
                     new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
             this.uiSkin = new Skin(Gdx.files.internal("Skins/Dark/uiDarkMode.json"),
@@ -99,13 +88,6 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
         this.setBottomLayout();
         this.aboutTheGame.addActor(this.topLayout);
         this.aboutTheGame.addActor(this.bottomLayout);
-        if (this.screenState != subscreen.MAIN) {
-            switch (this.screenState) {
-                case SUBSCREEN_1:
-                    this.aboutTheGame.addActor(this.subscreenAbout.getWindow());
-                    break;
-            }
-        }
         Gdx.input.setInputProcessor(aboutTheGame);
     }
 
@@ -119,42 +101,22 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
 
     private void addElementsToBottomLayout() {
         this.addButtonsToBottomLayout();
-        this.addLabelsToBottomLayout();
-    }
-
-    private void addLabelsToBottomLayout() {
-        this.bottomLayout.row();
-        this.bottomLayout.add(this.about).pad(20).padBottom(5).padTop(0).fillX();
-        this.bottomLayout.add(this.settings).pad(20).padBottom(5).padTop(0).fillX();
-        this.bottomLayout.add(this.play).pad(20).padBottom(5).padTop(0).fillX();
     }
 
     private void addButtonsToBottomLayout() {
-        bottomLayout.add(this.btnAbout).pad(20).padBottom(5);
-        bottomLayout.add(this.btnSettings).pad(20).padBottom(5);
-        bottomLayout.add(this.btnNewGame).pad(20).padBottom(5);
+        bottomLayout.add(this.btnToSite).width(700).height(140).pad(20).padBottom(5);
+        bottomLayout.row();
+        bottomLayout.add(this.btnToMenu).width(500).height(140).pad(20).padTop(5);
     }
 
     private void addElementsToTopLayout() {
-        this.addImagesToTopLayout();
-        this.addLabelsToTopLayout();
-        this.addButtonsToTopLayout();
-    }
-
-    private void addLabelsToTopLayout() {
-        this.topLayout.add(this.title).pad(10).padLeft(20).padRight(20).fillX();
+        this.topLayout.add(this.title).pad(20).padBottom(5).fillX();
         this.topLayout.row();
-        this.topLayout.add(this.subtitle).pad(10).padLeft(20).padRight(20).fillX();
+        this.topLayout.add(this.imageDunkirk).pad(20).padBottom(5).padTop(5).fillX().height(300);
         this.topLayout.row();
-    }
-
-    private void addImagesToTopLayout() {
-        topLayout.add(this.imageTitle).pad(20).padBottom(5).uniformX().maxHeight(279f).maxWidth(710f);
-        topLayout.row();
-    }
-
-    private void addButtonsToTopLayout() {
-
+        this.topLayout.add(this.gameDescription).pad(20).padBottom(5).padTop(5).fillX();
+        this.topLayout.row();
+        this.topLayout.add(this.email).pad(5).padRight(20).padLeft(20).fillX();
     }
 
     private void setTopLayout() {
@@ -166,9 +128,8 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     }
 
     private void setButtons(){
-        this.btnNewGame = new ButtonToSurvive(videogame, uiButton);
-        this.btnSettings = new ButtonToSettings(videogame, uiButton);
-        this.btnAbout = new ButtonToSubAbout(videogame, this, uiButton);
+        this.btnToSite = new ButtonToSite(this.videogame, this.uiButton);
+        this.btnToMenu = new ButtonToMenu(this.videogame, this.uiButton);
     }
 
     private void addButton(ImageButton button) {
@@ -176,8 +137,7 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     }
 
     private void setImages() {
-        this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Light/lightBackground.png")));
-        this.imageTitle = new Image(new Texture(Gdx.files.internal("Screens/Titles/TitleHead.png")));
+        this.imageDunkirk = new Image(new Texture(Gdx.files.internal("Photos/dunkirkBeach.png")));
     }
 
     private void setView(){
@@ -189,21 +149,20 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     }
 
     private void setLabels(){
-        title = new Label("Dunkirk-Defense", uiSkin, "default-bold");
-        title.setAlignment(Align.center);
-        title.setFontScale(1.5f);
-        subtitle = new Label("SALVA HEROES", uiSkin, "default");
-        subtitle.setAlignment(Align.center);
-        subtitle.setFontScale(1f);
-        settings = new Label("Settings", uiSkin, "default-bold");
-        settings.setAlignment(Align.center);
-        settings.setFontScale(1f);
-        about = new Label("About", uiSkin, "default-bold");
-        about.setAlignment(Align.center);
-        about.setFontScale(1f);
-        play = new Label("Play", uiSkin, "default-bold");
-        play.setAlignment(Align.center);
-        play.setFontScale(1f);
+        this.title = new Label("About the Game", uiSkin, "default-title");
+        this.title.setAlignment(Align.center);
+        this.title.setFontScale(.75f);
+        this.gameDescription = new Label("For the elaboration of this game we, of course, took inspiration from the Second World War's battle of Dunkirk where British soldiers had to evacuate the coast to return to Great Britain. In the historical context of the game, we have placed you, the player, in a damaged vessel near the coast. Your purpose is to assist the evacuation by defending the rescue efforts. You may not survive.\n" +
+                "\n" +
+                "Your objective is to survive as long as you can, defending both the beach and the soldiers. Please, stay as much time as possible; to do so, you shall have to manage your resources efficiently and effectively.\n" +
+                "\n" +
+                "You are our only hope.\n" +
+                "Save our heroes.", uiSkin, "default");
+        this.gameDescription.setFontScale(.6f);
+        this.gameDescription.setWrap(true);
+        this.contactUs = new Label("Contact us at:", uiSkin, "default-subtitle");
+        this.contactUs.setFontScale(.5f);
+        this.email = new Label("ddef.contact@gmail.com", uiSkin, "default");
     }
 
     @Override
@@ -221,13 +180,6 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         imageBackground.draw(this.batch, 1);
-        if (this.screenState != subscreen.MAIN) {
-            switch (this.screenState) {
-                case SUBSCREEN_1:
-                    this.subscreenAbout.draw(this.batch, 1f);
-                    break;
-            }
-        }
         batch.end();
         aboutTheGame.draw();
     }
@@ -235,10 +187,6 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     @Override
     public void updateScreen(){
         this.show();
-    }
-
-    private void setSubAbout(){
-        this.subscreenAbout = new SubscreenAbout(this.videogame, this.uiSkin, this.uiButton);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package mx.itesm.seb.Outputs.Screens;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -21,13 +20,10 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import mx.itesm.seb.Inputs.Buttons.ButtonToMenu;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSurvive;
+import mx.itesm.seb.Inputs.Buttons.ButtonToSettings;
 import mx.itesm.seb.Inputs.Buttons.ButtonToSubAbout;
-import mx.itesm.seb.Inputs.Buttons.ButtonToSubPlay;
-import mx.itesm.seb.Inputs.Buttons.ButtonToSubSettings;
 import mx.itesm.seb.Outputs.Subscreens.SubscreenAbout;
-import mx.itesm.seb.Outputs.Subscreens.SubscreenPlay;
-import mx.itesm.seb.Outputs.Subscreens.SubscreenSettings;
-import mx.itesm.seb.Outputs.Subscreens.SubscreenWarningDeleteData;
 import mx.itesm.seb.Videogame;
 
 public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {

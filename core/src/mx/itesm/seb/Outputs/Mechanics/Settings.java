@@ -52,4 +52,12 @@ public class Settings {
     public int getHighScore(){
         return preferences.getInteger("High Score", 0);
     }
+
+    public void deleteData() {
+        preferences.putBoolean("MusicEnabled", true);
+        preferences.putBoolean("SoundEnabled", true);
+        preferences.putBoolean("Dark Mode", false);
+        preferences.putString("Name", "James");
+        preferences.putInteger("High Score", 0);
+    }
 }

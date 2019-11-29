@@ -17,6 +17,11 @@ public class ButtonToMenu extends EnhancedTextButton {
         this.setScreen();
     }
 
+    public ButtonToMenu(Videogame videogame, String text, Skin skin, String styleName) {
+        super(videogame, text, skin, styleName);
+        this.setScreen();
+    }
+
     public ButtonToMenu(Videogame videogame, Skin skin) {
         super(videogame, "Return", skin, "orangeRectangle");
         this.setScreen();

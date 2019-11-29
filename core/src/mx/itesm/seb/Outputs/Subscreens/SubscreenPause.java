@@ -44,7 +44,7 @@ public class SubscreenPause {
     }
 
     private void setButtons() {
-        this.buttonToMenu = new ButtonToMenu(this.videogame, "Menu", this.uiButton);
+        this.buttonToMenu = new ButtonToMenu(this.videogame, "Menu", this.uiButton, "redRectangle");
         this.buttonToMain = new ButtonToMainFromSubPauseFromSurvive(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 

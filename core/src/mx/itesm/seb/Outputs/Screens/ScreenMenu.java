@@ -41,6 +41,8 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     private Image imageTitle;
     private Label title;
     private Label subtitle;
+    private Label welcome;
+    private Label highScore;
     private Label about;
     private Label settings;
     private Label play;
@@ -170,9 +172,9 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void addButtonsToBottomLayout() {
-        bottomLayout.add(this.btnSubAbout).pad(20).padBottom(5);
-        bottomLayout.add(this.btnSubSettings).pad(20).padBottom(5);
-        bottomLayout.add(this.btnSubPlay).pad(20).padBottom(5);
+        this.bottomLayout.add(this.btnSubAbout).pad(20).padBottom(5);
+        this.bottomLayout.add(this.btnSubSettings).pad(20).padBottom(5);
+        this.bottomLayout.add(this.btnSubPlay).pad(20).padBottom(5);
     }
 
     private void addElementsToTopLayout() {
@@ -182,15 +184,18 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void addLabelsToTopLayout() {
-        this.topLayout.add(this.title).pad(10).padLeft(20).padRight(20).fillX();
+        this.topLayout.add(this.title).pad(10).padLeft(20).padRight(20).padBottom(0).colspan(2).fillX();
         this.topLayout.row();
-        this.topLayout.add(this.subtitle).pad(10).padLeft(20).padRight(20).fillX();
+        this.topLayout.add(this.subtitle).padTop(5).padLeft(20).padRight(20).padBottom(0).colspan(2).fillX();
+        this.topLayout.row();
+        this.topLayout.add(this.welcome).padTop(5).padLeft(20).padRight(5).padBottom(0).width(295);
+        this.topLayout.add(this.highScore).padTop(5).padLeft(5).padRight(20).padBottom(0).width(375);
         this.topLayout.row();
     }
 
     private void addImagesToTopLayout() {
-        topLayout.add(this.imageTitle).pad(20).padBottom(5).uniformX().maxHeight(279f).maxWidth(710f);
-        topLayout.row();
+        this.topLayout.add(this.imageTitle).pad(20).padBottom(5).uniformX().maxHeight(279f).maxWidth(710f).colspan(2);
+        this.topLayout.row();
     }
 
     private void addButtonsToTopLayout() {
@@ -220,25 +225,31 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void setView(){
-        camera = new OrthographicCamera();
-        camera.position.set(Videogame.WIDTH /2, Videogame.HEIGHT /2, 0);
-        camera.update();
-        view = new StretchViewport(Videogame.WIDTH, Videogame.HEIGHT, camera);
-        batch = new SpriteBatch();
+        this.camera = new OrthographicCamera();
+        this.camera.position.set(Videogame.WIDTH /2, Videogame.HEIGHT /2, 0);
+        this.camera.update();
+        this.view = new StretchViewport(Videogame.WIDTH, Videogame.HEIGHT, camera);
+        this.batch = new SpriteBatch();
     }
 
     private void setLabels(){
-        title = new Label("Dunkirk-Defense", uiSkin, "default-title");
-        title.setAlignment(Align.center);
-        subtitle = new Label("SAVE HEROES", uiSkin, "default-subtitle");
-        subtitle.setFontScale(.75f);
-        subtitle.setAlignment(Align.center);
-        settings = new Label("Settings", uiSkin, "default-bold");
-        settings.setAlignment(Align.center);
-        about = new Label("About", uiSkin, "default-bold");
-        about.setAlignment(Align.center);
-        play = new Label("Play", uiSkin, "default-bold");
-        play.setAlignment(Align.center);
+        this.title = new Label("Dunkirk-Defense", uiSkin, "default-title");
+        this.title.setAlignment(Align.center);
+        this.subtitle = new Label("SAVE HEROES", uiSkin, "default-subtitle");
+        this.subtitle.setFontScale(.5f);
+        this.subtitle.setAlignment(Align.center);
+        this.welcome = new Label("Hi, " + this.videogame.getSettings().getName() + "!", this.uiSkin, "default-bold");
+        this.welcome.setAlignment(Align.center);
+        this.welcome.setEllipsis(true);
+        this.highScore = new Label("High Score: " + this.videogame.getSettings().getHighScore() + "!", this.uiSkin, "default-bold");
+        this.highScore.setAlignment(Align.center);
+        this.highScore.setEllipsis(true);
+        this.settings = new Label("Settings", uiSkin, "default-bold");
+        this.settings.setAlignment(Align.center);
+        this.about = new Label("About", uiSkin, "default-bold");
+        this.about.setAlignment(Align.center);
+        this.play = new Label("Play", uiSkin, "default-bold");
+        this.play.setAlignment(Align.center);
     }
 
     @Override
@@ -253,9 +264,9 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void drawElements(){
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        imageBackground.draw(this.batch, 1);
+        this.batch.setProjectionMatrix(camera.combined);
+        this.batch.begin();
+        this.imageBackground.draw(this.batch, 1);
         if (this.screenState != subscreen.MAIN) {
             switch (this.screenState) {
                 case SUBSCREEN_1:
@@ -276,8 +287,8 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
                     break;
             }
         }
-        batch.end();
-        menu.draw();
+        this.batch.end();
+        this.menu.draw();
     }
 
     @Override

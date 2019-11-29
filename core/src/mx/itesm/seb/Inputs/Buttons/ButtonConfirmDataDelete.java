@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
+import mx.itesm.seb.Outputs.Screens.ScreenLoading;
 import mx.itesm.seb.Videogame;
 
 public class ButtonConfirmDataDelete extends EnhancedButton {
@@ -31,7 +32,9 @@ public class ButtonConfirmDataDelete extends EnhancedButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                System.out.println("Data deletion cancelled");
+                System.out.println("Data deletion conpleted");
+                videogame.getSettings().deleteData();
+                videogame.setScreen(new ScreenLoading(videogame, ScreenLoading.GameScreen.MENU));
             }
         });
     }

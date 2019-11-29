@@ -14,19 +14,19 @@ public class ButtonToMainFromSubPauseFromSurvive extends EnhancedTextButton {
     private EnhancedScreen screen;
 
     public ButtonToMainFromSubPauseFromSurvive(Videogame videogame, EnhancedScreen screen, Skin skin) {
-        super(videogame, "Return",skin, "orangeRectangle");
+        super(videogame, "Continue", skin, "orangeRectangle");
         this.screen = screen;
         this.setScreen();
     }
 
     public ButtonToMainFromSubPauseFromSurvive(Videogame videogame, EnhancedScreen screen, Skin skin, String styleName) {
-        super(videogame, "Return",skin, styleName);
+        super(videogame, "Continue",skin, styleName);
         this.screen = screen;
         this.setScreen();
     }
 
     public ButtonToMainFromSubPauseFromSurvive(Videogame videogame, EnhancedScreen screen, TextButtonStyle style) {
-        super(videogame, "Return", style);
+        super(videogame, "Continue", style);
         this.screen = screen;
         this.setScreen();
     }

@@ -579,7 +579,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
                 }
                 if(playerSubmarine.getSprite().getX() > 0){
                 playerSubmarine.move(-3, 0);
-                energy-=.25f;
+                energy-=.50f;
                 }
 
                 break;

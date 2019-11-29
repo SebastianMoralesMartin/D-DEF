@@ -93,6 +93,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
     private Label labelEnergy;
     private Label labelScore;
     private SubscreenPause subscreenPause;
+    private SubOrientation subOrientation;
 
     //Music
     private Music backgroundMusic;
@@ -176,6 +177,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
     }
 
     private void createSubmarine() {
+        subOrientation = subOrientation.LEFT;
         Texture textureSubmarine = new Texture("Entities/Player/AAPlayer.png");
         LinkedList<Texture> textures = new LinkedList<Texture>();
         textures.add(textureSubmarine);
@@ -434,6 +436,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
             colisionVerifier();
             enemyColisionVerifier();
             if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+                this.screenState = subscreen.SUBSCREEN_1;
                 subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
                 survive.addActor(subscreenPause.getWindow());
             }
@@ -536,13 +539,21 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
                 if(playerSubmarine.getSprite().getX() + playerSubmarine.getSprite().getHeight() < Videogame.WIDTH ){
                 playerSubmarine.move(3, 0);
                 energy -=.50f;
-                break;}
+                }
+                if(subOrientation == SubOrientation.LEFT){
+                    subOrientation = subOrientation.RIGHT;
+                    playerSubmarine.getSprite().flip(true, false);
+                }
                 break;
             case LEFT:
                 if(playerSubmarine.getSprite().getX() > 0){
                 playerSubmarine.move(-3, 0);
                 energy-=.25f;
-                break;}
+                }
+                if(subOrientation == SubOrientation.RIGHT){
+                    subOrientation = subOrientation.LEFT;
+                    playerSubmarine.getSprite().flip(true, false);
+                }
                 break;
         }
         if (energy <= 0) {
@@ -723,9 +734,8 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
         GAME,
         LOSE
     }
-    class PauseScene extends Stage {
-        public PauseScene(Viewport view, SpriteBatch batch) {
-            super(view, batch);
-        }
+    private enum SubOrientation {
+        RIGHT,
+        LEFT
     }
 }

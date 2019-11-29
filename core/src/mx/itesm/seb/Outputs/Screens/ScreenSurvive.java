@@ -510,6 +510,12 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
             Rectangle projectileRect = playerProjectile.getSprite().getBoundingRectangle();
             Rectangle enemyRect = enemies.get(i).getSprite().getBoundingRectangle();
             if(projectileRect.overlaps(enemyRect)){
+                EnemyPlane enemyPlane = enemies.get(i);
+                float px = enemyPlane.getSprite().getX();
+                float py = enemyPlane.getSprite().getY();
+                EnemyProjectile projectile = new EnemyProjectile(LIFE_ITEM, px, px);
+                lifeItems.add(projectile);
+
                 playerProjectile = null;
                 enemies.removeIndex(i);
                 playEffect();

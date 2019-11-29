@@ -413,7 +413,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
     private void setTextures() {
         LOW_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Entities/Projectiles/fireball.png");
         MID_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Entities/Projectiles/fireball2.png");
-        MAX_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Photos/dunkirkBeach.png");
+        MAX_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Entities/Projectiles/fireball3.png");
         ENEMY_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Entities/Projectiles/fireballEnemy.png");
         LIFE_ITEM = this.videogame.getAssetManager().get("Entities/Projectiles/fireballLife.png");
     }

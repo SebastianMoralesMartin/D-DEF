@@ -39,6 +39,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     private SpriteBatch batch;
     private Image imageBackground;
     private Image imageTitle;
+    private Image playerSubmarine;
     private Label title;
     private Label subtitle;
     private Label welcome;
@@ -177,12 +178,8 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void addElementsToTopLayout() {
-        this.addImagesToTopLayout();
-        this.addLabelsToTopLayout();
-        this.addButtonsToTopLayout();
-    }
-
-    private void addLabelsToTopLayout() {
+        this.topLayout.add(this.imageTitle).pad(20).padBottom(5).uniformX().maxHeight(279f).maxWidth(710f).colspan(2);
+        this.topLayout.row();
         this.topLayout.add(this.title).pad(10).padLeft(20).padRight(20).padBottom(0).colspan(2).fillX();
         this.topLayout.row();
         this.topLayout.add(this.subtitle).padTop(5).padLeft(20).padRight(20).padBottom(0).colspan(2).fillX();
@@ -190,15 +187,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         this.topLayout.add(this.welcome).padTop(5).padLeft(20).padRight(5).padBottom(0).width(295);
         this.topLayout.add(this.highScore).padTop(5).padLeft(5).padRight(20).padBottom(0).width(375);
         this.topLayout.row();
-    }
-
-    private void addImagesToTopLayout() {
-        this.topLayout.add(this.imageTitle).pad(20).padBottom(5).uniformX().maxHeight(279f).maxWidth(710f).colspan(2);
-        this.topLayout.row();
-    }
-
-    private void addButtonsToTopLayout() {
-
+        this.topLayout.add(this.playerSubmarine).padTop(20).padLeft(20).padRight(20).colspan(2).width(450).height(311);
     }
 
     private void setTopLayout() {
@@ -220,7 +209,10 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     private void setImages() {
-        this.imageTitle = new Image(new Texture(Gdx.files.internal("Screens/Titles/TitleHead.png")));
+        Texture textureTitle = this.videogame.getAssetManager().get("Screens/Titles/TitleHead.png");
+        this.imageTitle = new Image(textureTitle);
+        Texture texturePlayerSubmarine = this.videogame.getAssetManager().get("Entities/Player/AAPlayer.png");
+        this.playerSubmarine = new Image(texturePlayerSubmarine);
     }
 
     private void setView(){
@@ -337,5 +329,6 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         menu.dispose();
         uiSkin.dispose();
         uiButton.dispose();
+        videogame.getAssetManager().dispose();
     }
 }

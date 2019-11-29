@@ -222,5 +222,6 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
         aboutTheGame.dispose();
         uiSkin.dispose();
         uiButton.dispose();
+        videogame.getAssetManager().dispose();
     }
 }

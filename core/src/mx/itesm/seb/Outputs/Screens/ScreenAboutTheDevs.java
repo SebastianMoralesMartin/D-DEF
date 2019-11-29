@@ -171,7 +171,7 @@ public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {
     }
 
     private void setImages() {
-        Texture textureTecDeMonterrey = this.videogame.getAssetManager().get("Skins/Light/lightBackground.png");
+        Texture textureTecDeMonterrey = this.videogame.getAssetManager().get("Icons/tecDeMonterrey.png");
         this.imageTecDeMonterrey = new Image(textureTecDeMonterrey);
         Texture textureAlbertoLopez = this.videogame.getAssetManager().get("Photos/alberto.png");
         this.imageAlbertoLopez = new Image(textureAlbertoLopez);
@@ -295,5 +295,6 @@ public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {
         aboutTheDevs.dispose();
         uiSkin.dispose();
         uiButton.dispose();
+        videogame.getAssetManager().dispose();
     }
 }

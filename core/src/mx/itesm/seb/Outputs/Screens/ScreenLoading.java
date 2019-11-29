@@ -246,7 +246,10 @@ public class ScreenLoading implements Screen {
     }
 
     private void loadResourcesMenu() {
-
+        this.whatsLoading.setText("Loading Title Head.");
+        this.assetManager.load("Screens/Titles/TitleHead.png", Texture.class);
+        this.whatsLoading.setText("Loading Player Submarine.");
+        this.assetManager.load("Entities/Player/AAPlayer.png", Texture.class);
     }
 
     private void loadSkins(){

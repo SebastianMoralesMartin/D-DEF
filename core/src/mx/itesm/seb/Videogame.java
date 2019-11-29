@@ -10,6 +10,7 @@ import java.util.Stack;
 import mx.itesm.seb.Outputs.Mechanics.Settings;
 import mx.itesm.seb.Outputs.Screens.ScreenLoading;
 import mx.itesm.seb.Outputs.Screens.ScreenMenu;
+import mx.itesm.seb.Outputs.Screens.ScreenSplash;
 
 public class Videogame extends Game {
 
@@ -46,7 +47,7 @@ public class Videogame extends Game {
 	@Override
 	public void create () {
 		settings = new Settings();
-		setScreen(new ScreenLoading(this, ScreenLoading.GameScreen.MENU));
+		setScreen(new ScreenSplash(this));
 	}
 
 }

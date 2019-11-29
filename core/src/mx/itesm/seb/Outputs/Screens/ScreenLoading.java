@@ -37,7 +37,6 @@ public class ScreenLoading implements Screen {
     private Stage loading;
     private AssetManager assetManager;
     private GameScreen gameScreen;
-    private float progress;
 
     public ScreenLoading(Videogame videogame, GameScreen nextScreen) {
         this.videogame = videogame;

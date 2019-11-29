@@ -106,4 +106,6 @@ public class SubscreenWarningDeleteData {
     public void draw(SpriteBatch batch, float parentAlpha){
         this.window.draw(batch, parentAlpha);
     }
+
+
 }

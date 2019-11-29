@@ -3,6 +3,7 @@
 package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -245,6 +246,9 @@ public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {
     public void render(float delta) {
         this.eraseScreen();
         this.drawElements();
+        if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            videogame.setScreen(new ScreenMenu(videogame));
+        }
     }
 
     private void eraseScreen() {

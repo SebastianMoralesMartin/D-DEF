@@ -145,7 +145,7 @@ public class ScreenLoading implements Screen {
     }
 
     private void updateloadResources() {
-        this.loadingProgress.setText("Loading: %" + (int) this.assetManager.getProgress());
+        this.loadingProgress.setText("Loading: %" + (int) (this.assetManager.getProgress() * 100));
         if (assetManager.update()){
             switch (this.gameScreen) {
                 case MENU:
@@ -192,7 +192,7 @@ public class ScreenLoading implements Screen {
     }
 
     private void loadResources(){
-        //this.loadSkins();
+        this.loadSkins();
         switch (this.gameScreen){
             case MENU:
                 this.loadResourcesMenu();
@@ -228,18 +228,32 @@ public class ScreenLoading implements Screen {
     }
 
     private void loadResourcesAboutTheGame() {
-
+        this.whatsLoading.setText("Loading Dunkirk Logo.");
+        this.assetManager.load("Photos/dunkirkBeach.png", Texture.class);
     }
 
     private void loadResourcesAboutTheDevs() {
-
+        this.whatsLoading.setText("Loading Tec de Monterrey Logo.");
+        this.assetManager.load("Icons/tecDeMonterrey.png", Texture.class);
+        this.whatsLoading.setText("Loading Alberto photo.");
+        this.assetManager.load("Photos/alberto.png", Texture.class);
+        this.whatsLoading.setText("Loading Eduardo photo.");
+        this.assetManager.load("Photos/eduardo.png", Texture.class);
+        this.whatsLoading.setText("Loading Raul photo.");
+        this.assetManager.load("Photos/raul.png", Texture.class);
+        this.whatsLoading.setText("Loading Sebastian photo.");
+        this.assetManager.load("Photos/sebastian.png", Texture.class);
     }
 
     private void loadResourcesMenu() {
-        this.loadSkins();
+
     }
 
     private void loadSkins(){
+        this.whatsLoading.setText("Loading Light Texture Buttons.");
+        this.assetManager.load("Skins/Light/uiLightMode.atlas", TextureAtlas.class);
+        this.whatsLoading.setText("Loading Light Buttons.");
+        this.assetManager.load("Skins/Buttons/uiButton.json", Skin.class);
         if(this.videogame.getSettings().getDarkMode() == false) {
             this.whatsLoading.setText("Loading Light Background.");
             this.assetManager.load("Skins/Light/lightBackground.png", Texture.class);

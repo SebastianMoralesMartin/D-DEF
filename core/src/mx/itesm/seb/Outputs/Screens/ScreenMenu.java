@@ -92,18 +92,16 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     }
 
     public void setSkins() {
+        this.uiButton = this.videogame.getAssetManager().get("Skins/Buttons/uiButton.json");
         if(this.videogame.getSettings().getDarkMode() == false) {
-            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Light/lightBackground.png")));
-            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiSkin = new Skin(Gdx.files.internal("Skins/Light/uiLightMode.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Light/uiLightMode.atlas")));
+            Texture textureBackground = this.videogame.getAssetManager().get("Skins/Light/lightBackground.png");
+            this.imageBackground = new Image(textureBackground);
+            //"Skins/Light/lightBackground.png"
+            this.uiSkin = this.videogame.getAssetManager().get("Skins/Light/uiLightMode.json");
         } else {
-            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Dark/darkBackground.png")));
-            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiSkin = new Skin(Gdx.files.internal("Skins/Dark/uiDarkMode.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Dark/uiDarkMode.atlas")));
+            Texture textureBackground = this.videogame.getAssetManager().get("Skins/Dark/darkBackground.png");
+            this.imageBackground = new Image(textureBackground);
+            this.uiSkin = this.videogame.getAssetManager().get("Skins/Dark/uiDarkMode.json");
         }
     }
 

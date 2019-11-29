@@ -139,7 +139,8 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
     }
 
     private void setImages() {
-        this.imageDunkirk = new Image(new Texture(Gdx.files.internal("Photos/dunkirkBeach.png")));
+        Texture textureDunkirk = this.videogame.getAssetManager().get("Photos/dunkirkBeach.png");
+        this.imageDunkirk = new Image(textureDunkirk);
     }
 
     private void setView(){

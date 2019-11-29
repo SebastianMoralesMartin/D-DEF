@@ -1,4 +1,3 @@
-//Alberto
 
 package mx.itesm.seb.Outputs.Screens;
 

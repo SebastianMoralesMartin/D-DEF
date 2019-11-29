@@ -1,8 +1,6 @@
 package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -15,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -151,7 +148,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
 
     private void setMusic(){
         if (videogame.getSettings().getMusic() == true) {
-            AssetManager manager = videogame.callAssetManager();
+            AssetManager manager = videogame.getAssetManager();
             manager.load("Music/Double The Bits.mp3", Music.class);
             manager.finishLoading();
             backgroundMusic = manager.get("Music/Double The Bits.mp3");
@@ -328,7 +325,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
 
     private void playEffect() {
         if (this.videogame.getSettings().getSound() == true) {
-            AssetManager manager = videogame.callAssetManager();
+            AssetManager manager = videogame.getAssetManager();
             manager.load("Music/explosion.mp3", Music.class);
             manager.finishLoading();
             Music effect = manager.get("Music/explosion.mp3");
@@ -466,7 +463,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
 
     private void playenemyeffect() {
         if (this.videogame.getSettings().getSound() == true) {
-            AssetManager manager = videogame.callAssetManager();
+            AssetManager manager = videogame.getAssetManager();
             manager.load("Music/bulletImpact.mp3", Music.class);
             manager.finishLoading();
             Music effect = manager.get("Music/bulletImpact.mp3");

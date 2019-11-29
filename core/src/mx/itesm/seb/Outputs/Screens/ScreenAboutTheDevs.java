@@ -189,11 +189,12 @@ public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {
         title.setAlignment(Align.center);
         title.setFontScale(.75f);
 
-        university = new Label("University", uiSkin, "default-subtitle");
+        university = new Label("University & Major", uiSkin, "default-subtitle");
         university.setFontScale(.5f);
         university.setAlignment(Align.center);
 
-        tecDeMonterrey = new Label("Tecnológico de Monterrey, Campus Estado de México.", uiSkin, "default-bold");
+        tecDeMonterrey = new Label("Tecnológico de Monterrey, Campus Estado de México. Computer Systems Engineering", uiSkin, "default-bold");
+        tecDeMonterrey.setFontScale(.9f);
         tecDeMonterrey.setAlignment(Align.left);
         tecDeMonterrey.setWrap(true);
 

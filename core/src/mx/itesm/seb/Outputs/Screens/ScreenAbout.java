@@ -55,7 +55,7 @@ public class ScreenAbout implements Screen {
     }
 
     /*private void setMusic(){
-        AssetManager manager = videogame.callAssetManager();
+        AssetManager manager = videogame.getAssetManager();
         manager.load("Music/Double The Bits.mp3", Music.class);
         manager.finishLoading();
         backgroundMusic = manager.get("Music/Double The Bits.mp3");

@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import java.util.Stack;
 
 import mx.itesm.seb.Outputs.Mechanics.Settings;
+import mx.itesm.seb.Outputs.Screens.ScreenLoading;
 import mx.itesm.seb.Outputs.Screens.ScreenMenu;
 
 public class Videogame extends Game {
@@ -18,17 +19,20 @@ public class Videogame extends Game {
 	public static final float HEIGHT = 1280;
 	//public static final float HEIGHTtest = Gdx.graphics.getHeight();
 	private Music backgroundMusic;
-	private AssetManager assetManager;
+	private final AssetManager assetManager = new AssetManager();
 	private Settings settings;
 
 
-	public AssetManager callAssetManager(){
-		assetManager = new AssetManager();
+	public AssetManager getAssetManager(){
 		return assetManager;
 	}
 
+	public Settings getSettings(){
+		return this.settings;
+	}
+
 	/*public Music getBackgroundMusic(){
-		AssetManager assetManager = this.callAssetManager();
+		AssetManager assetManager = this.getAssetManager();
 		assetManager.load("Music/Phantoms Castle.mp3", Music.class);
 		assetManager.finishLoading();
 		backgroundMusic = assetManager.get("Music/Phantoms Castle.mp3");
@@ -42,11 +46,7 @@ public class Videogame extends Game {
 	@Override
 	public void create () {
 		settings = new Settings();
-		setScreen(new ScreenMenu(this));
-	}
-
-	public Settings getSettings(){
-		return this.settings;
+		setScreen(new ScreenLoading(this, ScreenLoading.GameScreen.MENU));
 	}
 
 }

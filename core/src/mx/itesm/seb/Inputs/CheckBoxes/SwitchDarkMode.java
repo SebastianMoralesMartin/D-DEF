@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import mx.itesm.seb.Outputs.Screens.EnhancedScreen;
+import mx.itesm.seb.Outputs.Screens.ScreenLoading;
 import mx.itesm.seb.Videogame;
 
 public class SwitchDarkMode extends EnhancedCheckBox {
@@ -46,8 +47,9 @@ public class SwitchDarkMode extends EnhancedCheckBox {
                     videogame.getSettings().setDarkMode(true);
                 }
                 System.out.println("Updating Screen...");
-                EnhancedScreen screen = (EnhancedScreen) videogame.getScreen();
-                screen.updateScreen();
+                videogame.setScreen(new ScreenLoading(videogame, ScreenLoading.GameScreen.MENU));
+                //EnhancedScreen screen = (EnhancedScreen) videogame.getScreen();
+                //screen.setScreenState(EnhancedScreen.subscreen.SUBSCREEN_2);
             }
         });
     }

@@ -48,7 +48,7 @@ public class ScreenSettings implements Screen {
     }
 
     /*private void setMusic(){
-        AssetManager manager = videogame.callAssetManager();
+        AssetManager manager = videogame.getAssetManager();
 
         manager.load("Music/Double The Bits.mp3", Music.class);
         manager.finishLoading();

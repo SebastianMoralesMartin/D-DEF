@@ -1,5 +1,6 @@
-package mx.itesm.seb.Outputs.Screens;
+//Alberto
 
+package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

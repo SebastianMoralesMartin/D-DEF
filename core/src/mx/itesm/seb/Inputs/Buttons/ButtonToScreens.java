@@ -1,3 +1,5 @@
+//Alberto
+
 package mx.itesm.seb.Inputs.Buttons;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -9,8 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.seb.Outputs.Screens.ScreenAbout;
 import mx.itesm.seb.Outputs.Screens.ScreenMenu;
-import mx.itesm.seb.Outputs.Screens.ScreenSettings;
-import mx.itesm.seb.Outputs.Screens.ScreenSubMenuAbout;
 import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
 import mx.itesm.seb.Videogame;
 
@@ -113,7 +113,7 @@ public class ButtonToScreens extends TestButton {
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
 
-                        game.setScreen(new ScreenSettings(game));
+                        //game.setScreen(new ScreenSettings(game));
                     }
                 });
                 break;
@@ -141,7 +141,7 @@ public class ButtonToScreens extends TestButton {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new ScreenSubMenuAbout(game));
+                        //game.setScreen(new ScreenSubMenuAbout(game));
                     }
                 });
                 break;

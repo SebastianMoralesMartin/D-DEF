@@ -3,7 +3,7 @@ package mx.itesm.seb.Inputs.Buttons;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import mx.itesm.seb.Outputs.Screens.ScreenSettings;
+
 import mx.itesm.seb.Videogame;
 
 public class ButtonToSettings extends EnhancedButton {
@@ -28,7 +28,7 @@ public class ButtonToSettings extends EnhancedButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.setScreen(new ScreenSettings(videogame));
+                //videogame.setScreen(new ScreenSettings(videogame));
             }
         });
     }

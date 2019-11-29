@@ -1,3 +1,5 @@
+//Alberto
+
 package mx.itesm.seb.Outputs.Subscreens;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,9 +19,9 @@ public class SubscreenPlay {
     private Skin uiSkin;
     private Skin uiButton;
     private Videogame videogame;
-    private ButtonToTutorial buttonToTutorial;
+    //private ButtonToTutorial buttonToTutorial;
     private ButtonToSurvive buttonToSurvive;
-    private ButtonToDefense buttonToDefense;
+    //private ButtonToDefense buttonToDefense;
     private ButtonToMain buttonToMain;
 
 
@@ -46,9 +48,9 @@ public class SubscreenPlay {
     }
 
     private void setButtons() {
-        this.buttonToTutorial = new ButtonToTutorial(this.videogame, this.uiButton);
+        //this.buttonToTutorial = new ButtonToTutorial(this.videogame, this.uiButton);
         this.buttonToSurvive = new ButtonToSurvive(this.videogame, this.uiButton);
-        this.buttonToDefense = new ButtonToDefense(this.videogame, this.uiButton);
+        //this.buttonToDefense = new ButtonToDefense(this.videogame, this.uiButton);
         this.buttonToMain = new ButtonToMain(this.videogame, (EnhancedScreen) this.videogame.getScreen(), this.uiButton);
     }
 
@@ -58,12 +60,12 @@ public class SubscreenPlay {
     }
 
     private void setWindowElements() {
-        this.window.add(this.buttonToTutorial).width(600).height(150).pad(10).fillX();
-        this.window.row();
+        //this.window.add(this.buttonToTutorial).width(600).height(150).pad(10).fillX();
+        //this.window.row();
         this.window.add(this.buttonToSurvive).width(600).height(150).pad(10).fillX();
         this.window.row();
-        this.window.add(this.buttonToDefense).width(600).height(150).pad(10).fillX();
-        this.window.row();
+        //this.window.add(this.buttonToDefense).width(600).height(150).pad(10).fillX();
+        //this.window.row();
         this.window.add(this.buttonToMain).width(500).height(150).pad(20).colspan(3);
     }
 

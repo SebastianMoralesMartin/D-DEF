@@ -3,6 +3,7 @@
 package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -73,23 +74,38 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         this.setImages();
         if (this.screenState != subscreen.MAIN) {
             switch (this.screenState) {
+                case MAIN:
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        Gdx.app.exit();
+                    }
                 case SUBSCREEN_1:
                     this.setSubscreenAbout();
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                    }
                     break;
                 case SUBSCREEN_2:
                     this.setSubscreenSettings();
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                    }
                     break;
                 case SUBSCREEN_3:
                     this.setSubscreenPlay();
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                    }
                     break;
                 case SUBSCREEN_4:
                     this.setSubscreenWarningDeleteData();
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                    }
                     break;
             }
         }
         this.setStage();
-        //this.setMusic();
-        Gdx.input.setCatchBackKey(false);
+        Gdx.input.setCatchBackKey(true);
     }
 
     public void setSkins() {
@@ -247,6 +263,40 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
     public void render(float delta) {
         this.eraseScreen();
         this.drawElements();
+        if (this.screenState != subscreen.MAIN) {
+            switch (this.screenState) {
+                case MAIN:
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        Gdx.app.exit();
+                    }
+                    break;
+                case SUBSCREEN_1:
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                        this.updateScreen();
+                    }
+                    break;
+                case SUBSCREEN_2:
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                        this.updateScreen();
+                    }
+                    break;
+                case SUBSCREEN_3:
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                        this.updateScreen();
+                    }
+                    break;
+                case SUBSCREEN_4:
+                    if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+                        screenState = subscreen.MAIN;
+                        this.updateScreen();
+                    }
+                    break;
+            }
+        }
+
     }
 
     private void eraseScreen() {

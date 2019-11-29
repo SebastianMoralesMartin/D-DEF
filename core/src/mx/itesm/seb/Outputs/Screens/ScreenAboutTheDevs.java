@@ -77,18 +77,16 @@ public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {
     }
 
     public void setSkins() {
+        this.uiButton = this.videogame.getAssetManager().get("Skins/Buttons/uiButton.json");
         if(this.videogame.getSettings().getDarkMode() == false) {
-            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Light/lightBackground.png")));
-            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiSkin = new Skin(Gdx.files.internal("Skins/Light/uiLightMode.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Light/uiLightMode.atlas")));
+            Texture textureBackground = this.videogame.getAssetManager().get("Skins/Light/lightBackground.png");
+            this.imageBackground = new Image(textureBackground);
+            //"Skins/Light/lightBackground.png"
+            this.uiSkin = this.videogame.getAssetManager().get("Skins/Light/uiLightMode.json");
         } else {
-            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Dark/darkBackground.png")));
-            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiSkin = new Skin(Gdx.files.internal("Skins/Dark/uiDarkMode.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Dark/uiDarkMode.atlas")));
+            Texture textureBackground = this.videogame.getAssetManager().get("Skins/Dark/darkBackground.png");
+            this.imageBackground = new Image(textureBackground);
+            this.uiSkin = this.videogame.getAssetManager().get("Skins/Dark/uiDarkMode.json");
         }
     }
 
@@ -173,11 +171,15 @@ public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {
     }
 
     private void setImages() {
-        this.imageTecDeMonterrey = new Image(new Texture(Gdx.files.internal("Icons/tecDeMonterrey.png")));
-        this.imageAlbertoLopez = new Image(new Texture(Gdx.files.internal("Photos/alberto.png")));
+        Texture textureTecDeMonterrey = this.videogame.getAssetManager().get("Skins/Light/lightBackground.png");
+        this.imageTecDeMonterrey = new Image(textureTecDeMonterrey);
+        Texture textureAlbertoLopez = this.videogame.getAssetManager().get("Photos/alberto.png");
+        this.imageAlbertoLopez = new Image(textureAlbertoLopez);
         this.imageEduardoRoberto = new Image(new Texture(Gdx.files.internal("Photos/eduardo.png")));
-        this.imageRaulOrtiz  = new Image(new Texture(Gdx.files.internal("Photos/raul.png")));
-        this.imageSebastianMorales = new Image(new Texture(Gdx.files.internal("Photos/sebastian.png")));
+        Texture textureRaulOrtiz = this.videogame.getAssetManager().get("Photos/raul.png");
+        this.imageRaulOrtiz  = new Image(textureRaulOrtiz);
+        Texture textureSebastianMorales = this.videogame.getAssetManager().get("Photos/sebastian.png");
+        this.imageSebastianMorales = new Image(textureSebastianMorales);
     }
 
     private void setView(){
@@ -223,7 +225,7 @@ public class ScreenAboutTheDevs extends EnhancedScreen implements Screen {
         //eduardoRobertoContent.setAlignment(Align.left);
         //eduardoRobertoContent.setFontScale(.5f);
 
-        raulOrtiz = new Label("Raul Ortiz Mateos", uiSkin, "default-bold");
+        raulOrtiz = new Label("Raúl Ortiz Mateos", uiSkin, "default-bold");
         raulOrtiz.setFontScale(1.2f);
         raulOrtiz.setAlignment(Align.center);
 

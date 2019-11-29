@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import mx.itesm.seb.Outputs.Screens.ScreenAbout;
 import mx.itesm.seb.Outputs.Screens.ScreenAboutTheGame;
+import mx.itesm.seb.Outputs.Screens.ScreenLoading;
 import mx.itesm.seb.Videogame;
 
 public class ButtonToAboutTheGame extends EnhancedTextButton {
@@ -41,7 +42,7 @@ public class ButtonToAboutTheGame extends EnhancedTextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.setScreen(new ScreenAboutTheGame(videogame));
+                videogame.setScreen(new ScreenLoading(videogame, ScreenLoading.GameScreen.ABOUT_THE_GAME));
             }
         });
     }

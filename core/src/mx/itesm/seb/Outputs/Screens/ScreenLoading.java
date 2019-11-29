@@ -224,7 +224,16 @@ public class ScreenLoading implements Screen {
     }
 
     private void loadResourcesSurvive() {
-
+        this.whatsLoading.setText("Loading Low Projectile.");
+        this.assetManager.load("Entities/Projectiles/fireball.png", Texture.class);
+        this.whatsLoading.setText("Loading Mid Projectile.");
+        this.assetManager.load("Entities/Projectiles/fireball2.png", Texture.class);
+        this.whatsLoading.setText("Loading Max Projectile.");
+        this.assetManager.load("Photos/dunkirkBeach.png", Texture.class);
+        this.whatsLoading.setText("Loading Enemy Projectile.");
+        this.assetManager.load("Entities/Projectiles/fireballEnemy.png", Texture.class);
+        this.whatsLoading.setText("Loading Life Item.");
+        this.assetManager.load("Entities/Projectiles/fireballLife.png", Texture.class);
     }
 
     private void loadResourcesAboutTheGame() {

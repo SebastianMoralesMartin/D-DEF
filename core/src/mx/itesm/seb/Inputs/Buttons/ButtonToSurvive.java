@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import mx.itesm.seb.Outputs.Screens.ScreenLoading;
 import mx.itesm.seb.Outputs.Screens.ScreenSurvive;
 import mx.itesm.seb.Videogame;
 
@@ -41,7 +43,7 @@ public class ButtonToSurvive extends EnhancedTextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                videogame.setScreen(new ScreenSurvive(videogame));
+                videogame.setScreen(new ScreenLoading(videogame, ScreenLoading.GameScreen.SURVIVE));
             }
         });
     }

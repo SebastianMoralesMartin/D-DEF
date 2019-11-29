@@ -59,6 +59,7 @@ class ScreenLost implements Screen {
         this.setStage();
         score_txt = new Text("Final Score: " + destroyed);
         this.setMusic();
+        this.videogame.getSettings().setHighScore(destroyed);
         Gdx.input.setCatchBackKey(true);
     }
 

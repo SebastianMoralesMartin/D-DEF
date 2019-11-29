@@ -113,7 +113,6 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         if(this.videogame.getSettings().getDarkMode() == false) {
             Texture textureBackground = this.videogame.getAssetManager().get("Skins/Light/lightBackground.png");
             this.imageBackground = new Image(textureBackground);
-            //"Skins/Light/lightBackground.png"
             this.uiSkin = this.videogame.getAssetManager().get("Skins/Light/uiLightMode.json");
         } else {
             Texture textureBackground = this.videogame.getAssetManager().get("Skins/Dark/darkBackground.png");

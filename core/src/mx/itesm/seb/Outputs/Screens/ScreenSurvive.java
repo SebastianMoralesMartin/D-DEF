@@ -82,7 +82,6 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
     private int destroyed = 0;
     private Texture healthbarForeGround, healthbarBackGround;
     private Stage pause;
-
     private Table bottomLayout;
     private Table topBottomLayout;
     private ImageButton btnBack;
@@ -136,18 +135,16 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
     }
 
     public void setSkins() {
+        this.uiButton = this.videogame.getAssetManager().get("Skins/Buttons/uiButton.json");
         if(this.videogame.getSettings().getDarkMode() == false) {
-            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Light/lightBackground.png")));
-            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiSkin = new Skin(Gdx.files.internal("Skins/Light/uiLightMode.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Light/uiLightMode.atlas")));
+            Texture textureBackground = this.videogame.getAssetManager().get("Skins/Light/lightBackground.png");
+            this.imageBackground = new Image(textureBackground);
+            //"Skins/Light/lightBackground.png"
+            this.uiSkin = this.videogame.getAssetManager().get("Skins/Light/uiLightMode.json");
         } else {
-            this.imageBackground = new Image(new Texture(Gdx.files.internal("Skins/Dark/darkBackground.png")));
-            this.uiButton = new Skin(Gdx.files.internal("Skins/Buttons/uiButton.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Buttons/uiButton.atlas")));
-            this.uiSkin = new Skin(Gdx.files.internal("Skins/Dark/uiDarkMode.json"),
-                    new TextureAtlas(Gdx.files.internal("Skins/Dark/uiDarkMode.atlas")));
+            Texture textureBackground = this.videogame.getAssetManager().get("Skins/Dark/darkBackground.png");
+            this.imageBackground = new Image(textureBackground);
+            this.uiSkin = this.videogame.getAssetManager().get("Skins/Dark/uiDarkMode.json");
         }
     }
 
@@ -404,11 +401,11 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
     }
 
     private void setTextures() {
-        LOW_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball.png");
-        MID_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball2.png");
-        MAX_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireball3.png");
-        ENEMY_PROJECTILE_TEXTURE = new Texture("Entities/Projectiles/fireballEnemy.png");
-        LIFE_ITEM = new Texture("Entities/Projectiles/fireballLife.png");
+        LOW_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Entities/Projectiles/fireball.png");
+        MID_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Entities/Projectiles/fireball2.png");
+        MAX_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Photos/dunkirkBeach.png");
+        ENEMY_PROJECTILE_TEXTURE = this.videogame.getAssetManager().get("Entities/Projectiles/fireballEnemy.png");
+        LIFE_ITEM = this.videogame.getAssetManager().get("Entities/Projectiles/fireballLife.png");
     }
 
     private void setView(){
@@ -701,6 +698,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
         survive.dispose();
         uiSkin.dispose();
         uiButton.dispose();
+        videogame.getAssetManager().dispose();
     }
 
 

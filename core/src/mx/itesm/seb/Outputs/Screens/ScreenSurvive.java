@@ -3,6 +3,7 @@
 package mx.itesm.seb.Outputs.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -119,6 +120,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
         setMusic();
 
         text = new Text("Energy");
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
@@ -431,6 +433,10 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
             updateProjectile(delta);
             colisionVerifier();
             enemyColisionVerifier();
+            if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+                subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
+                survive.addActor(subscreenPause.getWindow());
+            }
         }
         //Borrar pantalla
         eraseScreen();
@@ -718,7 +724,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
         LOSE
     }
     class PauseScene extends Stage {
-        public PauseScene(Viewport view, SpriteBatch batch){
+        public PauseScene(Viewport view, SpriteBatch batch) {
             super(view, batch);
         }
     }

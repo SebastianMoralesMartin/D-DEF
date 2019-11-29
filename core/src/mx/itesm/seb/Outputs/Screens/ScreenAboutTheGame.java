@@ -58,6 +58,7 @@ public class ScreenAboutTheGame extends EnhancedScreen implements Screen {
         this.setImages();
         this.setStage();
         //this.setMusic();
+        Gdx.input.setCatchBackKey(true);
     }
 
     public void setSkins() {

@@ -54,6 +54,7 @@ public class ScreenAbout implements Screen {
         this.setTextures();
         this.setStage();
         //this.setMusic();
+        Gdx.input.setCatchBackKey(true);
     }
 
     /*private void setMusic(){

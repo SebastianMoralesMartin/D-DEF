@@ -88,6 +88,7 @@ public class ScreenMenu extends EnhancedScreen implements Screen {
         }
         this.setStage();
         //this.setMusic();
+        Gdx.input.setCatchBackKey(false);
     }
 
     public void setSkins() {

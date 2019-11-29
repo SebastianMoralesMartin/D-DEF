@@ -129,9 +129,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
         this.setMusic();
         switch (this.screenState) {
             case SUBSCREEN_1:
-                if (this.videogame.getSettings().getMusic() == true) {
-                    subscreenPause.getWindow().remove();
-                }
+                subscreenPause.getWindow().remove();
         }
     }
 
@@ -341,6 +339,18 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
         }
     }
 
+    public void powerupeffect(){
+        if (this.videogame.getSettings().getSound() == true) {
+            AssetManager manager = videogame.getAssetManager();
+            manager.load("Music/powerup.mp3", Music.class);
+            manager.finishLoading();
+            Music effect = manager.get("Music/powerup.mp3");
+            effect.setVolume(75);
+            effect.play();
+
+        }
+    }
+
     private TextButton configurarBotonIzquierda() {
         //Botón Izquierda
         btnIzq = new TextButton("< Left", this.uiButton, "orangeRectangle");
@@ -435,10 +445,22 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
             updateProjectile(delta);
             colisionVerifier();
             enemyColisionVerifier();
-            if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
-                this.screenState = subscreen.SUBSCREEN_1;
-                subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
-                survive.addActor(subscreenPause.getWindow());
+            switch(this.screenState){
+                case MAIN:
+                    if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+                        this.screenState = subscreen.SUBSCREEN_1;
+                        subscreenPause = new SubscreenPause(videogame, uiSkin, uiButton);
+                        survive.addActor(subscreenPause.getWindow());
+                    }
+                    break;
+                case SUBSCREEN_1:
+                    if(this.screenState == subscreen.SUBSCREEN_1){
+                        if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+                            this.updateScreen();
+                            this.setScreenState(EnhancedScreen.subscreen.MAIN);
+                        }
+                    }
+                    break;
             }
         }
         //Borrar pantalla
@@ -465,6 +487,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
                 if (projectileRect.overlaps(submarineRect)) {
                     lifeItems.removeIndex(i);
                     energy += 30;
+                    powerupeffect();
                     if(energy >= 300){energy = 300;}
                 }
             }
@@ -478,7 +501,7 @@ public class ScreenSurvive extends EnhancedScreen implements Screen{
             manager.load("Music/bulletImpact.mp3", Music.class);
             manager.finishLoading();
             Music effect = manager.get("Music/bulletImpact.mp3");
-            effect.setVolume(50);
+            effect.setVolume(5);
             effect.play();
 
         }
